@@ -1,23 +1,24 @@
 const { src, dest, watch, task } = require("gulp");
 const concat = require("gulp-concat"),
+  connect = require("gulp-connect"),
   gulp = require("gulp"),
-  newer = require("gulp-newer"),
   prefix = require("gulp-autoprefixer"),
   babel = require("gulp-babel"),
   sass = require("gulp-sass")(require("sass")),
   pug = require("gulp-pug"),
-  // sourcemaps = require("gulp-sourcemaps"),
   uglify = require("gulp-uglify"),
   notify = require("gulp-notify"),
   plumber = require("gulp-plumber"),
   replace = require("gulp-replace"),
-  // imagemin = require("gulp-imagemin"),
   zip = require("gulp-zip");
+// imagemin = require("gulp-imagemin"),
+// del = require("del");
+// newer = require("gulp-newer"),
 // clean = () => del(["assets"]);
 // purge = require("gulp-css-purge"),
 // ftp = require("vinyl-ftp");
 
-const production = !false;
+const production = false;
 
 const paths = {
   allDistFiles: {
@@ -29,22 +30,22 @@ const paths = {
     dest: "dist/",
   },
   image: {
-    src: "src/assets/imgs/*.*",
-    dest: "dist/assets/imgs/",
+    src: "src/assets/images/*.{jpg,jpeg,png,svg}",
+    dest: "dist/assets/images/",
   },
   html: {
-    src: "./index.pug",
-    watchSrc: ["src/pug/**/*.pug", "./index.pug"],
+    src: "src/views/index.pug",
+    watchSrc: ["src/views/**/*.pug"],
     dest: "dist/",
     mainDest: "./",
   },
-  css: {
-    src: "src/assets/css/main.scss",
-    dest: "dist/assets/css",
-    watchSrc: "src/assets/css/**/*.scss",
-    mainDest: "src/assets/css",
+  styles: {
+    src: "src/assets/styles/main.scss",
+    dest: "dist/assets/styles",
+    watchSrc: "src/assets/styles/**/*.{{scss,css}",
+    mainDest: "src/assets/styles",
   },
-  js: {
+  scripts: {
     src: "src/assets/js/**/*.js",
     dest: "dist/assets/js/",
   },
@@ -59,65 +60,60 @@ function html() {
       .pipe(replace("public/", "./"))
       .pipe(replace("/src/assets/", "./assets/"))
       .pipe(dest(paths.html.dest))
-      .pipe(stop())
-      .pipe(notify("HTML production is done successfully!"))
-      .pipe(connect.reload());
+      .pipe(plumber.stop())
+      .pipe(connect.reload())
+      .pipe(notify("HTML production is done successfully!"));
   } else {
     return src(paths.html.src)
       .pipe(plumber())
       .pipe(pug({ pretty: true }))
       .pipe(concat("index.html"))
       .pipe(dest(paths.html.mainDest))
-      .pipe(stop())
-      .pipe(notify("HTML is done successfully!"))
-      .pipe(connect.reload());
+      .pipe(plumber.stop())
+      .pipe(connect.reload())
+      .pipe(notify("HTML is done successfully!"));
   }
 }
 
 function styles() {
   if (production) {
-    return src(paths.css.src)
+    return src(paths.styles.src, { sourcemaps: true })
       .pipe(plumber())
-      .pipe(init())
       .pipe(sass({ outputStyle: "compressed" }))
       .pipe(prefix())
-      .pipe(concat("main.css"))
-      .pipe(write("."))
-      .pipe(stop())
-      .pipe(dest(paths.css.dest))
-      .pipe(notify("CSS is done successfully!"))
-      .pipe(connect.reload());
+      .pipe(concat("style.css"))
+      .pipe(plumber.stop())
+      .pipe(dest(paths.styles.dest))
+      .pipe(connect.reload())
+      .pipe(notify("styles in production is done successfully!"));
   } else {
-    return src(paths.css.src)
+    return src(paths.styles.src)
       .pipe(plumber())
       .pipe(sass())
       .pipe(prefix())
-      .pipe(concat("main.css"))
-      .pipe(dest(paths.css.mainDest))
-      .pipe(stop())
-      .pipe(notify("CSS is done successfully!"))
-      .pipe(connect.reload());
+      .pipe(concat("style.css"))
+      .pipe(dest(paths.styles.mainDest))
+      .pipe(plumber.stop())
+      .pipe(connect.reload())
+      .pipe(notify("styles is done successfully!"));
   }
 }
 
 function scripts() {
-  return src(paths.js.src)
+  return src(paths.scripts.src, { sourcemaps: true })
     .pipe(plumber())
-    .pipe(init())
     .pipe(babel())
     .pipe(concat("main.js"))
     .pipe(uglify())
-    .pipe(write("."))
-    .pipe(stop())
-    .pipe(dest(paths.js.dest))
+    .pipe(plumber.stop())
+    .pipe(dest(paths.scripts.dest))
     .pipe(notify("javaScript is done successfully!"))
     .pipe(connect.reload());
 }
 
-function imageMin() {
-  return src(paths.image.src)
+function imagesMin() {
+  return src(paths.image.src, { since: gulp.lastRun(images) })
     .pipe(plumber())
-    .pipe(newer(paths.image.dest))
     .pipe(
       imagemin([
         mozjpeg({ quality: 80, progressive: true }),
@@ -127,10 +123,10 @@ function imageMin() {
         }),
       ])
     )
-    .pipe(stop())
+    .pipe(plumber.stop())
     .pipe(dest(paths.image.dest))
-    .pipe(notify("image minify is done successfully!"))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
+    .pipe(notify("image minify is done successfully!"));
 }
 
 function publicFiles() {
@@ -145,9 +141,15 @@ function publicFiles() {
         }),
       ])
     )
-    .pipe(stop())
+    .pipe(plumber.stop())
     .pipe(dest(paths.publicFiles.dest))
     .pipe(connect.reload());
+}
+
+function clean() {
+  // You can use multiple globbing patterns as you would with `gulp.src`,
+  // for example if you are using del 2.0 or above, return its promise
+  return del(["assets"]);
 }
 
 function compressDist() {
@@ -158,30 +160,27 @@ function compressDist() {
 }
 
 function watchs() {
-  gulp.watch(paths.css.watchSrc, styles);
+  gulp.watch(paths.styles.watchSrc, styles);
   gulp.watch(paths.html.watchSrc, html);
-  gulp.watch(paths.js.src, scripts);
-  gulp.watch(paths.image.src, imageMin);
-  gulp.watch(paths.publicFiles.src, publicFiles);
+  gulp.watch(paths.scripts.src, scripts);
+  // gulp.watch(paths.image.src, imagesMin);
+  // gulp.watch(paths.publicFiles.src, publicFiles);
 }
 
-function connect() {
+function connecter() {
   server({
     name: "Dev App",
-    root: ["./"],
-    port: 8000,
+    root: ["src", "dist"],
+    port: 2407,
     livereload: true,
   });
 }
 
 task("compress", () => compressDist());
 
-const build = gulp.series(
-  gulp.parallel(styles, scripts, html, imageMin, publicFiles),
-  connect
-);
+const build = gulp.series(gulp.parallel(styles, scripts, html));
 exports.compressDist = compressDist;
-exports.connect = connect;
+exports.connect = connecter;
 exports.watch = watchs;
 exports.build = build;
 exports.default = build;

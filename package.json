@@ -29,6 +29,7 @@
   "homepage": "https://github.com/abubakr404/abubakr404.github.io#readme",
   "devDependencies": {
     "@types/gulp-imagemin": "^8.0.1",
+    "del": "^7.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
@@ -51,6 +52,7 @@
     "> 2%"
   ],
   "dependencies": {
+    "gulp-cli": "^2.3.0",
     "sass": "^1.54.5"
   }
 }

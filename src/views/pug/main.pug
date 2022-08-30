@@ -1,0 +1,23 @@
+block bodyContent
+  .loader: span.loader-effect loading
+  header
+    .container
+      h3.logo: a(href="#")=myName
+      nav
+        ul
+          +liLArray(siteNav)
+
+  main
+    include sections/hero
+    include sections/about
+    include sections/portfolio
+    include sections/blog
+    include sections/contact
+
+  footer
+    .container
+      .info-box
+        h3=myName
+    //-     p= Footer.info
+    //- .desgister
+    //-   p=`${Footer.desgister.message} ${Footer.desgister.icon} By ${Footer.desgister.name}`
