@@ -1,24 +1,25 @@
-const { src, dest, watch, task } = require("gulp");
+const { src, dest, watch, task, series, parallel } = require("gulp");
 const concat = require("gulp-concat"),
   connect = require("gulp-connect"),
-  gulp = require("gulp"),
   prefix = require("gulp-autoprefixer"),
   babel = require("gulp-babel"),
   sass = require("gulp-sass")(require("sass")),
   pug = require("gulp-pug"),
+  cleanCSS = require("gulp-clean-css"),
+  sourcemaps = require("gulp-sourcemaps"),
   uglify = require("gulp-uglify"),
   notify = require("gulp-notify"),
   plumber = require("gulp-plumber"),
   replace = require("gulp-replace"),
+  imagemin = require("gulp-imagemin"),
   zip = require("gulp-zip");
-// imagemin = require("gulp-imagemin"),
 // del = require("del");
 // newer = require("gulp-newer"),
 // clean = () => del(["assets"]);
 // purge = require("gulp-css-purge"),
 // ftp = require("vinyl-ftp");
 
-const production = false;
+const production = !false;
 
 const paths = {
   allDistFiles: {
@@ -42,12 +43,18 @@ const paths = {
   styles: {
     src: "src/assets/styles/main.scss",
     dest: "dist/assets/styles",
-    watchSrc: "src/assets/styles/**/*.{{scss,css}",
+    watchSrc: "src/assets/styles/**/*.scss",
     mainDest: "src/assets/styles",
   },
   scripts: {
     src: "src/assets/js/**/*.js",
     dest: "dist/assets/js/",
+  },
+  bootstrap: {
+    src: "src/assets/styles/libs/bootstrap/bootstrap.scss",
+    dest: "dist/assets/styles",
+    watchSrc: "src/assets/styles/libs/bootstrap/*.scss",
+    mainDest: "src/assets/styles/libs/",
   },
 };
 
@@ -77,26 +84,52 @@ function html() {
 
 function styles() {
   if (production) {
-    return src(paths.styles.src, { sourcemaps: true })
+    return src(paths.styles.src, {
+      sourcemaps: true,
+    })
       .pipe(plumber())
-      .pipe(sass({ outputStyle: "compressed" }))
+      .pipe(sourcemaps.init())
+      .pipe(sass())
       .pipe(prefix())
       .pipe(concat("style.css"))
-      .pipe(plumber.stop())
+      .pipe(dest(paths.styles.mainDest))
+      .pipe(cleanCSS())
+      .pipe(sourcemaps.write("."))
       .pipe(dest(paths.styles.dest))
+      .pipe(plumber.stop())
       .pipe(connect.reload())
       .pipe(notify("styles in production is done successfully!"));
   } else {
     return src(paths.styles.src)
       .pipe(plumber())
+      .pipe(sourcemaps.init())
       .pipe(sass())
       .pipe(prefix())
       .pipe(concat("style.css"))
+      .pipe(sourcemaps.write("."))
       .pipe(dest(paths.styles.mainDest))
       .pipe(plumber.stop())
       .pipe(connect.reload())
       .pipe(notify("styles is done successfully!"));
   }
+}
+
+function customizeBootstrap() {
+  return src(paths.bootstrap.src, {
+    sourcemaps: true,
+  })
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(prefix())
+    .pipe(cleanCSS())
+    .pipe(concat("bootstrap.min.css"))
+    .pipe(sourcemaps.write("."))
+    .pipe(dest(paths.bootstrap.dest))
+    .pipe(dest(paths.bootstrap.mainDest))
+    .pipe(plumber.stop())
+    .pipe(connect.reload())
+    .pipe(notify("Customize Bootstrap is done successfully!"));
 }
 
 function scripts() {
@@ -112,13 +145,14 @@ function scripts() {
 }
 
 function imagesMin() {
-  return src(paths.image.src, { since: gulp.lastRun(images) })
+  return src(paths.image.src)
     .pipe(plumber())
+    .pipe(changed())
     .pipe(
       imagemin([
-        mozjpeg({ quality: 80, progressive: true }),
-        optipng({ optimizationLevel: 2 }),
-        svgo({
+        imagemin.mozjpeg({ quality: 80, progressive: true }),
+        imagemin.optipng({ optimizationLevel: 2 }),
+        imagemin.svgo({
           plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
         }),
       ])
@@ -132,11 +166,12 @@ function imagesMin() {
 function publicFiles() {
   return src(paths.publicFiles.src)
     .pipe(plumber())
+    .pipe(changed(paths.publicFiles.dest))
     .pipe(
       imagemin([
-        mozjpeg({ quality: 80, progressive: true }),
-        optipng({ optimizationLevel: 2 }),
-        svgo({
+        imagemin.mozjpeg({ quality: 80, progressive: true }),
+        imagemin.optipng({ optimizationLevel: 2 }),
+        imagemin.svgo({
           plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
         }),
       ])
@@ -160,17 +195,18 @@ function compressDist() {
 }
 
 function watchs() {
-  gulp.watch(paths.styles.watchSrc, styles);
-  gulp.watch(paths.html.watchSrc, html);
-  gulp.watch(paths.scripts.src, scripts);
-  // gulp.watch(paths.image.src, imagesMin);
-  // gulp.watch(paths.publicFiles.src, publicFiles);
+  watch([paths.styles.watchSrc, "!src/assets/styles/libs/**/*.*"], styles);
+  watch(paths.html.watchSrc, html);
+  watch(paths.scripts.src, scripts);
+  watch(paths.bootstrap.watchSrc, customizeBootstrap);
+  watch(paths.image.src, imagesMin);
+  watch(paths.publicFiles.src, publicFiles);
 }
 
 function connecter() {
-  server({
-    name: "Dev App",
-    root: ["src", "dist"],
+  connect.server({
+    name: "Abubakr",
+    root: "dist",
     port: 2407,
     livereload: true,
   });
@@ -178,9 +214,12 @@ function connecter() {
 
 task("compress", () => compressDist());
 
-const build = gulp.series(gulp.parallel(styles, scripts, html));
+const build = series(parallel(styles, scripts, html, watchs, connecter));
+const watchLively = parallel(watchs, connecter);
+exports.bootstrap = customizeBootstrap;
 exports.compressDist = compressDist;
 exports.connect = connecter;
 exports.watch = watchs;
+exports.watchLively = watchLively;
 exports.build = build;
 exports.default = build;
