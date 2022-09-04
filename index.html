@@ -6,27 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="abubakr hisham personal website for front-end developer that shown his portfolio and way to contact">
     <link rel="shortcut icon" href="public/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
-    <link rel="stylesheet" href="/src/assets/css/main.css">
+    <link rel="stylesheet" href="/src/assets/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/assets/styles/style.css">
     <title>Abubakr</title>
   </head>
   <body>
     <div class="loader"><span class="loader-effect">loading</span></div>
     <header>
-      <div class="container">
-        <h3 class="logo"><a href="#">Abubakr</a></h3>
-        <nav>
-          <ul>
-            <li><a href="#Home">Home</a></li>
-            <li><a href="#About">About</a></li>
-            <li><a href="#Projects">Projects</a></li>
-            <li><a href="#Blog">Blog</a></li>
-            <li><a href="#Contact">Contact</a></li>
-          </ul>
-        </nav>
-      </div>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container"><a class="navbar-brand" href="#">Abubakr</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link active" href="#Home">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#About">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="#Projects">Projects</a></li>
+              <li class="nav-item"><a class="nav-link" href="#Blog">Blog</a></li>
+              <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
-    <main></main>
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="content">
+            <h1>Hey I'm Abubakr,<br> Frontend developer</h1>
+            <p>Here Iam gonna share everything about my life. Books Iam reading, Games Iam Playing, Stories and Events</p>
+            <div class="btn-group" role="group" aria-label="Vertical button group">
+              <button class="btn btn-light">Download C.V</button>
+              <button class="btn btn-light">Reach out to meta</button>
+            </div>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item"><i class="fa fa-facebook-f" aria-hidden="true"></i></li>
+              <li class="list-group-item"><i class="fa fa-twitter" aria-hidden="true"></i></li>
+              <li class="list-group-item"><i class="fa fa-github" aria-hidden="true"></i></li>
+              <li class="list-group-item"><i class="fa fa-codepen" aria-hidden="true"></i></li>
+              <li class="list-group-item"><i class="fa fa-free-code-camp" aria-hidden="true"></i></li>
+              <li class="list-group-item"><i class="fa fa-linkedin" aria-hidden="true"></i></li>
+            </ul>
+          </div>
+          <div class="hero-figure"><img src="/src/assets/imgs/landing-image.png" alt=""><a href="#undefined"></a></div>
+        </div>
+        <div class="divider-down"> </div>
+      </section>
+    </main>
     <footer>
       <div class="container">
         <div class="info-box">
@@ -34,6 +59,7 @@
         </div>
       </div>
     </footer>
+    <script src="/src/assets/js/bootstrap.bundle.min.js"> </script>
     <script src="/src/assets/js/main.js"> </script>
   </body>
 </html>

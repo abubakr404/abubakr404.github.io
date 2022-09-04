@@ -205,7 +205,7 @@ function watchs() {
 
 function connecter() {
   connect.server({
-    name: "Abubakr",
+    name: "Abubakr server",
     root: "dist",
     port: 2407,
     livereload: true,
