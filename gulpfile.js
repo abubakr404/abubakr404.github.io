@@ -65,6 +65,7 @@ function html() {
       .pipe(pug())
       .pipe(concat("index.html"))
       .pipe(replace("public/", "./"))
+      .pipe(replace("styles/libs/", "styles/"))
       .pipe(replace("/src/assets/", "./assets/"))
       .pipe(dest(paths.html.dest))
       .pipe(plumber.stop())
