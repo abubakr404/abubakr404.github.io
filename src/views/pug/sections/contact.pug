@@ -1,0 +1,42 @@
+section.contact#contact
+  +specialHead(siteLinks[4].title)
+  .container
+    .row.contact-box
+      .col-md-6.info
+        .info-head 
+          h3 
+          p 
+        .contact-links 
+          ul 
+            li.list-group-item
+              a
+                i.fa.fa-envelope(aria-hidden='true')
+                span abubakr.hisham@hotmail.com
+            li.list-group-item
+              a
+                i.fa.fa-envelope(aria-hidden='true')
+                span +249 904219999
+        .social-links
+          ul.list-group.list-group-horizontal
+            li.list-group-item: i.fa.fa-facebook-f(aria-hidden='true')
+            li.list-group-item: i.fa.fa-twitter(aria-hidden='true')
+            li.list-group-item: i.fa.fa-github(aria-hidden='true')
+            li.list-group-item: i.fa.fa-codepen(aria-hidden='true')
+            li.list-group-item: i.fa.fa-free-code-camp(aria-hidden='true')
+            li.list-group-item: i.fa.fa-linkedin(aria-hidden='true')
+      form(method='get').col-md-6.contact-form
+        .form-group
+          label(for='name') Your Name
+          input.form-control-file-name(type='Text')
+        .form-group
+          label(for='email') Your Email
+          input.form-control-file-email(type='email')
+        .form-group
+          label(for='phone') Your Phone
+          input.form-control-file-phone(type='phone')
+        .form-group
+          label(for='massage') Tell me about all you needs
+          textarea.form-control-massage(rows='3')
+          button.btn.btn-light(type=submit)
+            i.fa.fa-telegram(aria-hidden='true')
+            span Send Message

@@ -27,6 +27,53 @@ mixin articleCard(title, text, img, moreLink)
       a(href=moreLink) Read More
       i(class="fas fa-long-arrow-alt-right")
 
+mixin portfolio(portfolio)
+  each work in portfolio
+    .col
+      .card
+        .card-container
+          .card-top 
+            .works-viewer
+              .work-shaffles
+                .btn-group-vertical(role='group', aria-label='work-shaffles')
+                  button.btn.btn-primary.active(type=button): i.fa.fa-desktop(aria-hidden='true')
+                  button.btn.btn-light(type=button): i.fa.fa-tablet(aria-hidden='true')
+                  button.btn.btn-light(type=button): i.fa.fa-mobile(aria-hidden='true')
+              .works-in-all-devices
+                img(src=img, alt=work.title + "-image")
+                img(src=img, alt=work.title + "-image")
+                img(src=img, alt=work.title + "-image")
+            .technologies
+              .technologies-container
+              each technology in work.technologies
+                button(type=button): i.fa.fa-html5(aria-hidden='true')
+                button(type=button): i.fa.fa-css3(aria-hidden='true')
+                button(type=button): i.fa.fa-js-square(aria-hidden='true')
+          .card-body
+            .card-info
+              h5.card-title=work.title
+              p.card-text
+                i.fa.fa-palette(aria-hidden='true')
+                =work.desgister
+            .card-actions
+              a(href="#").action=work.action[0].title
+                i.fa.fa-github(aria-hidden='true')
+              a(href="#").action=work.action[1].title
+                i.fa.fa-eye(aria-hidden='true')
+
+mixin blogCards(blogCards)
+  each card in blogCards
+    .col
+      .card
+        img.card-img-top(src=img, alt=card.title + "-image")
+        .card-body
+          h5.card-title=card.title
+          p.card-text=card.text
+          p.card-text: small.text-muted=card.date
+        .card-footer.more
+          a(href="#" + card.moreLink) Read More
+          i(class="fas fa-long-arrow-alt-right")
+
 mixin rateStars(rateNumber = 0, starsNumber = 5)
   .rate
     - let index = 0;

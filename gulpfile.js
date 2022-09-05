@@ -1,6 +1,7 @@
 const { src, dest, watch, task, series, parallel } = require("gulp");
 const concat = require("gulp-concat"),
   connect = require("gulp-connect"),
+  changed = require("gulp-changed"),
   prefix = require("gulp-autoprefixer"),
   babel = require("gulp-babel"),
   sass = require("gulp-sass")(require("sass")),
@@ -148,7 +149,7 @@ function scripts() {
 function imagesMin() {
   return src(paths.image.src)
     .pipe(plumber())
-    .pipe(changed())
+    .pipe(changed(paths.image.dest))
     .pipe(
       imagemin([
         imagemin.mozjpeg({ quality: 80, progressive: true }),
