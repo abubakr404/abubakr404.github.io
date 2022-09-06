@@ -2,6 +2,7 @@ const { src, dest, watch, task, series, parallel } = require("gulp");
 const concat = require("gulp-concat"),
   connect = require("gulp-connect"),
   changed = require("gulp-changed"),
+  htmlmin = require("gulp-htmlmin"),
   prefix = require("gulp-autoprefixer"),
   babel = require("gulp-babel"),
   sass = require("gulp-sass")(require("sass")),
@@ -20,7 +21,7 @@ const concat = require("gulp-concat"),
 // purge = require("gulp-css-purge"),
 // ftp = require("vinyl-ftp");
 
-const production = !false;
+const productIn = "all";
 
 const paths = {
   allDistFiles: {
@@ -44,7 +45,7 @@ const paths = {
   styles: {
     src: "src/assets/styles/main.scss",
     dest: "dist/assets/styles",
-    watchSrc: "src/assets/styles/**/*.scss",
+    watchSrc: ["src/assets/styles/**/*.scss", "!src/assets/styles/libs/**/*.*"],
     mainDest: "src/assets/styles",
   },
   scripts: {
@@ -59,62 +60,90 @@ const paths = {
   },
 };
 
-function html() {
-  if (production) {
-    return src(paths.html.src)
-      .pipe(plumber())
-      .pipe(pug())
-      .pipe(concat("index.html"))
-      .pipe(replace("public/", "./"))
-      .pipe(replace("styles/libs/", "styles/"))
-      .pipe(replace("/src/assets/", "./assets/"))
-      .pipe(dest(paths.html.dest))
-      .pipe(plumber.stop())
-      .pipe(connect.reload())
-      .pipe(notify("HTML production is done successfully!"));
-  } else {
-    return src(paths.html.src)
-      .pipe(plumber())
-      .pipe(pug({ pretty: true }))
-      .pipe(concat("index.html"))
-      .pipe(dest(paths.html.mainDest))
-      .pipe(plumber.stop())
-      .pipe(connect.reload())
-      .pipe(notify("HTML is done successfully!"));
-  }
-}
+const html = () => {
+  return src(paths.html.src)
+    .pipe(plumber())
+    .pipe(pug({ pretty: true }))
+    .pipe(concat("index.html"))
+    .pipe(dest(paths.html.mainDest))
+    .pipe(replace("public/", "./"))
+    .pipe(replace("styles/libs/", "styles/"))
+    .pipe(replace("/src/assets/", "./assets/"))
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(dest(paths.html.dest))
+    .pipe(plumber.stop())
+    .pipe(connect.reload())
+    .pipe(notify("HTML is done successfully!"));
+};
 
-function styles() {
-  if (production) {
-    return src(paths.styles.src, {
-      sourcemaps: true,
-    })
-      .pipe(plumber())
-      .pipe(sourcemaps.init())
-      .pipe(sass())
-      .pipe(prefix())
-      .pipe(concat("style.css"))
-      .pipe(dest(paths.styles.mainDest))
-      .pipe(cleanCSS())
-      .pipe(sourcemaps.write("."))
-      .pipe(dest(paths.styles.dest))
-      .pipe(plumber.stop())
-      .pipe(connect.reload())
-      .pipe(notify("styles in production is done successfully!"));
-  } else {
-    return src(paths.styles.src)
-      .pipe(plumber())
-      .pipe(sourcemaps.init())
-      .pipe(sass())
-      .pipe(prefix())
-      .pipe(concat("style.css"))
-      .pipe(sourcemaps.write("."))
-      .pipe(dest(paths.styles.mainDest))
-      .pipe(plumber.stop())
-      .pipe(connect.reload())
-      .pipe(notify("styles is done successfully!"));
-  }
-}
+const htmlInProduction = () => {
+  return src(paths.html.src)
+    .pipe(plumber())
+    .pipe(pug())
+    .pipe(concat("index.html"))
+    .pipe(replace("public/", "./"))
+    .pipe(replace("styles/libs/", "styles/"))
+    .pipe(replace("/src/assets/", "./assets/"))
+    .pipe(dest(paths.html.dest))
+    .pipe(plumber.stop())
+    .pipe(connect.reload())
+    .pipe(notify("HTML production is done successfully!"));
+};
+
+const htmlInDev = () => {
+  return src(paths.html.src)
+    .pipe(plumber())
+    .pipe(pug({ pretty: true }))
+    .pipe(concat("index.html"))
+    .pipe(dest(paths.html.mainDest))
+    .pipe(plumber.stop())
+    .pipe(connect.reload())
+    .pipe(notify("HTML is done successfully!"));
+};
+
+const styles = () => {
+  return src(paths.styles.src, { sourcemaps: true })
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass().on("error", sass.logError))
+    .pipe(prefix())
+    .pipe(concat("style.css"))
+    .pipe(dest(paths.styles.mainDest))
+    .pipe(cleanCSS())
+    .pipe(sourcemaps.write("."))
+    .pipe(dest(paths.styles.dest))
+    .pipe(plumber.stop())
+    .pipe(connect.reload())
+    .pipe(notify("styles is done successfully!"));
+};
+
+const stylesInProduction = () => {
+  return src(paths.styles.src, { sourcemaps: true })
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
+    .pipe(prefix())
+    .pipe(concat("style.css"))
+    .pipe(sourcemaps.write("."))
+    .pipe(dest(paths.styles.dest))
+    .pipe(plumber.stop())
+    .pipe(connect.reload())
+    .pipe(notify("styles in production is done successfully!"));
+};
+
+const stylesInDev = () => {
+  return src(paths.styles.src)
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass().on("error", sass.logError))
+    .pipe(prefix())
+    .pipe(concat("style.css"))
+    .pipe(sourcemaps.write("."))
+    .pipe(dest(paths.styles.mainDest))
+    .pipe(plumber.stop())
+    .pipe(connect.reload())
+    .pipe(notify("styles is done successfully!"));
+};
 
 function customizeBootstrap() {
   return src(paths.bootstrap.src, {
@@ -197,12 +226,20 @@ function compressDist() {
 }
 
 function watchs() {
-  watch([paths.styles.watchSrc, "!src/assets/styles/libs/**/*.*"], styles);
-  watch(paths.html.watchSrc, html);
   watch(paths.scripts.src, scripts);
   watch(paths.bootstrap.watchSrc, customizeBootstrap);
   watch(paths.image.src, imagesMin);
   watch(paths.publicFiles.src, publicFiles);
+  if (productIn === "all") {
+    watch(paths.html.watchSrc, html);
+    watch(paths.styles.watchSrc, styles);
+  } else if (productIn === "prod") {
+    watch(paths.html.watchSrc, htmlInProduction);
+    watch(paths.styles.watchSrc, stylesInProduction);
+  } else if (productIn === "dev") {
+    watch(paths.html.watchSrc, htmlInDev);
+    watch(paths.styles.watchSrc, stylesInDev);
+  }
 }
 
 function connecter() {

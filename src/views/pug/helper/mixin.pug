@@ -14,8 +14,15 @@ mixin liLIArray(lisArray)
   each li in lisArray
     li: a(href="#"+ li.link) #[i(class=li.icon)] #{li.name}
 
+mixin socialLinks(socialLinks)
+  ul.list-group.list-group-horizontal.social
+    each link in socialLinks
+      li.list-group-item
+        a(href=link.url).social-link
+          i(class=link.icon aria-hidden='true')
+
 mixin specialHead(title)
-  h2.special-head=title
+  h2.text-center.special-head=title
 
 mixin articleCard(title, text, img, moreLink)
   .article-card
@@ -36,42 +43,39 @@ mixin portfolio(portfolio)
             .works-viewer
               .work-shaffles
                 .btn-group-vertical(role='group', aria-label='work-shaffles')
-                  button.btn.btn-primary.active(type=button): i.fa.fa-desktop(aria-hidden='true')
-                  button.btn.btn-light(type=button): i.fa.fa-tablet(aria-hidden='true')
-                  button.btn.btn-light(type=button): i.fa.fa-mobile(aria-hidden='true')
+                  each screen in work.screens
+                    -if (!screen.isAvailable) continue;
+                    button.btn.btn-primary(class= "active" ? screen.isActive : false type=button): i(class=screen.icon aria-hidden='true')
               .works-in-all-devices
-                img(src=img, alt=work.title + "-image")
-                img(src=img, alt=work.title + "-image")
-                img(src=img, alt=work.title + "-image")
+                img(src=work.imgs.desktop, alt)
+                img(src=work.imgs.tablet, alt)
+                img(src=work.imgs.mobile, alt)
             .technologies
               .technologies-container
-              each technology in work.technologies
-                button(type=button): i.fa.fa-html5(aria-hidden='true')
-                button(type=button): i.fa.fa-css3(aria-hidden='true')
-                button(type=button): i.fa.fa-js-square(aria-hidden='true')
+                each technology in work.technologies
+                  button(type=button): i(class=technology.icon aria-hidden='true')
           .card-body
             .card-info
               h5.card-title=work.title
               p.card-text
-                i.fa.fa-palette(aria-hidden='true')
-                =work.desgister
+                i(class=work.desgister.icon aria-hidden='true')
+                =work.desgister.title
             .card-actions
-              a(href="#").action=work.action[0].title
-                i.fa.fa-github(aria-hidden='true')
-              a(href="#").action=work.action[1].title
-                i.fa.fa-eye(aria-hidden='true')
+              each link in work.links
+                a(href=link.url).action=link.title
+                  i(class=link.icon aria-hidden='true')
 
-mixin blogCards(blogCards)
-  each card in blogCards
+mixin blogs(blogs)
+  each blog in blogs
     .col
       .card
-        img.card-img-top(src=img, alt=card.title + "-image")
+        img.card-img-top(src=blog.img, alt=blog.title + "-image")
         .card-body
-          h5.card-title=card.title
-          p.card-text=card.text
-          p.card-text: small.text-muted=card.date
+          h5.card-title=blog.title
+          p.card-text=blog.text
+          p.card-text: small.text-muted=blog.date
         .card-footer.more
-          a(href="#" + card.moreLink) Read More
+          a(href="#" + blog.moreLink) Read More
           i(class="fas fa-long-arrow-alt-right")
 
 mixin rateStars(rateNumber = 0, starsNumber = 5)

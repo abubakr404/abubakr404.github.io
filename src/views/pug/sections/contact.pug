@@ -4,26 +4,17 @@ section.contact#contact
     .row.contact-box
       .col-md-6.info
         .info-head 
-          h3 
-          p 
+          h3=contact.title
+          p=contact.description
         .contact-links 
-          ul 
-            li.list-group-item
-              a
-                i.fa.fa-envelope(aria-hidden='true')
-                span abubakr.hisham@hotmail.com
-            li.list-group-item
-              a
-                i.fa.fa-envelope(aria-hidden='true')
-                span +249 904219999
+          ul.list-group
+            each link in contact.contactLinks
+              li.list-group-item
+                a(href=link.url) 
+                  i(class=link.icon aria-hidden='true')
+                  span=link.title
         .social-links
-          ul.list-group.list-group-horizontal
-            li.list-group-item: i.fa.fa-facebook-f(aria-hidden='true')
-            li.list-group-item: i.fa.fa-twitter(aria-hidden='true')
-            li.list-group-item: i.fa.fa-github(aria-hidden='true')
-            li.list-group-item: i.fa.fa-codepen(aria-hidden='true')
-            li.list-group-item: i.fa.fa-free-code-camp(aria-hidden='true')
-            li.list-group-item: i.fa.fa-linkedin(aria-hidden='true')
+          +socialLinks(socialLinks)
       form(method='get').col-md-6.contact-form
         .form-group
           label(for='name') Your Name
