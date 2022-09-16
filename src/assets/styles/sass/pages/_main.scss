@@ -1,0 +1,63 @@
+@import "../components/groups";
+@import "../components/animations";
+
+.loader {
+  @extend %transition;
+  @extend %aCenter;
+  @extend %fCenter;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(48 48 48 / 95%);
+  z-index: 1000000000;
+}
+.loader-effect {
+  color: #c5c5c5;
+  text-transform: uppercase;
+  font-size: 4rem;
+  letter-spacing: 0.3125rem;
+  line-height: 1;
+  position: relative;
+}
+.loader-effect:before {
+  content: "";
+  @include overlay($white, 1, 5rem);
+  mix-blend-mode: difference;
+  animation: loadingMove 5s linear infinite;
+}
+
+section {
+  &:not(.hero) {
+    @extend %sectionPadding;
+  }
+  @include in(toSmall) {
+    text-align: center;
+  }
+}
+
+.social {
+  @extend %fCenter;
+  gap: 1rem;
+  padding: 0;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  @include in(fromMedium) {
+    justify-content: flex-start;
+  }
+  a.social-link {
+    @extend %fCenter;
+    padding: 0;
+    font-size: 1.125rem;
+    border-radius: 50%;
+    min-height: 2.25rem;
+    min-width: 2.25rem;
+  }
+}
+
+@import "../layout/header";
+@import "hero";
+@import "about";
+@import "portfolio";
+@import "blog";
+@import "contact";
+@import "../layout/footer";

@@ -14,11 +14,15 @@ mixin liLIArray(lisArray)
   each li in lisArray
     li: a(href="#"+ li.link) #[i(class=li.icon)] #{li.name}
 
+mixin listOfImages(images, path="", altText="", classes="")
+  each image in images
+    img(class=classes, src= path + image, alt=altText)
+
 mixin socialLinks(socialLinks)
-  ul.list-group.list-group-horizontal.social
+  ul.social
     each link in socialLinks
       li.list-group-item
-        a(href=link.url).social-link
+        a(href=link.url).social-link.btn.btn-light
           i(class=link.icon aria-hidden='true')
 
 mixin specialHead(title)

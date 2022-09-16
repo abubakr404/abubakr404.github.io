@@ -1,14 +1,14 @@
 block bodyContent
   .loader: span.loader-effect loading
-  header
+  header.position-sticky
     nav.navbar.navbar-expand-lg
       .container
-        a(href="#").navbar-brand=myName
-        button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation"): span.navbar-toggler-icon
-        .collapse.navbar-collapse.justify-content-end#navbarNav
-          ul.navbar-nav
+        a.navbar-brand.logo(href="#")=myName
+        button#navToggler.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation"): span.navbar-toggler-icon
+        .collapse.navbar-collapse.justify-content-end.navSiteLinks#navbarNav
+          ul.navbar-nav.gap-2.siteNav
             each li in siteLinks
-              li.nav-item: a.nav-link(href="#"+ li.title, class= li.isActive ? "active" : false)=li.title
+              li.nav-item: a.navLink.nav-link(href="#"+ li.title, class= li.isActive ? "active" : false)=li.title
 
   main
     include sections/hero
@@ -21,6 +21,3 @@ block bodyContent
     .container
       .info-box
         h3=myName
-    //-     p= Footer.info
-    //- .desgister
-    //-   p=`${Footer.desgister.message} ${Footer.desgister.icon} By ${Footer.desgister.name}`

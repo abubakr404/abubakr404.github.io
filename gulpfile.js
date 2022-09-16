@@ -58,6 +58,12 @@ const paths = {
     watchSrc: "src/assets/styles/libs/bootstrap/*.scss",
     mainDest: "src/assets/styles/libs/",
   },
+  fontawsome: {
+    src: "src/assets/styles/libs/fontawsome/fontawsome.scss",
+    dest: "dist/assets/styles",
+    watchSrc: "src/assets/styles/libs/fontawsome/*.scss",
+    mainDest: "src/assets/styles/libs/",
+  },
 };
 
 const html = () => {
@@ -163,6 +169,20 @@ function customizeBootstrap() {
     .pipe(notify("Customize Bootstrap is done successfully!"));
 }
 
+function customizeFontawsome() {
+  return src(paths.fontawsome.src)
+    .pipe(plumber())
+    .pipe(sass({ outputStyle: "compressed" }))
+    .pipe(prefix())
+    .pipe(cleanCSS())
+    .pipe(concat("fontawsome.min.css"))
+    .pipe(dest(paths.fontawsome.dest))
+    .pipe(dest(paths.fontawsome.mainDest))
+    .pipe(plumber.stop())
+    .pipe(connect.reload())
+    .pipe(notify("Customize Fontawsome is done successfully!"));
+}
+
 function scripts() {
   return src(paths.scripts.src, { sourcemaps: true })
     .pipe(plumber())
@@ -227,9 +247,10 @@ function compressDist() {
 
 function watchs() {
   watch(paths.scripts.src, scripts);
-  watch(paths.bootstrap.watchSrc, customizeBootstrap);
   watch(paths.image.src, imagesMin);
   watch(paths.publicFiles.src, publicFiles);
+  watch(paths.bootstrap.watchSrc, customizeBootstrap);
+  watch(paths.fontawsome.watchSrc, customizeFontawsome);
   if (productIn === "all") {
     watch(paths.html.watchSrc, html);
     watch(paths.styles.watchSrc, styles);

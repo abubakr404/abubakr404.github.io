@@ -1,0 +1,28 @@
+html {
+  scroll-behavior: smooth;
+}
+:root {
+  --main-transition: #{$mainTransition};
+  --main-surface: #{$mainSurface};
+  --second-surface: #{$secondSurface};
+  --portfolio-surface: #{$portfolioSurface};
+  --main-gradient: #{$mainGradient};
+  --pattern-gradient: #{$patternGradient};
+  --primary-gradient: #{$primaryGradient};
+  --lighter-primary-gradient: #{$lighterPrimaryGradient};
+  --border-gradient: #{$borderGradient};
+  --light-primary: #{$LightPrimary};
+  --light-primary-container: #{$LightPrimaryContainer};
+  --light-on-primary: #{$LightOnPrimary};
+  --light-on-primary-container: #{$LightOnPrimaryContainer};
+  --light-inverse-primary: #{$LightInversePrimary};
+  --header-height: #{$headerHeight};
+  --main-padding-top: #{$sectionPadding};
+  --main-padding-bottom: #{$sectionPadding};
+}
+body {
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  background: var(--main-surface);
+}
