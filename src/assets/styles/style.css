@@ -29,9 +29,13 @@ body {
   background: var(--main-surface);
 }
 
-.hero > a.alt-work-link, header nav li > a.navLink:after, header nav, header, .loader {
+.hero > a.alt-work-link, header nav li > a.navLink:after, header nav, header, .special-head::after, .special-head::before, .special-head, .loader {
   -webkit-transition: var(--main-transition);
   transition: var(--main-transition);
+}
+
+.special-head {
+  font-weight: bold;
 }
 
 .hero .hero-figure {
@@ -50,13 +54,41 @@ section:not(.hero) {
   }
 }
 
+.fColS {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.fColC {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .hero > a.alt-work-link {
   right: 50%;
   -webkit-transform: translateX(50%);
           transform: translateX(50%);
 }
 
-.hero, header nav li > a.navLink, header .logo, .social a.social-link, .social, .loader {
+.hero, header nav li > a.navLink, header .logo, .special-head, .social a.social-link, .social, .loader, .fCenter,
+.fCenterH,
+.fCenterV {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -68,7 +100,7 @@ section:not(.hero) {
           justify-content: center;
 }
 
-.loader {
+.special-head::after, .special-head::before, .loader {
   position: absolute;
   right: 50%;
   bottom: 50%;
@@ -349,6 +381,13 @@ section:not(.hero) {
             transform: translateY(-100%);
   }
 }
+.fCenterV {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 .loader {
   position: fixed;
   width: 100vw;
@@ -405,6 +444,36 @@ section:not(.hero) {
   border-radius: 50%;
   min-height: 2.25rem;
   min-width: 2.25rem;
+}
+
+.special-head {
+  text-transform: capitalize;
+  margin-bottom: 5rem;
+  position: relative;
+  padding: 0.625rem 1.25rem;
+  font-size: 2rem;
+}
+@media (max-width: 991px) {
+  .special-head {
+    font-size: 1.5rem;
+  }
+}
+.special-head::after, .special-head::before {
+  content: "";
+  position: absolute;
+  right: 50%;
+  border-radius: 10rem;
+  bottom: -0.3125rem;
+}
+.special-head::after {
+  background-color: var(--light-on-primary-container);
+  height: 0.5rem;
+  width: 1.5rem;
+}
+.special-head::before {
+  background-color: var(--light-inverse-primary);
+  height: 0.1875rem;
+  width: 5rem;
 }
 
 header {
@@ -621,4 +690,20 @@ header nav li > a.navLink:hover:after, header nav li > a.navLink:focus:after, he
 .hero .parallax4 > use {
   -webkit-animation-delay: -2s;
           animation-delay: -2s;
+}
+
+.about {
+  color: var(--light-on-primary-container);
+}
+.about .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }

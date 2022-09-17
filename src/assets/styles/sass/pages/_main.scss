@@ -1,5 +1,6 @@
 @import "../components/groups";
 @import "../components/animations";
+@import "../components/tuti";
 
 .loader {
   @extend %transition;
@@ -51,6 +52,40 @@ section {
     border-radius: 50%;
     min-height: 2.25rem;
     min-width: 2.25rem;
+  }
+}
+
+.special-head {
+  @extend %transition;
+  @extend %fCenter;
+  @extend %bold;
+  text-transform: capitalize;
+  margin-bottom: 5rem;
+  position: relative;
+  padding: 0.625rem 1.25rem;
+  font-size: 2rem;
+  @include in(toSmall) {
+    font-size: 1.5rem;
+  }
+  &::after,
+  &::before {
+    @extend %transition;
+    @extend %aCenter;
+    content: "";
+    position: absolute;
+    right: 50%;
+    border-radius: 10rem;
+    bottom: -0.3125rem;
+  }
+  &::after {
+    background-color: var(--light-on-primary-container);
+    height: 0.5rem;
+    width: 1.5rem;
+  }
+  &::before {
+    background-color: var(--light-inverse-primary);
+    height: 0.1875rem;
+    width: 5rem;
   }
 }
 

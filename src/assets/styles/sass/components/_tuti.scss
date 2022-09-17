@@ -1,0 +1,14 @@
+.fCenter,
+.fCenterH,
+.fCenterV {
+  @extend %fCenter;
+}
+.fCenterV {
+  flex-direction: column;
+}
+.fColC {
+  @extend %fColC;
+}
+.fColS {
+  @extend %fColS;
+}
