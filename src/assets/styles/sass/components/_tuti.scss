@@ -12,3 +12,19 @@
 .fColS {
   @extend %fColS;
 }
+
+.z1,
+.rZ1 {
+  @extend %z1;
+}
+
+.g-col-lg-3 {
+  @include responGridCol(18.75rem, 2.5rem);
+  @include in {
+    grid-template-columns: 1fr;
+  }
+}
+
+// .overlay {
+//   @extend %overlay;
+// }

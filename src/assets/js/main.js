@@ -1,13 +1,20 @@
 const loader = document.querySelector(".loader");
 const header = document.querySelector("header");
+const sections = document.querySelectorAll("main > section");
 const navToggler = document.querySelector("#navToggler");
-const imgsContainer = document.querySelector(".imgs-container");
-const worksImgs = imgsContainer.querySelectorAll("img");
+const navLinks = document.querySelectorAll(".siteNav .navLink");
+const heroImgsContainer = document.querySelector(".hero .imgs-container");
+const workCards = document.querySelectorAll(".work-card");
+const portfolioImgsContainer = document.querySelectorAll(
+  ".portfolio .imgs-container"
+);
+const worksImgs = heroImgsContainer.querySelectorAll("img");
 const workLink = document.querySelector(".work-link");
 
 let lastKnownScrollPosition = 0;
 let lastRandomNumber = 0;
-let done = false;
+let viwerDone = false;
+let navSwapDone = false;
 let ticking = false;
 
 window.onload = () => {
@@ -26,15 +33,29 @@ navToggler.addEventListener("click", (event) => {
 });
 
 window.addEventListener("scroll", (event) => {
-  if (portfolio.offsetTop <= window.scrollY && !done) {
+  if (portfolio.offsetTop <= window.scrollY && !viwerDone) {
     stopRandomWorks();
-    done = true;
+    viwerDone = true;
   }
+});
+
+window.addEventListener("scroll", (event) => {
+  lastKnownScrollPosition = window.scrollY;
+  sections.forEach((section) => {
+    if (
+      section.offsetTop <= lastKnownScrollPosition &&
+      section.offsetTop + section.offsetHeight >= lastKnownScrollPosition
+    ) {
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (section.id === link.dataset.ref) link.classList.add("active");
+      });
+    }
+  });
 });
 
 addEventListener("scroll", (event) => {
   lastKnownScrollPosition = window.scrollY;
-
   if (!ticking) {
     window.requestAnimationFrame(() => {
       filled(lastKnownScrollPosition);
@@ -77,9 +98,34 @@ function randomWorks() {
 
 function stopRandomWorks() {
   clearInterval(workViewer);
-  imgsContainer.classList.add("done");
+  heroImgsContainer.classList.add("done");
 }
+
+portfolioImgsContainer.forEach((imgContainer) => {
+  imgContainer.addEventListener("click", (e) => {
+    imgContainer.parentElement.parentElement.parentElement.classList.toggle(
+      "zoomed"
+    );
+  });
+});
+
+workCards.forEach((work) => {
+  let screenes = work.querySelectorAll(".screen");
+  let imgs = work.querySelectorAll(".imgs-container img");
+  classTogglerTT(screenes, "active");
+  screenes.forEach((screen) => {
+    screen.addEventListener("click", (e) => {
+      imgs.forEach((img) => {
+        img.classList.remove("active");
+        if (img.dataset.type === screen.dataset.type)
+          img.classList.add("active");
+      });
+    });
+  });
+});
 
 workLink.addEventListener("click", (event) => {
   stopRandomWorks();
 });
+
+classTogglerTT(navLinks, "active");

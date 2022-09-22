@@ -53,8 +53,40 @@
   @include fCol(center);
 }
 
-%fColE {
-  @include fCol(end);
+%fRowY {
+  @include fRowY;
+}
+
+%fRowSY {
+  @include fRowY(start);
+}
+
+%fRowCY {
+  @include fRowY(center);
+}
+
+%fRowEY {
+  @include fRowY(end);
+}
+
+%fColC {
+  @include fCol(center);
+}
+
+%fRow {
+  @include fRow;
+}
+
+%fRowS {
+  @include fRow(start);
+}
+
+%fRowC {
+  @include fRow(center);
+}
+
+%fRowE {
+  @include fRow(end);
 }
 
 %hPCenter {

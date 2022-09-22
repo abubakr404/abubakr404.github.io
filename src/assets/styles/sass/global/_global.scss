@@ -20,6 +20,11 @@ html {
   --main-padding-top: #{$sectionPadding};
   --main-padding-bottom: #{$sectionPadding};
 }
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
 body {
   overflow-x: hidden;
   position: relative;

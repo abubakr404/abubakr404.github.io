@@ -40,34 +40,32 @@ mixin articleCard(title, text, img, moreLink)
 
 mixin portfolio(portfolio)
   each work in portfolio
-    .col
-      .card
-        .card-container
-          .card-top 
-            .works-viewer
-              .work-shaffles
-                .btn-group-vertical(role='group', aria-label='work-shaffles')
-                  each screen in work.screens
-                    -if (!screen.isAvailable) continue;
-                    button.btn.btn-primary(class= "active" ? screen.isActive : false type=button): i(class=screen.icon aria-hidden='true')
-              .works-in-all-devices
-                img(src=work.imgs.desktop, alt)
-                img(src=work.imgs.tablet, alt)
-                img(src=work.imgs.mobile, alt)
-            .technologies
-              .technologies-container
-                each technology in work.technologies
-                  button(type=button): i(class=technology.icon aria-hidden='true')
-          .card-body
-            .card-info
-              h5.card-title=work.title
-              p.card-text
-                i(class=work.desgister.icon aria-hidden='true')
-                =work.desgister.title
-            .card-actions
-              each link in work.links
-                a(href=link.url).action=link.title
-                  i(class=link.icon aria-hidden='true')
+    .work-card
+      .card-top
+        .works-viewer
+          .work-shuffle
+            each screen in work.screens
+              -if (!screen.isAvailable) continue;
+              button.screen(class= screen.isActive ? "active" : false type=button data-type= screen.type): i(class=screen.icon aria-hidden='true')
+          .imgs-container
+            each screen in work.screens
+              -if (!screen.isAvailable) continue;
+              img.img-fluid(class= screen.isActive ? "active" : false src=imgsPath + screen.img alt="work-image" data-type= screen.type)
+        .technologies
+          .technologies-container
+            each technology in work.technologies
+              button(type=button): i(class=technology.icon aria-hidden='true')
+      .card-bottom
+        .card-info
+          h5.card-title=work.title
+          a(href=work.desgister.url target="_blank").card-text
+            i(class=work.desgister.icon aria-hidden='true')
+            =work.desgister.title
+        .card-actions
+          each link in work.links
+            a.btn.btn-light(href=link.url target="_blank").action
+              i(class=link.icon aria-hidden='true')
+              =link.title
 
 mixin blogs(blogs)
   each blog in blogs

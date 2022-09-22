@@ -1,9 +1,35 @@
+//
+
+@mixin align($align: stretch) {
+  @if $align == stretch {
+    align-items: stretch;
+  } @else if $align == start {
+    align-items: flex-start;
+  } @else if $align == center {
+    align-items: center;
+  } @else if $align == end {
+    align-items: flex-end;
+  }
+}
+
+@mixin justify($justify: stretch) {
+  @if $justify == stretch {
+    justify-content: stretch;
+  } @else if $justify == start {
+    justify-content: flex-start;
+  } @else if $justify == center {
+    justify-content: center;
+  } @else if $justify == end {
+    justify-content: flex-end;
+  }
+}
+
 // mixin fCenter is mixin for make the selector flex and make content center
 
 @mixin fCenter($align: center, $justify: center) {
   display: flex;
-  align-items: $align;
-  justify-content: $justify;
+  @include align($align);
+  @include justify($justify);
 }
 
 // mixin aCenter is mixin for make the selector in center of the screen by use position absolute
@@ -40,20 +66,43 @@
   }
 }
 
-// mixin fCol is mixin for make flex and its direction is column and has option to make the align center
+// mixin fGap is mixin for make element display flex and has option to control the gap
+
+@mixin fGap($gap: 1rem) {
+  display: flex;
+  gap: $gap;
+}
+
+// mixin fCol is mixin for make flex and its direction is column and has option to control the align
 
 @mixin fCol($align: stretch) {
   display: flex;
   flex-direction: column;
-  @if $align == stretch {
-    align-items: stretch;
-  } @else if $align == start {
-    align-items: flex-start;
-  } @else if $align == center {
-    align-items: center;
-  } @else if $align == end {
-    align-items: flex-end;
-  }
+  @include align($align);
+}
+
+@mixin fColX($align: stretch) {
+  @include fCol($align);
+}
+
+@mixin fColY($jusify: stretch) {
+  @include justify($justify);
+}
+
+// mixin fRow is mixin for make flex and its direction is row and has option to control the jusify content
+
+@mixin fRow($justify: stretch) {
+  display: flex;
+  flex-direction: row;
+  @include justify($justify);
+}
+@mixin fRowX($justify: stretch) {
+  @include fRow($justify);
+}
+@mixin fRowY($align: stretch) {
+  display: flex;
+  flex-direction: row;
+  @include align($align);
 }
 
 // mixin radiBox is mixin make the first element has radius border in two side and the last element

@@ -23,11 +23,11 @@
           <button class="navbar-toggler" id="navToggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse justify-content-end navSiteLinks" id="navbarNav">
             <ul class="navbar-nav gap-2 siteNav">
-              <li class="nav-item"><a class="navLink nav-link active" href="#home">home</a></li>
-              <li class="nav-item"><a class="navLink nav-link" href="#about">about</a></li>
-              <li class="nav-item"><a class="navLink nav-link" href="#portfolio">portfolio</a></li>
-              <li class="nav-item"><a class="navLink nav-link" href="#blogs">blogs</a></li>
-              <li class="nav-item"><a class="navLink nav-link" href="#contact">contact</a></li>
+              <li class="nav-item"><a class="navLink nav-link active" href="#home" data-ref="home">home</a></li>
+              <li class="nav-item"><a class="navLink nav-link" href="#about" data-ref="about">about</a></li>
+              <li class="nav-item"><a class="navLink nav-link" href="#portfolio" data-ref="portfolio">portfolio</a></li>
+              <li class="nav-item"><a class="navLink nav-link" href="#blogs" data-ref="blogs">blogs</a></li>
+              <li class="nav-item"><a class="navLink nav-link" href="#contact" data-ref="contact">contact</a></li>
             </ul>
           </div>
         </div>
@@ -90,7 +90,7 @@
       <section class="about" id="about">
         <h2 class="text-center special-head">about me</h2>
         <div class="container">
-          <div class="row g-5">
+          <div class="row gy-5">
             <div class="about-figure col-md-6"><img class="img-fluid" src="/src/assets/images/about.png" alt=""></div>
             <div class="content col-md-6">
               <h3 class="h1">Hey I'm Abubakr,
@@ -107,46 +107,172 @@
       </section>
       <section class="portfolio" id="portfolio">
         <h2 class="text-center special-head">lates works</h2>
-        <div class="container">
-          <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-              <div class="card">
-                <div class="card-container">
-                  <div class="card-top"> 
-                    <div class="works-viewer">
-                      <div class="work-shaffles">
-                        <div class="btn-group-vertical" role="group" aria-label="work-shaffles">
-                          <button class="btn btn-primary true"><i class="fa fa-desktop" aria-hidden="true"></i></button>
-                          <button class="btn btn-primary"><i class="fa fa-tablet-alt" aria-hidden="true"></i></button>
-                          <button class="btn btn-primary"><i class="fa fa-mobile-alt" aria-hidden="true"></i></button>
-                        </div>
-                      </div>
-                      <div class="works-in-all-devices"><img src="work-desktop-01.jpg" alt="alt"/><img src="work-tablet-01.jpg" alt="alt"/><img src="work-mobile-01.jpg" alt="alt"/></div>
-                    </div>
-                    <div class="technologies">
-                      <div class="technologies-container">
-                        <button><i class="fab fa-html5" aria-hidden="true"></i></button>
-                        <button><i class="fab fa-css3-alt" aria-hidden="true"></i></button>
-                        <button><i class="fab fa-js-square" aria-hidden="true"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="card-info">
-                      <h5 class="card-title">sunyside</h5>
-                      <p class="card-text"><i class="fa fa-palette" aria-hidden="true"></i>forntendmentor
-                      </p>
-                    </div>
-                    <div class="card-actions"><a class="action" href="">View Code<i class="fab fa-github" aria-hidden="true"></i></a><a class="action" href="">Live Version<i class="fa fa-eye" aria-hidden="true"></i></a>
-                    </div>
-                  </div>
+        <div class="container g-col-lg-3">
+          <div class="work-card">
+            <div class="card-top">
+              <div class="works-viewer">
+                <div class="work-shuffle">
+                  <button class="screen active" data-type="desktop"><i class="fa fa-desktop" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="tablet"><i class="fa fa-tablet-alt" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="mobile"><i class="fa fa-mobile-alt" aria-hidden="true"></i></button>
                 </div>
+                <div class="imgs-container"><img class="img-fluid active" src="/src/assets/images/work-desktop-01.png" alt="work-image" data-type="desktop"/><img class="img-fluid" src="/src/assets/images/work-tablet-01.png" alt="work-image" data-type="tablet"/><img class="img-fluid" src="/src/assets/images/work-mobile-01.png" alt="work-image" data-type="mobile"/>
+                </div>
+              </div>
+              <div class="technologies">
+                <div class="technologies-container">
+                  <button><i class="fab fa-html5" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-css3-alt" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-js-square" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <div class="card-info">
+                <h5 class="card-title">Leon</h5><a class="card-text" href="https://www.graphberry.com/item/leon-psd-agency-template" target="_blank"><i class="fa fa-palette" aria-hidden="true"></i>Graphberry</a>
+              </div>
+              <div class="card-actions"><a class="btn btn-light action" href="https://github.com/abubakr404/elzero-tut-temp-1" target="_blank"><i class="fab fa-github" aria-hidden="true"></i>View Code</a><a class="btn btn-light action" href="https://abubakr404.github.io/elzero-tut-temp-1/" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Live Version</a>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="card-top">
+              <div class="works-viewer">
+                <div class="work-shuffle">
+                  <button class="screen active" data-type="desktop"><i class="fa fa-desktop" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="tablet"><i class="fa fa-tablet-alt" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="mobile"><i class="fa fa-mobile-alt" aria-hidden="true"></i></button>
+                </div>
+                <div class="imgs-container"><img class="img-fluid active" src="/src/assets/images/work-desktop-02.png" alt="work-image" data-type="desktop"/><img class="img-fluid" src="/src/assets/images/work-tablet-02.png" alt="work-image" data-type="tablet"/><img class="img-fluid" src="/src/assets/images/work-mobile-02.png" alt="work-image" data-type="mobile"/>
+                </div>
+              </div>
+              <div class="technologies">
+                <div class="technologies-container">
+                  <button><i class="fab fa-html5" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-css3-alt" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-js-square" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <div class="card-info">
+                <h5 class="card-title">sunyside</h5><a class="card-text" href="https://www.frontendmentor.io/challenges/sunnyside-agency-landing-page-7yVs3B6ef" target="_blank"><i class="fa fa-palette" aria-hidden="true"></i>Forntend Mentor</a>
+              </div>
+              <div class="card-actions"><a class="btn btn-light action" href="https://github.com/frontend-mentor-challenge-21" target="_blank"><i class="fab fa-github" aria-hidden="true"></i>View Code</a><a class="btn btn-light action" href="https://abubakr404.github.io/frontend-mentor-challenge-21/" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Live Version</a>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="card-top">
+              <div class="works-viewer">
+                <div class="work-shuffle">
+                  <button class="screen active" data-type="desktop"><i class="fa fa-desktop" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="tablet"><i class="fa fa-tablet-alt" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="mobile"><i class="fa fa-mobile-alt" aria-hidden="true"></i></button>
+                </div>
+                <div class="imgs-container"><img class="img-fluid active" src="/src/assets/images/work-desktop-03.png" alt="work-image" data-type="desktop"/><img class="img-fluid" src="/src/assets/images/work-tablet-03.png" alt="work-image" data-type="tablet"/><img class="img-fluid" src="/src/assets/images/work-mobile-03.png" alt="work-image" data-type="mobile"/>
+                </div>
+              </div>
+              <div class="technologies">
+                <div class="technologies-container">
+                  <button><i class="fab fa-html5" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-css3-alt" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-js-square" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <div class="card-info">
+                <h5 class="card-title">Template 3</h5><a class="card-text" href="https://elzero.org/html-css-practice-template-three/" target="_blank"><i class="fa fa-palette" aria-hidden="true"></i>Elzero.org</a>
+              </div>
+              <div class="card-actions"><a class="btn btn-light action" href="https://github.com/abubakr404/elzero-tut-temp-3" target="_blank"><i class="fab fa-github" aria-hidden="true"></i>View Code</a><a class="btn btn-light action" href="https://abubakr404.github.io/elzero-tut-temp-3/" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Live Version</a>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="card-top">
+              <div class="works-viewer">
+                <div class="work-shuffle">
+                  <button class="screen active" data-type="desktop"><i class="fa fa-desktop" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="tablet"><i class="fa fa-tablet-alt" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="mobile"><i class="fa fa-mobile-alt" aria-hidden="true"></i></button>
+                </div>
+                <div class="imgs-container"><img class="img-fluid active" src="/src/assets/images/work-desktop-04.png" alt="work-image" data-type="desktop"/><img class="img-fluid" src="/src/assets/images/work-tablet-04.png" alt="work-image" data-type="tablet"/><img class="img-fluid" src="/src/assets/images/work-mobile-04.png" alt="work-image" data-type="mobile"/>
+                </div>
+              </div>
+              <div class="technologies">
+                <div class="technologies-container">
+                  <button><i class="fab fa-html5" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-css3-alt" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-js-square" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <div class="card-info">
+                <h5 class="card-title">Kasper</h5><a class="card-text" href="https://www.graphberry.com/item/kasper-one-page-creative-html-theme" target="_blank"><i class="fa fa-palette" aria-hidden="true"></i>Graphberry</a>
+              </div>
+              <div class="card-actions"><a class="btn btn-light action" href="https://github.com/abubakr404/elzero-tut-temp-2" target="_blank"><i class="fab fa-github" aria-hidden="true"></i>View Code</a><a class="btn btn-light action" href="https://abubakr404.github.io/elzero-tut-temp-2/" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Live Version</a>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="card-top">
+              <div class="works-viewer">
+                <div class="work-shuffle">
+                  <button class="screen active" data-type="desktop"><i class="fa fa-desktop" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="tablet"><i class="fa fa-tablet-alt" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="mobile"><i class="fa fa-mobile-alt" aria-hidden="true"></i></button>
+                </div>
+                <div class="imgs-container"><img class="img-fluid active" src="/src/assets/images/work-desktop-05.png" alt="work-image" data-type="desktop"/><img class="img-fluid" src="/src/assets/images/work-tablet-05.png" alt="work-image" data-type="tablet"/><img class="img-fluid" src="/src/assets/images/work-mobile-05.png" alt="work-image" data-type="mobile"/>
+                </div>
+              </div>
+              <div class="technologies">
+                <div class="technologies-container">
+                  <button><i class="fab fa-html5" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-css3-alt" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-js-square" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <div class="card-info">
+                <h5 class="card-title">Blogr</h5><a class="card-text" href="https://www.frontendmentor.io/challenges/blogr-landing-page-EX2RLAApP" target="_blank"><i class="fa fa-palette" aria-hidden="true"></i>Forntend Mentor</a>
+              </div>
+              <div class="card-actions"><a class="btn btn-light action" href="https://github.com/frontend-mentor-challenge-22" target="_blank"><i class="fab fa-github" aria-hidden="true"></i>View Code</a><a class="btn btn-light action" href="https://abubakr404.github.io/frontend-mentor-challenge-22/" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Live Version</a>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="card-top">
+              <div class="works-viewer">
+                <div class="work-shuffle">
+                  <button class="screen active" data-type="desktop"><i class="fa fa-desktop" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="tablet"><i class="fa fa-tablet-alt" aria-hidden="true"></i></button>
+                  <button class="screen" data-type="mobile"><i class="fa fa-mobile-alt" aria-hidden="true"></i></button>
+                </div>
+                <div class="imgs-container"><img class="img-fluid active" src="/src/assets/images/work-desktop-06.png" alt="work-image" data-type="desktop"/><img class="img-fluid" src="/src/assets/images/work-tablet-06.png" alt="work-image" data-type="tablet"/><img class="img-fluid" src="/src/assets/images/work-mobile-06.png" alt="work-image" data-type="mobile"/>
+                </div>
+              </div>
+              <div class="technologies">
+                <div class="technologies-container">
+                  <button><i class="fab fa-html5" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-css3-alt" aria-hidden="true"></i></button>
+                  <button><i class="fab fa-js-square" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <div class="card-info">
+                <h5 class="card-title">Abubakr Website</h5><a class="card-text" href="https://www.figma.com/file/sd7cX1lLaL6pMWDclQdoOA/Abubakr-site" target="_blank"><i class="fa fa-palette" aria-hidden="true"></i>Abubakr</a>
+              </div>
+              <div class="card-actions"><a class="btn btn-light action" href="https://github.com/abubakr404.github.io" target="_blank"><i class="fab fa-github" aria-hidden="true"></i>View Code</a><a class="btn btn-light action" href="https://abubakr404.github.io/" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Live Version</a>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="blog" id="blog">
+      <section class="blogs" id="blogs">
         <h2 class="text-center special-head">blogs</h2>
         <div class="container">
           <div class="row row-cols-1 row-cols-md-2 g-4">

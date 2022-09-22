@@ -57,8 +57,13 @@ $secondSurface: linear-gradient(
   #ebefff 100%,
   #f2f5ff 170%
 );
-$portfolioSurface: url(Group_1-1.png),
-  linear-gradient(135deg, #f5f7ff -50%, #ebedff 25%, #ebefff 100%, #f2f5ff 170%);
+$portfolioSurface: linear-gradient(
+  135deg,
+  #f5f7ff -50%,
+  #ebedff 25%,
+  #ebefff 100%,
+  #f2f5ff 170%
+);
 $portfolioSurfaceBlendMode: multiply, normal;
 
 // site gradients
