@@ -187,7 +187,6 @@ function scripts() {
   return src(paths.scripts.src, { sourcemaps: true })
     .pipe(plumber())
     .pipe(babel())
-    .pipe(concat("main.js"))
     .pipe(uglify())
     .pipe(plumber.stop())
     .pipe(dest(paths.scripts.dest))

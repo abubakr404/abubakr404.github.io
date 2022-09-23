@@ -14,8 +14,10 @@ const workLink = document.querySelector(".work-link");
 let lastKnownScrollPosition = 0;
 let lastRandomNumber = 0;
 let viwerDone = false;
-let navSwapDone = false;
+// let navSwapDone = false;
 let ticking = false;
+
+import { classTogglerTT } from "./helpers/tuti.js";
 
 window.onload = () => {
   filled(window.scrollY);
@@ -65,7 +67,7 @@ addEventListener("scroll", (event) => {
   }
 });
 
-filled = function (e) {
+let filled = function (e) {
   if (header.offsetTop < e && !header.classList.contains("filled")) {
     header.classList.add("filled");
   } else if (header.offsetTop >= e && !header.classList.contains("open")) {
@@ -85,7 +87,7 @@ function getRandomImgN(lastNumber) {
   }
 }
 
-workViewer = setInterval(randomWorks, 29000);
+let workViewer = setInterval(randomWorks, 29000);
 // random works i function to select random image and add active class to it
 
 function randomWorks() {
