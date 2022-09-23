@@ -113,8 +113,20 @@
   @include aCenter;
 }
 
-%fSpacer {
+%fSpacerXC,
+%fSpacerC {
   @include fSpacer;
+}
+%fSpacerYC {
+  @include fSpacer(column);
+}
+
+%fSpacerX,
+%fSpacer {
+  @include fSpacer(row, false);
+}
+%fSpacerY {
+  @include fSpacer(column, false);
 }
 
 %ulRest {

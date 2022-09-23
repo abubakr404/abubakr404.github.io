@@ -3,6 +3,7 @@ html {
 }
 :root {
   --main-transition: #{$mainTransition};
+
   --main-surface: #{$mainSurface};
   --second-surface: #{$secondSurface};
   --portfolio-surface: #{$portfolioSurface};
@@ -10,12 +11,21 @@ html {
   --pattern-gradient: #{$patternGradient};
   --primary-gradient: #{$primaryGradient};
   --lighter-primary-gradient: #{$lighterPrimaryGradient};
+
   --border-gradient: #{$borderGradient};
+
   --light-primary: #{$LightPrimary};
   --light-primary-container: #{$LightPrimaryContainer};
   --light-on-primary: #{$LightOnPrimary};
   --light-on-primary-container: #{$LightOnPrimaryContainer};
   --light-inverse-primary: #{$LightInversePrimary};
+
+  --dark-primary: #{$DarkPrimary};
+  --dark-primary-container: #{$DarkPrimaryContainer};
+  --dark-on-primary: #{$DarkOnPrimary};
+  --dark-on-primary-container: #{$DarkOnPrimaryContainer};
+  --dark-inverse-primary: #{$DarkInversePrimary};
+
   --header-height: #{$headerHeight};
   --main-padding-top: #{$sectionPadding};
   --main-padding-bottom: #{$sectionPadding};

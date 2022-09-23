@@ -8,7 +8,7 @@
     }
   }
   .container {
-    gap: 2.5%;
+    gap: 2.5rem 2.5%;
     @include in(toSmall) {
       grid-template-columns: 1fr;
     }

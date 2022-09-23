@@ -1,0 +1,62 @@
+.blogs {
+  .card {
+    --Ab-card-border-radius: 0.625rem;
+    --Ab-card-inner-border-radius: calc(0.625rem - 1px);
+    --Ab-card-border-color: var(--border-gradient);
+    --Ab-card-bg: var(--border-gradient);
+    --Ab-card-title-spacer-y: 0rem;
+    --Ab-card-cap-padding-y: 0.875rem;
+  }
+  .card-title {
+    color: inherit;
+    margin-bottom: 0;
+    font-size: 1.25rem;
+    @include in(toSmall) {
+      font-size: 1.125rem;
+    }
+  }
+  .card-text {
+    color: var(--dark-on-primary-container);
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 300;
+    @include in(toSmall) {
+      font-size: 0.875rem;
+    }
+    small {
+      color: var(--dark-primary);
+      font-size: 0.875rem;
+      @include in(toSmall) {
+        font-size: 0.75rem;
+      }
+    }
+  }
+  .card-body {
+    @extend %fCol;
+    gap: 0.5rem;
+    border-radius: 0 0 var(--Ab-card-border-radius) var(--Ab-card-border-radius);
+    background: var(--primary-gradient);
+    background: {
+      blend: {
+        mode: $primaryGradientBlendMode;
+      }
+    }
+    @include in(fromMobile) {
+      align-items: flex-start;
+    }
+  }
+  .more {
+    @extend %fSpacer;
+    align-items: center;
+    background: var(--border-gradient);
+    font-weight: 300;
+    a {
+      color: inherit;
+      text-decoration: none;
+      font-size: 1rem;
+      @include in(toSmall) {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}

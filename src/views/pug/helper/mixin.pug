@@ -69,16 +69,15 @@ mixin portfolio(portfolio)
 
 mixin blogs(blogs)
   each blog in blogs
-    .col
-      .card
-        img.card-img-top(src=blog.img, alt=blog.title + "-image")
-        .card-body
-          h5.card-title=blog.title
-          p.card-text=blog.text
-          p.card-text: small.text-muted=blog.date
-        .card-footer.more
-          a(href="#" + blog.moreLink) Read More
-          i(class="fas fa-long-arrow-alt-right")
+    .card
+      img.card-img-top(src=blog.img, alt=blog.title + "-image")
+      .card-body
+        h5.card-title=blog.title
+        p.card-text=blog.text
+        p.card-text: small=blog.date
+      .card-footer.more
+        a(href="#" + blog.moreLink) Read More
+        i(class="fas fa-long-arrow-alt-right")
 
 mixin rateStars(rateNumber = 0, starsNumber = 5)
   .rate
