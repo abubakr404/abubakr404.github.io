@@ -89,6 +89,12 @@ section {
   }
 }
 
+.card-text,
+.card-title {
+  @extend %textCiper;
+  max-width: 100%;
+}
+
 @import "../layout/header";
 @import "hero";
 @import "about";

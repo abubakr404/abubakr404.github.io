@@ -67,20 +67,23 @@
       &::before,
       &::after {
         @extend %transition;
+        --box-shadow-color: transparent;
         content: "";
         position: absolute;
-        bottom: 0.125rem;
+        bottom: 0;
         border-radius: 0;
         width: 1.5rem;
-        height: 0rem;
+        height: 0.75rem;
         z-index: -1;
         opacity: 0;
       }
       &::before {
-        right: 100%;
+        right: calc(100% - 0.5rem);
+        box-shadow: inset -0.5rem -0.0625rem 0 0 var(--box-shadow-color);
       }
       &::after {
-        left: 100%;
+        left: calc(100% - 0.5rem);
+        box-shadow: inset 0.5rem -0.0625rem 0 0 var(--box-shadow-color);
       }
       &:hover,
       &:focus,
@@ -88,16 +91,14 @@
         background-color: var(--border-gradient);
         &::before,
         &::after {
-          height: 0.75rem;
+          --box-shadow-color: var(--border-gradient);
           opacity: 1;
         }
         &::before {
           border-radius: 0 0 0.75rem 0;
-          box-shadow: 0.125rem 0.125rem 0 0.125rem var(--border-gradient);
         }
         &::after {
           border-radius: 0 0 0 0.75rem;
-          box-shadow: -0.125rem 0.125rem 0 0.125rem var(--border-gradient);
         }
       }
     }
@@ -112,6 +113,7 @@
       background-color: var(--border-gradient);
       img {
         --start-point: calc(0% + var(--imgs-container-height));
+        width: 100%;
         position: absolute;
         bottom: 100%;
         left: 0%;
@@ -175,7 +177,7 @@
       }
     }
     .card-text {
-      @extend %fCenter;
+      @extend %fCenterS;
       color: inherit;
       text-decoration: none;
       gap: 0.75rem;
@@ -217,13 +219,9 @@
           background-color: var(--border-gradient);
           width: calc(101vw + var(--header-height));
           height: calc(101vh + var(--header-height));
-          position: absolute;
           opacity: 0.8;
           z-index: -1;
-          left: -50%;
-          @include in(toSmall) {
-            left: -10%;
-          }
+          @extend %aCenter;
         }
       }
       .works-viewer {
@@ -234,9 +232,6 @@
         --imgs-container-height: 80vh;
         &:hover {
           cursor: zoom-out;
-        }
-        img {
-          width: 100%;
         }
       }
       .technologies {

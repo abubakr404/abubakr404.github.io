@@ -1,3 +1,7 @@
+.textCiper {
+  @extend %textCiper;
+}
+
 .fCenter,
 .fCenterH,
 .fCenterV {

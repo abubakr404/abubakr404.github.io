@@ -2,7 +2,7 @@
 
 // function to swipe class on click
 
-function classTogglerTT(allElements, classToAdd, classToRemove = classToAdd) {
+function classShuffleTT(allElements, classToAdd, classToRemove = classToAdd) {
   allElements.forEach((element) => {
     element.addEventListener("click", (e) => {
       allElements.forEach((ele) => {
@@ -13,4 +13,22 @@ function classTogglerTT(allElements, classToAdd, classToRemove = classToAdd) {
   });
 }
 
-export { classTogglerTT };
+function classTogglerTT(eleListener, classToToggle, eleToToggle = ele) {
+  eleListener.addEventListener("click", (event) => {
+    eleToToggle.classList.toggle(classToToggle);
+  });
+}
+
+function classAdderTT(eleListener, classToAdd, eleToAdd = ele) {
+  eleListener.addEventListener("click", (event) => {
+    eleToAdd.classList.add(classToAdd);
+  });
+}
+
+function classRemoverTT(eleListener, classToRemove, eleToRemove = ele) {
+  eleListener.addEventListener("click", (event) => {
+    eleToRemove.classList.remove(classToRemove);
+  });
+}
+
+export { classShuffleTT, classTogglerTT, classAdderTT, classRemoverTT };

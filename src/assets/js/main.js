@@ -11,13 +11,20 @@ const portfolioImgsContainer = document.querySelectorAll(
 const worksImgs = heroImgsContainer.querySelectorAll("img");
 const workLink = document.querySelector(".work-link");
 
+const cardBlogs = document.querySelectorAll(".blogs .card");
+
 let lastKnownScrollPosition = 0;
 let lastRandomNumber = 0;
 let viwerDone = false;
 // let navSwapDone = false;
 let ticking = false;
 
-import { classTogglerTT } from "./helpers/tuti.js";
+import {
+  classShuffleTT,
+  classTogglerTT,
+  classAdderTT,
+  classRemoverTT,
+} from "./helpers/tuti.js";
 
 window.onload = () => {
   filled(window.scrollY);
@@ -114,7 +121,7 @@ portfolioImgsContainer.forEach((imgContainer) => {
 workCards.forEach((work) => {
   let screenes = work.querySelectorAll(".screen");
   let imgs = work.querySelectorAll(".imgs-container img");
-  classTogglerTT(screenes, "active");
+  classShuffleTT(screenes, "active");
   screenes.forEach((screen) => {
     screen.addEventListener("click", (e) => {
       imgs.forEach((img) => {
@@ -130,4 +137,13 @@ workLink.addEventListener("click", (event) => {
   stopRandomWorks();
 });
 
-classTogglerTT(navLinks, "active");
+cardBlogs.forEach((blog) => {
+  let more = blog.querySelector("button.more");
+  let img = blog.querySelector(".blog-container>img");
+  let close = blog.querySelector(".blog-container .close");
+  classAdderTT(more, "zoomed", blog);
+  classTogglerTT(img, "zoomed", blog);
+  classRemoverTT(close, "zoomed", blog);
+});
+
+classShuffleTT(navLinks, "active");
