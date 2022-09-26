@@ -35,10 +35,13 @@
     }
   }
   .hero-actions {
+    margin: 1.125rem 0;
+    .btn-outline-light {
+      box-shadow: inset -0.125rem -0.125rem 0 var(--Ab-btn-color);
+    }
     @include in(small) {
       justify-content: center;
     }
-    margin: 1.125rem 0;
   }
   .hero-content {
     align-items: center;
@@ -95,40 +98,6 @@
     }
     i {
       animation: bouncing 1.5s infinite;
-    }
-  }
-  .divider-down {
-    bottom: -1px;
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-  }
-  .divider {
-    display: block;
-    width: 100%;
-    height: 80px;
-    max-height: 80px;
-    margin: 0;
-    z-index: 5;
-  }
-  .parallax1 > use {
-    animation: moveForever1 10s linear infinite;
-  }
-  .parallax2 > use {
-    animation: moveForever2 8s linear infinite;
-  }
-  .parallax3 > use {
-    animation: moveForever1 6s linear infinite;
-  }
-  .parallax4 > use {
-    animation: moveForever2 4s linear infinite;
-  }
-  .parallax1,
-  .parallax2,
-  .parallax3,
-  .parallax4 {
-    > use {
-      animation-delay: -2s;
     }
   }
 }

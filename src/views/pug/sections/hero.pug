@@ -15,20 +15,5 @@ section.hero#home
         img.cover-img.img-fluid.position-relative(src= imgsPath + "person & chair.png", alt="")
         a.btn.btn-sm.btn-primary.position-absolute.work-link(href="#" + siteLinks[2].title) Projects
   a.alt-work-link(href="#" + siteLinks[2].title).position-absolute.d-block.d-lg-none: i(class="fa fa-angles-down")
-  .divider-down.position-absolute
-    svg(xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 135 30 " preserveAspectRatio="none").divider.position-absolute.bottom-0.start-0
-      g.parallax1
-        use(xlink:href="#gentle-wave" x="50" y="0" fill="#37415F" opacity="0.85")
-      g.parallax2
-        use(xlink:href="#gentle-wave" x="50" y="3" fill="#56607a" opacity="0.7")
-      g.parallax3
-        use(xlink:href="#gentle-wave" x="50" y="9" fill="var(--light-primary-container)" opacity="0.3")
-      g.parallax4
-        use(xlink:href="#gentle-wave" x="50" y="6" fill="url(#divider_gradient)")
-      defs
-        path(id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z")
-        linearGradient(id="divider_gradient" x1="-345.889" y1="-12.7304" x2="-301.171" y2="248.093" gradientUnits="userSpaceOnUse")
-          stop(stop-color="#E6E9FF")
-          stop(offset="0.325521" stop-color="#F5F7FF")
-          stop(offset="0.627604" stop-color="#F2F5FF")
-          stop(offset="1" stop-color="#E0E7FF")
+  .divider-hero.position-absolute
+    include ../includes/divider

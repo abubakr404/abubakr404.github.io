@@ -135,12 +135,20 @@
   @include fSpacer(column, false);
 }
 
+%aRest {
+  @include aRest;
+}
+
 %ulRest {
   @include ulRest;
 }
 
 %buttonRest {
   @include buttonRest;
+}
+
+%textareaRest {
+  @include textareaRest;
 }
 
 %overlay {

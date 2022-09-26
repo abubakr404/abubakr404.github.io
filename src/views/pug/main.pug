@@ -1,5 +1,5 @@
 block bodyContent
-  .loader: span.loader-effect loading
+  //- .loader: span.loader-effect loading
   header.position-sticky
     nav.navbar.navbar-expand-lg
       .container
@@ -18,6 +18,6 @@ block bodyContent
     include sections/contact
 
   footer
-    .container
-      .info-box
-        h3=myName
+    .divider-footer.position-absolute
+      include includes/divider
+    p Designed and Powered by - #[span.name #{myName}] &copy;2022

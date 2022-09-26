@@ -1,33 +1,24 @@
 section.contact#contact
   +specialHead(siteLinks[4].name)
   .container
-    .row.contact-box
-      .col-md-6.info
+    .contact-box
+      .info
         .info-head 
           h3=contact.title
           p=contact.description
-        .contact-links 
-          ul.list-group
+        .info-bottom
+          ul.links
             each link in contact.contactLinks
-              li.list-group-item
-                a(href=link.url) 
-                  i(class=link.icon aria-hidden='true')
-                  span=link.title
-        .social-links
-          +socialLinks(socialLinks)
-      form(method='get').col-md-6.contact-form
-        .form-group
-          label(for='name') Your Name
-          input.form-control-file-name(type='Text')
-        .form-group
-          label(for='email') Your Email
-          input.form-control-file-email(type='email')
-        .form-group
-          label(for='phone') Your Phone
-          input.form-control-file-phone(type='phone')
-        .form-group
-          label(for='massage') Tell me about all you needs
-          textarea.form-control-massage(rows='3')
-          button.btn.btn-light(type=submit)
-            i.fa.fa-paper-plane(aria-hidden='true')
-            span Send Message
+              li: a.contact-link(href=link.url) 
+                i(class=link.icon aria-hidden='true')
+                span=link.title
+          .social-links
+            +socialLinks(socialLinks)
+      form(method='get').contact-form
+        input.form-input.name(type='Text' placeholder='Your Name' style= `--icon-link: url(../images/user-icon.svg);`)
+        input.form-input.email(type='email' placeholder='Your Email' style= `--icon-link: url(../images/envelope-icon.svg);`)
+        input.form-input.phone(type='phone' placeholder='Your Phone' style= `--icon-link: url(../images/mobile-alt-icon.svg);`)
+        textarea.form-input.message(placeholder='Tell me about all you needs')
+        button.submit.btn.btn-light(type=submit)
+          i.fa.fa-paper-plane(aria-hidden='true')
+          |Send Message

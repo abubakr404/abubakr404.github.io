@@ -28,7 +28,7 @@ import {
 
 window.onload = () => {
   filled(window.scrollY);
-  loader.style = `opacity: 0; width: 0%; height: 0%; z-index: -1;`;
+  // loader.style = `opacity: 0; width: 0%; height: 0%; z-index: -1;`;
   worksImgs[lastRandomNumber].classList.add("active");
 };
 

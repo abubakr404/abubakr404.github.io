@@ -16,7 +16,6 @@
     <title>Abubakr</title>
   </head>
   <body>
-    <div class="loader"><span class="loader-effect">loading</span></div>
     <header class="position-sticky">
       <nav class="navbar navbar-expand-lg">
         <div class="container"><a class="navbar-brand logo" href="#">Abubakr</a>
@@ -61,27 +60,33 @@
             </div>
           </div>
         </div><a class="alt-work-link position-absolute d-block d-lg-none" href="#portfolio"><i class="fa fa-angles-down"></i></a>
-        <div class="divider-down position-absolute">
-          <svg class="divider position-absolute bottom-0 start-0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 135 30 " preserveAspectRatio="none">
-            <g class="parallax1">
-              <use xlink:href="#gentle-wave" x="50" y="0" fill="#37415F" opacity="0.85"></use>
+        <div class="divider-hero position-absolute">
+          <svg class="divider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 135 30 " preserveAspectRatio="none">
+            <g class="wave parallax1">
+              <use xlink:href="#gentle-wave" x="50" y="0" fill="var(--wave-1)" opacity="0.85"></use>
             </g>
-            <g class="parallax2">
-              <use xlink:href="#gentle-wave" x="50" y="3" fill="#56607a" opacity="0.7"></use>
+            <g class="wave parallax2">
+              <use xlink:href="#gentle-wave" x="50" y="3" fill="var(--wave-2)" opacity="0.7"></use>
             </g>
-            <g class="parallax3">
-              <use xlink:href="#gentle-wave" x="50" y="9" fill="var(--light-primary-container)" opacity="0.3"></use>
+            <g class="wave parallax3">
+              <use xlink:href="#gentle-wave" x="50" y="9" fill="var(--wave-3)" opacity="0.3"></use>
             </g>
-            <g class="parallax4">
-              <use xlink:href="#gentle-wave" x="50" y="6" fill="url(#divider_gradient)"></use>
+            <g class="wave parallax4">
+              <use xlink:href="#gentle-wave" x="50" y="6" fill="var(--wave-4)"></use>
             </g>
             <defs>
               <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
-              <linearGradient id="divider_gradient" x1="-345.889" y1="-12.7304" x2="-301.171" y2="248.093" gradientUnits="userSpaceOnUse">
+              <linearGradient id="divider_gradient_hero" x1="-345.889" y1="-12.7304" x2="-301.171" y2="248.093" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#E6E9FF"></stop>
                 <stop offset="0.325521" stop-color="#F5F7FF"></stop>
                 <stop offset="0.627604" stop-color="#F2F5FF"></stop>
                 <stop offset="1" stop-color="#E0E7FF"></stop>
+              </linearGradient>
+              <linearGradient id="divider_gradient_footer" x1="-345.889" y1="-12.7304" x2="-301.171" y2="248.093" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#505D84"></stop>
+                <stop offset="0.34496" stop-color="#38466B"></stop>
+                <stop offset="0.556043" stop-color="#212F53"></stop>
+                <stop offset="1" stop-color="#0A1A3D"></stop>
               </linearGradient>
             </defs>
           </svg>
@@ -358,58 +363,73 @@
       <section class="contact" id="contact">
         <h2 class="text-center special-head" title="contact">contact</h2>
         <div class="container">
-          <div class="row contact-box">
-            <div class="col-md-6 info">
+          <div class="contact-box">
+            <div class="info">
               <div class="info-head"> 
                 <h3>Get in touch,</h3>
                 <p>Blandit viverra felis vulputate lacus turpis ipsum ut dictumst amet, urna donec in cursus eget ullamcorper.</p>
               </div>
-              <div class="contact-links"> 
-                <ul class="list-group">
-                  <li class="list-group-item"><a href="mailto:abubakr.hisham@hotmail.com"> <i class="fa fa-envelope" aria-hidden="true"></i><span>Abubakr.Hisham@hotmail.com</span></a></li>
-                  <li class="list-group-item"><a href="tel:+249904219999"> <i class="fa fa-phone" aria-hidden="true"></i><span>+249 904219999</span></a></li>
+              <div class="info-bottom">
+                <ul class="links">
+                  <li><a class="contact-link" href="mailto:abubakr.hisham@hotmail.com"> <i class="fa fa-envelope" aria-hidden="true"></i><span>Abubakr.Hisham@hotmail.com</span></a></li>
+                  <li><a class="contact-link" href="tel:+249904219999"> <i class="fa fa-phone" aria-hidden="true"></i><span>+249 904219999</span></a></li>
                 </ul>
-              </div>
-              <div class="social-links">
-                <ul class="social">
-                  <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                  <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                  <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                  <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-github" aria-hidden="true"></i></a></li>
-                  <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-codepen" aria-hidden="true"></i></a></li>
-                  <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-free-code-camp" aria-hidden="true"></i></a></li>
-                </ul>
+                <div class="social-links">
+                  <ul class="social">
+                    <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                    <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                    <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                    <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+                    <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-codepen" aria-hidden="true"></i></a></li>
+                    <li class="list-group-item"><a class="social-link btn btn-light" href="#"><i class="fab fa-free-code-camp" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <form class="col-md-6 contact-form" method="get">
-              <div class="form-group">
-                <label for="name">Your Name</label>
-                <input class="form-control-file-name" type="Text">
-              </div>
-              <div class="form-group">
-                <label for="email">Your Email</label>
-                <input class="form-control-file-email" type="email">
-              </div>
-              <div class="form-group">
-                <label for="phone">Your Phone</label>
-                <input class="form-control-file-phone" type="phone">
-              </div>
-              <div class="form-group">
-                <label for="massage">Tell me about all you needs</label>
-                <textarea class="form-control-massage" rows="3"></textarea>
-                <button class="btn btn-light"><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Send Message</span></button>
-              </div>
+            <form class="contact-form" method="get">
+              <input class="form-input name" type="Text" placeholder="Your Name" style="--icon-link: url(../images/user-icon.svg);">
+              <input class="form-input email" type="email" placeholder="Your Email" style="--icon-link: url(../images/envelope-icon.svg);">
+              <input class="form-input phone" type="phone" placeholder="Your Phone" style="--icon-link: url(../images/mobile-alt-icon.svg);">
+              <textarea class="form-input message" placeholder="Tell me about all you needs"></textarea>
+              <button class="submit btn btn-light"><i class="fa fa-paper-plane" aria-hidden="true"></i>Send Message</button>
             </form>
           </div>
         </div>
       </section>
     </main>
     <footer>
-      <div class="container">
-        <div class="info-box">
-          <h3>Abubakr</h3>
-        </div>
+      <div class="divider-footer position-absolute">
+        <svg class="divider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 135 30 " preserveAspectRatio="none">
+          <g class="wave parallax1">
+            <use xlink:href="#gentle-wave" x="50" y="0" fill="var(--wave-1)" opacity="0.85"></use>
+          </g>
+          <g class="wave parallax2">
+            <use xlink:href="#gentle-wave" x="50" y="3" fill="var(--wave-2)" opacity="0.7"></use>
+          </g>
+          <g class="wave parallax3">
+            <use xlink:href="#gentle-wave" x="50" y="9" fill="var(--wave-3)" opacity="0.3"></use>
+          </g>
+          <g class="wave parallax4">
+            <use xlink:href="#gentle-wave" x="50" y="6" fill="var(--wave-4)"></use>
+          </g>
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+            <linearGradient id="divider_gradient_hero" x1="-345.889" y1="-12.7304" x2="-301.171" y2="248.093" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#E6E9FF"></stop>
+              <stop offset="0.325521" stop-color="#F5F7FF"></stop>
+              <stop offset="0.627604" stop-color="#F2F5FF"></stop>
+              <stop offset="1" stop-color="#E0E7FF"></stop>
+            </linearGradient>
+            <linearGradient id="divider_gradient_footer" x1="-345.889" y1="-12.7304" x2="-301.171" y2="248.093" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#505D84"></stop>
+              <stop offset="0.34496" stop-color="#38466B"></stop>
+              <stop offset="0.556043" stop-color="#212F53"></stop>
+              <stop offset="1" stop-color="#0A1A3D"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
+      <p>Designed and Powered by - <span class="name">Abubakr</span> &copy;2022</p>
     </footer>
     <script src="/src/assets/js/bootstrap.bundle.min.js"> </script>
     <script src="/src/assets/js/helpers/tuti.js" type="module"> </script>
