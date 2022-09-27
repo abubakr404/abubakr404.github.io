@@ -16,6 +16,7 @@ header {
     @extend %fCenter;
     min-height: calc(var(--header-height) - 1rem);
     font-weight: 600;
+    gap: 0.125rem;
   }
   nav {
     overflow: hidden;

@@ -3,7 +3,8 @@ block bodyContent
   header.position-sticky
     nav.navbar.navbar-expand-lg
       .container
-        a.navbar-brand.logo(href="#")=myName
+        a.logo.navbar-brand(href="#")=myName
+          include includes/abubakr_light_icon
         button#navToggler.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"): span.navbar-toggler-icon
         .collapse.navbar-collapse.justify-content-end.navSiteLinks#navbarNav
           ul.navbar-nav.gap-2.siteNav
@@ -20,4 +21,7 @@ block bodyContent
   footer
     .divider-footer.position-absolute
       include includes/divider
-    p Designed and Powered by - #[span.name #{myName}] &copy;2022
+    p Designed and Powered by - 
+      span.name=myName
+        include includes/abubakr_light_icon 
+      |&copy;2022

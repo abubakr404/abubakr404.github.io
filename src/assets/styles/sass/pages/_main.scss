@@ -29,6 +29,10 @@
   animation: loadingMove 5s linear infinite;
 }
 
+.ab-icon-light {
+  --icon-color: inherit;
+}
+
 .divider-hero,
 .divider-footer {
   bottom: 0;
