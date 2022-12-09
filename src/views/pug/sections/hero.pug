@@ -2,18 +2,18 @@ section.hero#home
   .container.position-relative
     .row.hero-content
       .content.col-lg-6
-        h1.display-5 Hey I'm Abubakr, Frontend developer
-        p.h5 Here Iam gonna share everything about my life. Books Iam reading, Games Iam Playing, Stories and Events
+        h1.display-5 !{hero.mainHeadline}
+        p.h5=hero.mainPragraph
         .hero-actions.d-grid.d-md-flex.gap-2(role='group')
-          button.btn.btn-light(type=button) Download C.V
-          button.btn.btn-outline-light(type=button) Reach out to me
+          each action in hero.actions
+            a(href=action.url class=action.addClass)=action.title
         +socialLinks(socialLinks)
       .hero-figure.col-lg-6.d-none.d-lg-block.position-relative
         .imgs-viewer.position-absolute
           .imgs-container.position-absolute
-            +listOfImages(worksSamples, imgsPath, "", "img-fluid")
+            +listOfImages(hero.worksSamples, imgsPath, "", "img-fluid")
         img.cover-img.img-fluid.position-relative(src= imgsPath + "person & chair.png", alt="")
         a.btn.btn-sm.btn-primary.position-absolute.work-link(href="#" + siteLinks[2].title) Projects
-  a.alt-work-link(href="#" + siteLinks[2].title).position-absolute.d-block.d-lg-none: i(class="fa fa-angles-down")
+  a.alt-work-link.position-absolute.d-block.d-lg-none(href="#" + siteLinks[2].title): i(class="fa fa-angles-down")
   .divider-hero.position-absolute
     include ../includes/divider

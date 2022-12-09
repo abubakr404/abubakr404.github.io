@@ -5,13 +5,13 @@ const navToggler = document.querySelector("#navToggler");
 const navLinks = document.querySelectorAll(".siteNav .navLink");
 const heroImgsContainer = document.querySelector(".hero .imgs-container");
 const workCards = document.querySelectorAll(".work-card");
-const portfolioImgsContainer = document.querySelectorAll(
-  ".portfolio .imgs-container"
-);
+const portfolioImgsContainer = document.querySelectorAll(".portfolio .imgs-container");
 const worksImgs = heroImgsContainer.querySelectorAll("img");
 const workLink = document.querySelector(".work-link");
 
 const cardBlogs = document.querySelectorAll(".blogs .card");
+
+const contactForm = document.querySelector(".contact-form");
 
 let lastKnownScrollPosition = 0;
 let lastRandomNumber = 0;
@@ -28,7 +28,7 @@ import {
 
 window.onload = () => {
   filled(window.scrollY);
-  // loader.style = `opacity: 0; width: 0%; height: 0%; z-index: -1;`;
+  loader.style = `opacity: 0; width: 0%; height: 0%; z-index: -1;`;
   worksImgs[lastRandomNumber].classList.add("active");
 };
 
@@ -112,9 +112,7 @@ function stopRandomWorks() {
 
 portfolioImgsContainer.forEach((imgContainer) => {
   imgContainer.addEventListener("click", (e) => {
-    imgContainer.parentElement.parentElement.parentElement.classList.toggle(
-      "zoomed"
-    );
+    imgContainer.parentElement.parentElement.parentElement.classList.toggle("zoomed");
   });
 });
 
@@ -126,8 +124,7 @@ workCards.forEach((work) => {
     screen.addEventListener("click", (e) => {
       imgs.forEach((img) => {
         img.classList.remove("active");
-        if (img.dataset.type === screen.dataset.type)
-          img.classList.add("active");
+        if (img.dataset.type === screen.dataset.type) img.classList.add("active");
       });
     });
   });
@@ -147,3 +144,8 @@ cardBlogs.forEach((blog) => {
 });
 
 classShuffleTT(navLinks, "active");
+
+contactForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  alert("this is demo site to contact use the Email");
+});

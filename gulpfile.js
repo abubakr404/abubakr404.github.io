@@ -15,11 +15,6 @@ const concat = require("gulp-concat"),
   replace = require("gulp-replace"),
   imagemin = require("gulp-imagemin"),
   zip = require("gulp-zip");
-// del = require("del");
-// newer = require("gulp-newer"),
-// clean = () => del(["assets"]);
-// purge = require("gulp-css-purge"),
-// ftp = require("vinyl-ftp");
 
 const productIn = "all";
 
@@ -51,6 +46,12 @@ const paths = {
   scripts: {
     src: "src/assets/js/**/*.js",
     dest: "dist/assets/js/",
+  },
+  tuti: {
+    src: "src/assets/styles/libs/tuti/tuti.scss",
+    dest: "dist/assets/styles",
+    watchSrc: "src/assets/styles/libs/tuti/*.scss",
+    mainDest: "src/assets/styles/libs/",
   },
   bootstrap: {
     src: "src/assets/styles/libs/bootstrap/bootstrap.scss",
@@ -183,6 +184,24 @@ function customizeFontawsome() {
     .pipe(notify("Customize Fontawsome is done successfully!"));
 }
 
+function customizeTuti() {
+  return src(paths.tuti.src, {
+    sourcemaps: true,
+  })
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass({ outputStyle: "compressed" }))
+    .pipe(prefix())
+    .pipe(cleanCSS())
+    .pipe(concat("tuti.min.css"))
+    .pipe(sourcemaps.write("."))
+    .pipe(dest(paths.tuti.dest))
+    .pipe(dest(paths.tuti.mainDest))
+    .pipe(plumber.stop())
+    .pipe(connect.reload())
+    .pipe(notify("Customize Tuti is done successfully!"));
+}
+
 function scripts() {
   return src(paths.scripts.src, { sourcemaps: true })
     .pipe(plumber())
@@ -231,12 +250,6 @@ function publicFiles() {
     .pipe(connect.reload());
 }
 
-function clean() {
-  // You can use multiple globbing patterns as you would with `gulp.src`,
-  // for example if you are using del 2.0 or above, return its promise
-  return del(["assets"]);
-}
-
 function compressDist() {
   return src(paths.allDistFiles.src)
     .pipe(zip("gulp project.zip"))
@@ -244,12 +257,13 @@ function compressDist() {
     .pipe(notify("all dist files are compressed successfully!"));
 }
 
-function watchs() {
+async function watchs() {
   watch(paths.scripts.src, scripts);
   watch(paths.image.src, imagesMin);
   watch(paths.publicFiles.src, publicFiles);
   watch(paths.bootstrap.watchSrc, customizeBootstrap);
   watch(paths.fontawsome.watchSrc, customizeFontawsome);
+  watch(paths.tuti.watchSrc, customizeTuti);
   if (productIn === "all") {
     watch(paths.html.watchSrc, html);
     watch(paths.styles.watchSrc, styles);
@@ -262,23 +276,25 @@ function watchs() {
   }
 }
 
-function connecter() {
+async function connecter() {
   connect.server({
-    name: "Abubakr server",
+    name: "Production server",
     root: "dist",
-    port: 2407,
+    port: 4444,
     livereload: true,
   });
 }
 
 task("compress", () => compressDist());
 
-const build = series(parallel(styles, scripts, html, watchs, connecter));
+const build = series(parallel(styles, scripts, html, publicFiles), parallel(watchs, connecter));
 const watchLively = parallel(watchs, connecter);
 exports.bootstrap = customizeBootstrap;
+exports.fontawsome = customizeFontawsome;
+exports.tuti = customizeTuti;
 exports.compressDist = compressDist;
-exports.connect = connecter;
+exports.server = connecter;
 exports.watch = watchs;
 exports.watchLively = watchLively;
 exports.build = build;
-exports.default = build;
+exports.default = watchLively;

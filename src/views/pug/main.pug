@@ -1,10 +1,11 @@
 block bodyContent
-  //- .loader: span.loader-effect loading
+  .loader: span.loader-effect loading
   header.position-sticky
     nav.navbar.navbar-expand-lg
       .container
-        a.logo.navbar-brand(href="#")=myName
-          include includes/abubakr_light_icon
+        a.logo.navbar-brand(href="#")
+          include includes/abubakr__logo_small
+          =myName
         button#navToggler.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"): span.navbar-toggler-icon
         .collapse.navbar-collapse.justify-content-end.navSiteLinks#navbarNav
           ul.navbar-nav.gap-2.siteNav
@@ -22,6 +23,7 @@ block bodyContent
     .divider-footer.position-absolute
       include includes/divider
     p Designed and Powered by - 
-      span.name=myName
-        include includes/abubakr_light_icon 
+      span.name
+        include includes/abubakr__logo_small 
+        =myName
       |&copy;2022

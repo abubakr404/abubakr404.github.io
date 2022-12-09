@@ -1,3 +1,6 @@
+@import "../../sass/helpers/mixin";
+@import "./groups";
+
 .textCiper {
   @extend %textCiper;
 }
@@ -52,6 +55,6 @@
   }
 }
 
-// .overlay {
-//   @extend %overlay;
-// }
+.overlay {
+  @extend %overlay;
+}
