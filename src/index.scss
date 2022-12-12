@@ -1,0 +1,232 @@
+@use "./assets/styles/sass/TuTiHelper" as *;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary-gradient: linear-gradient(0deg, rgba(10, 26, 61, 0.4), rgba(10, 26, 61, 0.4)),
+    linear-gradient(
+      115deg,
+      rgba(80, 93, 132, 0.7) -5%,
+      rgba(56, 70, 107, 0.7) 40%,
+      rgba(33, 47, 83, 0.7) 70%,
+      rgba(10, 26, 61, 0.7) 130%
+    ),
+    #212f53;
+
+  /* --------------- light colors set ----------------- */
+
+  --light-primary: #505d84;
+  --light-primary-container: #dae2ff;
+  --light-on-primary: #ffffff;
+  --light-on-primary-container: #0a1a3d;
+
+  --surface-light: var(--light-primary-container);
+  --alt-surface: linear-gradient(
+    135deg,
+    #e6e9ff -50%,
+    #f5f7ff 25%,
+    #f2f5ff 90%,
+    #e0e7ff 170%
+  );
+
+  --background-light: var(--light-primary);
+  --element-light: var(--alt-surface);
+  --text-light: var(--light-on-primary);
+  --text-element-light: var(--dark-on-primary);
+
+  /* --------------- dark colors set ----------------- */
+
+  --dark-primary: #b7c5f2;
+  --dark-primary-container: #38466b;
+  --dark-on-primary: #212f53;
+  --dark-on-primary-container: #dae2ff;
+
+  --surface-dark: #0f1628;
+
+  --background-dark: var(--dark-primary);
+  --element-dark: var(--dark-primary-container);
+  --text-dark: var(--dark-on-primary);
+  --text-element-dark: var(--dark-on-primary-container);
+
+  /* --------------- geanral colors set ----------------- */
+
+  --success: #0f9263;
+  --danger: #c5182f;
+  --warning: #b89326;
+  --info: #009696;
+
+  /* --------------- geanral var set ----------------- */
+
+  --main-transition: 0.3s;
+
+  --main-border-color: #{$borderGradient};
+
+  --main-border-radius: 0.3125rem;
+  --dark-shadow: 0 0 0.3125rem 0 #222222bd;
+  --light-shadow: 0 0 0.3125rem 0 #22222222;
+
+  --header-height: 3.5rem;
+  --sidebar-width: 15rem;
+  --main-padding-top: 2rem;
+  --main-padding-bottom: 2rem;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+ul {
+  @include ulRest;
+  margin: 0;
+}
+
+.container {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  padding: {
+    left: 1rem;
+    right: 1rem;
+  }
+  @include madiaContainer;
+}
+
+@media (prefers-color-scheme: light) {
+  .app {
+    --primary: var(--light-primary);
+    --on-primary: var(--light-on-primary);
+    --primary-container: var(--light-primary-container);
+    --on-primary-container: var(--dark-on-primary);
+
+    --inverse-primary: var(--dark-primary);
+
+    --surface: var(--surface-light);
+    --background: var(--background-light);
+    --background-inverse: var(--dark-on-primary-container);
+
+    --element: var(--element-light);
+    --text: var(--text-light);
+    --text-element: var(--text-element-light);
+
+    --dark: var(--on-primary-container);
+
+    --main-shadow: var(--light-shadow);
+    --scheme-color: light;
+    &.toggleMode {
+      --primary: var(--dark-primary);
+      --on-primary: var(--dark-on-primary);
+      --primary-container: var(--dark-primary-container);
+      --on-primary-container: var(--dark-on-primary-container);
+
+      --inverse-primary: var(--light-primary);
+
+      --surface: var(--surface-dark);
+      --background: var(--background-dark);
+      --background-inverse: var(--background-light);
+
+      --element: var(--element-dark);
+      --text: var(--text-dark);
+      --text-element: var(--text-element-dark);
+
+      --dark: var(--on-primary);
+
+      --main-shadow: var(--dark-shadow);
+      --scheme-color: dark;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .app {
+    --primary: var(--dark-primary);
+    --on-primary: var(--dark-on-primary);
+    --primary-container: var(--dark-primary-container);
+    --on-primary-container: var(--dark-on-primary-container);
+
+    --inverse-primary: var(--light-primary);
+
+    --surface: var(--surface-dark);
+    --background: var(--background-dark);
+    --background-inverse: var(--background-light);
+
+    --element: var(--element-dark);
+    --text: var(--text-dark);
+    --text-element: var(--text-element-dark);
+
+    --dark: var(--on-primary);
+
+    --main-shadow: var(--dark-shadow);
+    --scheme-color: dark;
+    &.toggleMode {
+      --primary: var(--light-primary);
+      --on-primary: var(--light-on-primary);
+      --primary-container: var(--light-primary-container);
+      --on-primary-container: var(--dark-on-primary);
+
+      --inverse-primary: var(--dark-primary);
+
+      --surface: var(--surface-light);
+      --background: var(--background-light);
+      --background-inverse: var(--dark-on-primary-container);
+
+      --element: var(--element-light);
+      --text: var(--text-light);
+      --text-element: var(--text-element-light);
+
+      --dark: var(--on-primary-container);
+
+      --main-shadow: var(--light-shadow);
+      --scheme-color: light;
+    }
+  }
+}
+
+.app {
+  @extend %fCol;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  max-width: 100%;
+  color-scheme: var(--scheme-color);
+  background: var(--surface);
+  color: var(--text-element);
+}
+
+@import "./components/navbar/navbar";
+@import "./components/sidebar/sidebar";
+@import "./components/widget/widget";
+@import "./components/table/table";
+@import "./components/layouts/layout";
+// @import "./pages/login/login";
+// @import "./pages/dashboard/dashboard";
+// @import "./pages/clients/list/listClients";
+// @import "./pages/clients/single/singleClient";
+// @import "./pages/clients/new/newClient";
+// @import "./pages/messages/list/listMessages";
+// @import "./pages/messages/single/singleMessage";
+// @import "./pages/projects/list/listProjects";
+// @import "./pages/projects/new/newProject";
+// @import "./pages/projects/single/singleProject";
+// @import "./pages/blogs/list/listBlogs";
+// @import "./pages/blogs/new/newPost";
+// @import "./pages/blogs/single/singlePost";
+// @import "./pages/profile/profile";
+// @import "./pages/settings/list/settingsMenu";
+// @import "./pages/settings/single/general/generalSetup";
+// @import "./pages/settings/single/hero/setupHero";
+// @import "./pages/settings/single/about/setupAbout";
+// @import "./pages/login/login";
+// @import "./pages/errors/errors";

@@ -95,7 +95,12 @@
 // the fourth @param $position should select the where position of triangleArrow in the line
 // is the start or in the middle or in the end
 
-@mixin triangleArrow($width: 1rem, $color: black, $direction: top, $position: end) {
+@mixin triangleArrow(
+  $width: 1rem,
+  $color: black,
+  $direction: top,
+  $position: end
+) {
   content: "";
   position: absolute;
   border: $width solid;
@@ -191,15 +196,15 @@
 
   @if $position == end {
     @if $direction == top or $direction == bottom {
-      right: calc($width / 2);
+      right: $width / 2;
     } @else if $direction == left or $direction == right {
-      top: calc($width / 2);
+      top: $width / 2;
     }
   } @else if $position == start {
     @if $direction == top or $direction == bottom {
-      left: calc($width / 2);
+      left: $width / 2;
     } @else if $direction == left or $direction == right {
-      bottom: calc($width / 2);
+      bottom: $width / 2;
     }
   } @else if $position == center {
     @if $direction == top or $direction == bottom {
