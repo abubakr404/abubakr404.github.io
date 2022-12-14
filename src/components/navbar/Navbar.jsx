@@ -6,7 +6,6 @@
 //   faCircleHalfStroke,
 // } from "@fortawesome/free-solid-svg-icons";
 // import avatar from "../../assets/images/avatar.webp";
-// import { useContext, useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 // import { ThemeContext } from "../../context/ThemeContext";
 // import { AuthContext } from "../../context/AuthContext";
@@ -14,63 +13,42 @@
 // import { signOut } from "firebase/auth";
 // import { database, auth } from "../../firebaseConfig";
 
-const Navbar = () => {
-  // const [dropdown, setDropdown] = useState(false);
-  // const [profileInfo, setProfileInfo] = useState({
-  //   name: "",
-  //   email: "",
-  //   imageLink: "",
-  // });
-  // const { dispatch } = useContext(ThemeContext);
-  // const { dispatchAuth } = useContext(AuthContext);
-
-  // useEffect(() => {
-  //   const getProfileInfo = async () => {
-  //     try {
-  //       const querySnapshot = await getDoc(doc(database, "settings", "profile"));
-  //       setProfileInfo(querySnapshot.data());
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getProfileInfo();
-  // }, []);
-
+const Navbar = ({ general }) => {
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="site-nav">
       <div className="container">
-        <a className="logo navbar-brand" href="#">
-          <img src="" alt="" />
-          Abubakr
+        <a className="logo" href="#">
+          <img src={general.logoImg} alt="" />
+          {general.siteTitle}
         </a>
-        <button className="navbar-toggler" type="button">
+        <button className="menu-button" type="button">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="nav-wrapper">
           <ul className="nav-list">
             <li>
-              <a className="nav-link active" href="#home">
-                home
+              <a className="nav-link active" href={`#${general.heroNavigatorTitle}`}>
+                {general.heroNavigatorTitle}
               </a>
             </li>
             <li>
-              <a className="nav-link" href="#about">
-                about
+              <a className="nav-link" href={`#${general.aboutNavigatorTitle}`}>
+                {general.aboutNavigatorTitle}
               </a>
             </li>
             <li>
-              <a className="nav-link" href="#portfolio">
-                portfolio
+              <a className="nav-link" href={`#${general.portfolioNavigatorTitle}`}>
+                {general.portfolioNavigatorTitle}
               </a>
             </li>
             <li>
-              <a className="nav-link" href="#blogs">
-                blogs
+              <a className="nav-link" href={`#${general.blogsNavigatorTitle}`}>
+                {general.blogsNavigatorTitle}
               </a>
             </li>
             <li>
-              <a className="nav-link" href="#contact">
-                contact
+              <a className="nav-link" href={`#${general.contactNavigatorTitle}`}>
+                {general.contactNavigatorTitle}
               </a>
             </li>
           </ul>

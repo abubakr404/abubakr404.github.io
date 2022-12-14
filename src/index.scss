@@ -67,7 +67,7 @@ html {
   --dark-shadow: 0 0 0.3125rem 0 #222222bd;
   --light-shadow: 0 0 0.3125rem 0 #22222222;
 
-  --header-height: 3.5rem;
+  --header-height: 5rem;
   --sidebar-width: 15rem;
   --main-padding-top: 2rem;
   --main-padding-bottom: 2rem;
@@ -205,28 +205,13 @@ ul {
   color: var(--text-element);
 }
 
+@import "./components/layouts/layout";
 @import "./components/navbar/navbar";
 @import "./components/sidebar/sidebar";
 @import "./components/widget/widget";
 @import "./components/table/table";
-@import "./components/layouts/layout";
-// @import "./pages/login/login";
-// @import "./pages/dashboard/dashboard";
-// @import "./pages/clients/list/listClients";
-// @import "./pages/clients/single/singleClient";
-// @import "./pages/clients/new/newClient";
-// @import "./pages/messages/list/listMessages";
-// @import "./pages/messages/single/singleMessage";
-// @import "./pages/projects/list/listProjects";
-// @import "./pages/projects/new/newProject";
-// @import "./pages/projects/single/singleProject";
-// @import "./pages/blogs/list/listBlogs";
-// @import "./pages/blogs/new/newPost";
-// @import "./pages/blogs/single/singlePost";
-// @import "./pages/profile/profile";
-// @import "./pages/settings/list/settingsMenu";
-// @import "./pages/settings/single/general/generalSetup";
-// @import "./pages/settings/single/hero/setupHero";
-// @import "./pages/settings/single/about/setupAbout";
-// @import "./pages/login/login";
-// @import "./pages/errors/errors";
+@import "./views/hero/hero";
+@import "./views/about/about";
+@import "./views/portfolio/portfolio";
+@import "./views/blogs/blogs";
+@import "./views/contact/contact";

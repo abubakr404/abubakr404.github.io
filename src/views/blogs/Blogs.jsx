@@ -1,38 +1,66 @@
-const Blogs = () => {
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { database } from "../../firebaseConfig";
+import { faExpand, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const Blogs = ({ title, headTitle }) => {
+  const [posts, setPosts] = useState(null);
+  useEffect(() => {
+    const getPosts = async () => {
+      let list = [];
+      try {
+        const querySnapshot = await getDocs(collection(database, "posts"));
+        querySnapshot.forEach((snapshot) => {
+          list.push(snapshot.data());
+        });
+        setPosts(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getPosts();
+  }, []);
+
   return (
-    <section className="blogs" id="blogs">
-      <h2 className="text-center special-head" title="blogs">
-        blogs
+    <section className="blogs" id={title}>
+      <h2 className="text-center special-head" title={headTitle}>
+        {headTitle}
       </h2>
       <div className="container g-col-lg-4">
-        <div className="card">
-          <div className="blog-container">
-            <button className="close">
-              <i className="fa fa-xmark" aria-hidden="true"></i>
-            </button>
-            <img
-              className="card-img-top"
-              src="https://images.unsplash.com/photo-1595970115799-ff4d1d35031e?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=580&amp;q=80"
-              alt="deploy abubakr website-image"
-            />
-            <div className="card-body">
-              <h5 className="card-title" title="deploy abubakr website">
-                deploy abubakr website
-              </h5>
-              <p className="card-text">
-                this website to help customers and recruiters to contact with abubakr
-                hisham and see his services and skills
-              </p>
-              <p className="card-text" title="25 sept 2022">
-                <small>25 sept 2022</small>
-              </p>
-            </div>
+        {posts === null ? (
+          <div className="loader-1">
+            <span className="loading-1">loging...</span>
           </div>
-          <button className="card-footer more">
-            <a>Read More</a>
-            <i className="fa fa-expand"></i>
-          </button>
-        </div>
+        ) : (
+          posts.map((post) => (
+            <div className="card" key={post.id}>
+              <div className="blog-container">
+                <button className="close">
+                  <FontAwesomeIcon icon={faXmark} />
+                </button>
+                <img
+                  className="card-img-top"
+                  src={post.imageLink}
+                  alt="deploy abubakr website-image"
+                />
+                <div className="card-body">
+                  <h5 className="card-title" title={post.title}>
+                    {post.title}
+                  </h5>
+                  <p className="card-text">{post.details}</p>
+                  <p className="card-text" title="25 sept 2022">
+                    <small>25 sept 2022</small>
+                  </p>
+                </div>
+              </div>
+              <button className="card-footer more">
+                <a>Read More</a>
+                <FontAwesomeIcon icon={faExpand} />
+              </button>
+            </div>
+          ))
+        )}
       </div>
     </section>
   );

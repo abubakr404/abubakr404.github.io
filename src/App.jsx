@@ -1,21 +1,43 @@
 import Main from "./views/main/Main";
 import Layout from "./components/layouts/Layout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "./context/ThemeContext";
+import { SiteDataContext } from "./context/SiteDataContext";
+import { collection, getDocs } from "firebase/firestore";
+import { database } from "./firebaseConfig";
 
 const App = () => {
   const { currentMode } = useContext(ThemeContext);
+  const [siteData, setSiteData] = useState(null);
+
+  useEffect(() => {
+    const getSiteData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(database, "settings"));
+        let list = {};
+        querySnapshot.forEach(
+          (setup) => (list = { ...list, [setup.id]: { ...setup.data() } })
+        );
+        setSiteData(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getSiteData();
+  }, []);
 
   return (
     <div className={currentMode ? "app toggleMode" : "app"}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Main />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <SiteDataContext.Provider value={siteData}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Main />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </SiteDataContext.Provider>
     </div>
   );
 };

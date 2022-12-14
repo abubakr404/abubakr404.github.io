@@ -1,78 +1,53 @@
-const Hero = () => {
+import Social from "../../components/widget/social/Social";
+import {
+  faArrowRotateBack,
+  faEnvelope,
+  faPaperPlane,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const Contact = ({
+  title,
+  headTitle,
+  contact: {
+    contactTitle,
+    contactInfo,
+    emailLink,
+    phoneNumber,
+    messageOfThanks,
+    SendButton,
+    SendAgainButton,
+  },
+}) => {
   return (
-    <section className="contact" id="contact">
-      <h2 className="text-center special-head" title="contact">
-        contact
+    <section className="contact" id={title}>
+      <h2 className="text-center special-head" title={headTitle}>
+        {headTitle}
       </h2>
       <div className="container">
         <div className="contact-box">
           <div className="info">
             <div className="info-head">
-              <h3>Get in touch,</h3>
-              <p>
-                Blandit viverra felis vulputate lacus turpis ipsum ut dictumst amet, urna
-                donec in cursus eget ullamcorper.
-              </p>
+              <h3>{contactTitle}</h3>
+              <p>{contactInfo}</p>
             </div>
             <div className="info-bottom">
               <ul className="links">
                 <li>
-                  <a className="contact-link" href="mailto:abubakr.hisham@hotmail.com">
-                    <i className="fa fa-envelope" aria-hidden="true"></i>
-                    <span>Abubakr.Hisham@hotmail.com</span>
+                  <a className="contact-link" href={`mailto:${emailLink}`}>
+                    <FontAwesomeIcon icon={faEnvelope} />
+                    <span>{emailLink}</span>
                   </a>
                 </li>
                 <li>
-                  <a className="contact-link" href="tel:+249904219999">
-                    <i className="fa fa-phone" aria-hidden="true"></i>
-                    <span>+249 904219999</span>
+                  <a className="contact-link" href={`tel:${phoneNumber}`}>
+                    <FontAwesomeIcon icon={faPhone} />
+                    <span>{phoneNumber}</span>
                   </a>
                 </li>
               </ul>
-              <div className="social-links">
-                <ul className="social">
-                  <li className="list-group-item">
-                    <a
-                      className="social-link btn btn-light"
-                      href="https://www.facebook.com/abubakr404"
-                    >
-                      <i className="fab fa-facebook-f" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li className="list-group-item">
-                    <a
-                      className="social-link btn btn-light"
-                      href="https://twitter.com/abubakr_404"
-                    >
-                      <i className="fab fa-twitter" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li className="list-group-item">
-                    <a
-                      className="social-link btn btn-light"
-                      href="https://linkedin.com/in/abubakr-hisham"
-                    >
-                      <i className="fab fa-linkedin" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li className="list-group-item">
-                    <a
-                      className="social-link btn btn-light"
-                      href="https://github.com/abubakr404"
-                    >
-                      <i className="fab fa-github" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li className="list-group-item">
-                    <a
-                      className="social-link btn btn-light"
-                      href="https://codepen.io/abubakr_404"
-                    >
-                      <i className="fab fa-codepen" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <Social />
             </div>
           </div>
           <form className="contact-form" method="get">
@@ -88,7 +63,18 @@ const Hero = () => {
               placeholder="Your Email"
               required=""
             />
-            <input className="form-input phone" type="phone" placeholder="Your Phone" />
+            <div className="form-group">
+              <div className="input">
+                <FontAwesomeIcon icon={faPhone} />
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Your Phone Number"
+                  // value={contactSetup.phoneNumber}
+                  // onChange={(ele) => handleInputs(ele.target)}
+                />
+              </div>
+            </div>
             <textarea
               className="form-input message"
               placeholder="Tell me about all you needs"
@@ -96,19 +82,17 @@ const Hero = () => {
             ></textarea>
             <p className="message-stutus"></p>
             <button className="submit btn btn-light">
-              <i className="fa fa-paper-plane" aria-hidden="true"></i>
-              Send Message
+              <FontAwesomeIcon icon={faPaperPlane} />
+              {SendButton}
             </button>
           </form>
           <div className="thank-message hide">
             <div className="img"></div>
-            <div className="rated-state">Your message was sent sccessfuly</div>
             <h3>Thank you!</h3>
-            <div className="thanks">
-              If you ever need more support, don’t hesitate to get in touch!
-            </div>
+            <div className="thanks">{messageOfThanks}</div>
             <button className="submit send-again btn btn-light">
-              <i className="fa fa-refresh" aria-hidden="true"></i>Send Message Again
+              <FontAwesomeIcon icon={faArrowRotateBack} />
+              {SendAgainButton}
             </button>
           </div>
         </div>
@@ -117,4 +101,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Contact;

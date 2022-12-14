@@ -1,93 +1,173 @@
-const Hero = () => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPalette,
+  faEye,
+  faDesktop,
+  faTabletAlt,
+  faMobileAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faGithub,
+  faCss3Alt,
+  faHtml5,
+  faJsSquare,
+  faReact,
+  faSass,
+  faVuejs,
+} from "@fortawesome/free-brands-svg-icons";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { database } from "../../firebaseConfig";
+
+const Portfolio = ({ title, headTitle }) => {
+  const [shuffle, setShuffle] = useState("desktop");
+  const [projects, setProjects] = useState(null);
+  useEffect(() => {
+    const getProjects = async () => {
+      let list = [];
+      try {
+        const querySnapshot = await getDocs(collection(database, "projects"));
+        querySnapshot.forEach((snapshot) => {
+          list.push(snapshot.data());
+        });
+        setProjects(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProjects();
+  }, []);
+
   return (
-    <section className="portfolio" id="portfolio">
-      <h2 className="text-center special-head" title="lates works">
-        lates works
+    <section className="portfolio" id={title}>
+      <h2 className="text-center special-head" title={headTitle}>
+        {headTitle}
       </h2>
       <div className="container g-col-lg-3">
-        <div className="work-card">
-          <div className="card-top">
-            <div className="works-viewer">
-              <div className="work-shuffle">
-                <button className="screen active" title="desktop" data-type="desktop">
-                  <i className="fa fa-desktop" aria-hidden="true"></i>
-                </button>
-                <button className="screen" title="tablet" data-type="tablet">
-                  <i className="fa fa-tablet-alt" aria-hidden="true"></i>
-                </button>
-                <button className="screen" title="mobile" data-type="mobile">
-                  <i className="fa fa-mobile-alt" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div className="imgs-container">
-                <img
-                  className="img-fluid active"
-                  src=""
-                  alt="work-image"
-                  data-type="desktop"
-                />
-                <img className="img-fluid" src="" alt="work-image" data-type="tablet" />
-                <img className="img-fluid" src="" alt="work-image" data-type="mobile" />
-              </div>
-            </div>
-            <div className="technologies">
-              <div className="technologies-container">
-                <button>
-                  <i className="fab fa-html5" aria-hidden="true"></i>
-                </button>
-                <button>
-                  <i className="fab fa-css3-alt" aria-hidden="true"></i>
-                </button>
-                <button>
-                  <i className="fab fa-js-square" aria-hidden="true"></i>
-                </button>
-                <button>
-                  <i className="fab fa-sass" aria-hidden="true"></i>
-                </button>
-                <button>
-                  <i className="fab fa-vuejs" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
+        {projects === null ? (
+          <div className="loader-1">
+            <span className="loading-1">loging...</span>
           </div>
-          <div className="card-bottom">
-            <div className="card-info">
-              <h5 className="card-title" title="Leon">
-                Leon
-              </h5>
-              <a
-                className="card-text"
-                href="https://www.graphberry.com/item/leon-psd-agency-template"
-                target="_blank"
-                title="Graphberry"
-              >
-                <i className="fa fa-palette" aria-hidden="true"></i>
-                Graphberry
-              </a>
+        ) : (
+          projects.map((project) => (
+            <div className="work-card" key={project.id}>
+              <div className="card-top">
+                <div className="works-viewer">
+                  <div className="work-shuffle">
+                    {project.desktopImage && (
+                      <button
+                        onClick={() => setShuffle("desktop")}
+                        className={shuffle === "desktop" ? "screen active" : "screen"}
+                        title="desktop"
+                      >
+                        <FontAwesomeIcon icon={faDesktop} />
+                        desktop
+                      </button>
+                    )}
+                    {project.tabletImage && (
+                      <button
+                        onClick={() => setShuffle("tablet")}
+                        className={shuffle === "tablet" ? "screen active" : "screen"}
+                        title="tablet"
+                      >
+                        <FontAwesomeIcon icon={faTabletAlt} />
+                        tablet
+                      </button>
+                    )}
+                    {project.mobileImage && (
+                      <button
+                        onClick={() => setShuffle("mobile")}
+                        className={shuffle === "mobile" ? "screen active" : "screen"}
+                        title="mobile"
+                      >
+                        <FontAwesomeIcon icon={faMobileAlt} />
+                        mobile
+                      </button>
+                    )}
+                  </div>
+                  <div className="imgs-container">
+                    {shuffle === "desktop" && <img src={project.desktopImage} alt="" />}
+                    {shuffle === "tablet" && <img src={project.tabletImage} alt="" />}
+                    {shuffle === "mobile" && <img src={project.mobileImage} alt="" />}
+                  </div>
+                </div>
+                <div className="technologies">
+                  <div className="technologies-container">
+                    <ul className="technologies">
+                      {project.technologies.html5.status && (
+                        <li>
+                          <FontAwesomeIcon icon={faHtml5} />
+                        </li>
+                      )}
+                      {project.technologies.css3.status && (
+                        <li>
+                          <FontAwesomeIcon icon={faCss3Alt} />
+                        </li>
+                      )}
+                      {project.technologies.javascript.status && (
+                        <li>
+                          <FontAwesomeIcon icon={faJsSquare} />
+                        </li>
+                      )}
+                      {project.technologies.sass.status && (
+                        <li>
+                          <FontAwesomeIcon icon={faSass} />
+                        </li>
+                      )}
+                      {project.technologies.react.status && (
+                        <li>
+                          <FontAwesomeIcon icon={faReact} />
+                        </li>
+                      )}
+                      {project.technologies.vuejs.status && (
+                        <li>
+                          <FontAwesomeIcon icon={faVuejs} />
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="card-bottom">
+                <div className="card-info">
+                  <h5 className="card-title" title={project.projectName}>
+                    {project.projectName}
+                  </h5>
+                  <a
+                    className="card-text"
+                    href={project.desingerLink}
+                    target="_blank"
+                    title={project.projectDesinger}
+                  >
+                    <FontAwesomeIcon icon={faPalette} />
+                    {project.projectDesinger}
+                  </a>
+                </div>
+                <div className="card-actions">
+                  <a
+                    className="btn btn-light action"
+                    href={project.projectRepo}
+                    target="_blank"
+                  >
+                    <FontAwesomeIcon icon={faGithub} />
+                    View Code
+                  </a>
+                  <a
+                    className="btn btn-light action"
+                    href={project.liveLink}
+                    target="_blank"
+                  >
+                    <FontAwesomeIcon icon={faEye} />
+                    Live Version
+                  </a>
+                </div>
+              </div>
             </div>
-            <div className="card-actions">
-              <a
-                className="btn btn-light action"
-                href="https://github.com/abubakr404/elzero-tut-temp-1"
-                target="_blank"
-              >
-                <i className="fab fa-github" aria-hidden="true"></i>
-                View Code
-              </a>
-              <a
-                className="btn btn-light action"
-                href="https://abubakr404.github.io/elzero-tut-temp-1/"
-                target="_blank"
-              >
-                <i className="fa fa-eye" aria-hidden="true"></i>
-                Live Version
-              </a>
-            </div>
-          </div>
-        </div>
+          ))
+        )}
       </div>
     </section>
   );
 };
 
-export default Hero;
+export default Portfolio;
