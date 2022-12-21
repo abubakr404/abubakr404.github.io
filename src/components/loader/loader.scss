@@ -1,0 +1,36 @@
+.loader {
+  @extend %transition;
+  @extend %aCenter;
+  @extend %fCenter;
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: rgb(var(--surface) / 50%);
+  z-index: 1000000000;
+}
+
+.loading {
+  color: var(--border-color-invers);
+  text-transform: uppercase;
+  font-size: 4rem;
+  letter-spacing: 0.3125rem;
+  line-height: 1;
+  position: relative;
+}
+
+.loading:before {
+  content: "";
+  @include overlay($primary95, 1, 5rem);
+  mix-blend-mode: difference;
+  animation: loadingMove 5s linear infinite;
+}
+
+@keyframes loadingMove {
+  0%,
+  100% {
+    right: calc(100% - 5rem);
+  }
+  50% {
+    right: 0;
+  }
+}

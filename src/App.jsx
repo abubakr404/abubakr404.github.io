@@ -21,6 +21,7 @@ const App = () => {
         );
         setSiteData(list);
       } catch (err) {
+        setSiteData(null);
         console.log(err);
       }
     };

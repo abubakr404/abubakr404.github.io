@@ -1,0 +1,20 @@
+.social {
+  @extend %fCenter;
+  gap: 1rem;
+  padding: 0;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  @include in(fromMedium) {
+    justify-content: flex-start;
+  }
+  a.social-link {
+    @extend %fCenter;
+    background-color: var(--text-element-dark);
+    color: var(--text-dark);
+    padding: 0;
+    font-size: 1.125rem;
+    border-radius: 50%;
+    min-height: 2.25rem;
+    min-width: 2.25rem;
+  }
+}

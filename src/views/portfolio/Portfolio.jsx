@@ -32,6 +32,7 @@ const Portfolio = ({ title, headTitle }) => {
         });
         setProjects(list);
       } catch (err) {
+        setProjects(null);
         console.log(err);
       }
     };
@@ -40,13 +41,13 @@ const Portfolio = ({ title, headTitle }) => {
 
   return (
     <section className="portfolio" id={title}>
-      <h2 className="text-center special-head" title={headTitle}>
+      <h2 className="special-head" title={headTitle}>
         {headTitle}
       </h2>
-      <div className="container g-col-lg-3">
+      <div className="container">
         {projects === null ? (
           <div className="loader-1">
-            <span className="loading-1">loging...</span>
+            <span className="loading-1">loading...</span>
           </div>
         ) : (
           projects.map((project) => (
@@ -61,7 +62,6 @@ const Portfolio = ({ title, headTitle }) => {
                         title="desktop"
                       >
                         <FontAwesomeIcon icon={faDesktop} />
-                        desktop
                       </button>
                     )}
                     {project.tabletImage && (
@@ -71,7 +71,6 @@ const Portfolio = ({ title, headTitle }) => {
                         title="tablet"
                       >
                         <FontAwesomeIcon icon={faTabletAlt} />
-                        tablet
                       </button>
                     )}
                     {project.mobileImage && (
@@ -81,7 +80,6 @@ const Portfolio = ({ title, headTitle }) => {
                         title="mobile"
                       >
                         <FontAwesomeIcon icon={faMobileAlt} />
-                        mobile
                       </button>
                     )}
                   </div>
@@ -92,49 +90,47 @@ const Portfolio = ({ title, headTitle }) => {
                   </div>
                 </div>
                 <div className="technologies">
-                  <div className="technologies-container">
-                    <ul className="technologies">
-                      {project.technologies.html5.status && (
-                        <li>
-                          <FontAwesomeIcon icon={faHtml5} />
-                        </li>
-                      )}
-                      {project.technologies.css3.status && (
-                        <li>
-                          <FontAwesomeIcon icon={faCss3Alt} />
-                        </li>
-                      )}
-                      {project.technologies.javascript.status && (
-                        <li>
-                          <FontAwesomeIcon icon={faJsSquare} />
-                        </li>
-                      )}
-                      {project.technologies.sass.status && (
-                        <li>
-                          <FontAwesomeIcon icon={faSass} />
-                        </li>
-                      )}
-                      {project.technologies.react.status && (
-                        <li>
-                          <FontAwesomeIcon icon={faReact} />
-                        </li>
-                      )}
-                      {project.technologies.vuejs.status && (
-                        <li>
-                          <FontAwesomeIcon icon={faVuejs} />
-                        </li>
-                      )}
-                    </ul>
-                  </div>
+                  <ul className="technologies-container">
+                    {project.technologies.html5.status && (
+                      <li>
+                        <FontAwesomeIcon icon={faHtml5} />
+                      </li>
+                    )}
+                    {project.technologies.css3.status && (
+                      <li>
+                        <FontAwesomeIcon icon={faCss3Alt} />
+                      </li>
+                    )}
+                    {project.technologies.javascript.status && (
+                      <li>
+                        <FontAwesomeIcon icon={faJsSquare} />
+                      </li>
+                    )}
+                    {project.technologies.sass.status && (
+                      <li>
+                        <FontAwesomeIcon icon={faSass} />
+                      </li>
+                    )}
+                    {project.technologies.react.status && (
+                      <li>
+                        <FontAwesomeIcon icon={faReact} />
+                      </li>
+                    )}
+                    {project.technologies.vuejs.status && (
+                      <li>
+                        <FontAwesomeIcon icon={faVuejs} />
+                      </li>
+                    )}
+                  </ul>
                 </div>
               </div>
               <div className="card-bottom">
                 <div className="card-info">
-                  <h5 className="card-title" title={project.projectName}>
+                  <h5 className="one-line title" title={project.projectName}>
                     {project.projectName}
                   </h5>
                   <a
-                    className="card-text"
+                    className="one-line text"
                     href={project.desingerLink}
                     target="_blank"
                     title={project.projectDesinger}
@@ -144,16 +140,12 @@ const Portfolio = ({ title, headTitle }) => {
                   </a>
                 </div>
                 <div className="card-actions">
-                  <a
-                    className="btn btn-light action"
-                    href={project.projectRepo}
-                    target="_blank"
-                  >
+                  <a className="link action" href={project.projectRepo} target="_blank">
                     <FontAwesomeIcon icon={faGithub} />
                     View Code
                   </a>
                   <a
-                    className="btn btn-light action"
+                    className="link light action"
                     href={project.liveLink}
                     target="_blank"
                   >

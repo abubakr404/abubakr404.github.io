@@ -4,6 +4,7 @@ import {
   faEnvelope,
   faPaperPlane,
   faPhone,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -50,19 +51,36 @@ const Contact = ({
               <Social />
             </div>
           </div>
-          <form className="contact-form" method="get">
-            <input
-              className="form-input name"
-              type="text"
-              placeholder="Your Name"
-              required=""
-            />
-            <input
-              className="form-input email"
-              type="email"
-              placeholder="Your Email"
-              required=""
-            />
+          <form
+            className="contact-form"
+            // onSubmit={(ele) => handleSubmit(ele.target)}
+          >
+            <div className="form-group">
+              <div className="input">
+                <FontAwesomeIcon icon={faUser} />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  // value={contactSetup.name}
+                  // onChange={(ele) => handleInputs(ele.target)}
+                  required=""
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="input">
+                <FontAwesomeIcon icon={faEnvelope} />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  // value={contactSetup.email}
+                  // onChange={(ele) => handleInputs(ele.target)}
+                  required=""
+                />
+              </div>
+            </div>
             <div className="form-group">
               <div className="input">
                 <FontAwesomeIcon icon={faPhone} />
@@ -75,13 +93,20 @@ const Contact = ({
                 />
               </div>
             </div>
-            <textarea
-              className="form-input message"
-              placeholder="Tell me about all you needs"
-              required=""
-            ></textarea>
+            <div className="form-group">
+              <div className="input">
+                <textarea
+                  className="form-input message"
+                  name="message"
+                  placeholder="Tell me about all you needs"
+                  required=""
+                  // value={contactSetup.message}
+                  // onChange={(ele) => handleInputs(ele.target)}
+                />
+              </div>
+            </div>
             <p className="message-stutus"></p>
-            <button className="submit btn btn-light">
+            <button className="submit">
               <FontAwesomeIcon icon={faPaperPlane} />
               {SendButton}
             </button>
@@ -90,7 +115,7 @@ const Contact = ({
             <div className="img"></div>
             <h3>Thank you!</h3>
             <div className="thanks">{messageOfThanks}</div>
-            <button className="submit send-again btn btn-light">
+            <button className="submit light send-again">
               <FontAwesomeIcon icon={faArrowRotateBack} />
               {SendAgainButton}
             </button>

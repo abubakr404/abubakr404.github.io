@@ -25,30 +25,17 @@ const Divider = () => {
           d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
         />
         <linearGradient
-          id="divider_gradient_hero"
+          id="divider_gradient"
           x1="-345.889"
           y1="-12.7304"
           x2="-301.171"
           y2="248.093"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#E6E9FF" />
-          <stop offset="0.325521" stopColor="#F5F7FF" />
-          <stop offset="0.627604" stopColor="#F2F5FF" />
-          <stop offset="1" stopColor="#E0E7FF" />
-        </linearGradient>
-        <linearGradient
-          id="divider_gradient_footer"
-          x1="-345.889"
-          y1="-12.7304"
-          x2="-301.171"
-          y2="248.093"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#505D84" />
-          <stop offset="0.34496" stopColor="#38466B" />
-          <stop offset="0.556043" stopColor="#212F53" />
-          <stop offset="1" stopColor="#0A1A3D" />
+          <stop stopColor="var(--gradient-3)" />
+          <stop offset="0.325521" stopColor="var(--gradient-1)" />
+          <stop offset="0.627604" stopColor="var(--gradient-2)" />
+          <stop offset="1" stopColor="var(--gradient-3)" />
         </linearGradient>
       </defs>
     </svg>

@@ -1,0 +1,29 @@
+.about {
+  .container {
+    @extend %fSpacer;
+    flex-wrap: wrap;
+    gap: 1rem;
+    .content {
+      @extend %fColCY;
+      .title {
+        font-size: calc(1.375rem + 1.5vw);
+        margin: 0;
+        font-weight: 600;
+      }
+      .lead {
+        font-size: 1.25rem;
+        font-weight: 300;
+      }
+    }
+    .about-figure {
+      .about-img {
+        max-width: 100%;
+      }
+    }
+    .about-figure,
+    .content {
+      flex: 0 0 auto;
+      width: calc(50% - 1rem);
+    }
+  }
+}

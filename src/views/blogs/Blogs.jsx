@@ -16,6 +16,7 @@ const Blogs = ({ title, headTitle }) => {
         });
         setPosts(list);
       } catch (err) {
+        setPosts(null);
         console.log(err);
       }
     };
@@ -24,37 +25,37 @@ const Blogs = ({ title, headTitle }) => {
 
   return (
     <section className="blogs" id={title}>
-      <h2 className="text-center special-head" title={headTitle}>
+      <h2 className="special-head" title={headTitle}>
         {headTitle}
       </h2>
-      <div className="container g-col-lg-4">
+      <div className="container">
         {posts === null ? (
           <div className="loader-1">
             <span className="loading-1">loging...</span>
           </div>
         ) : (
           posts.map((post) => (
-            <div className="card" key={post.id}>
+            <div className="post" key={post.id}>
               <div className="blog-container">
                 <button className="close">
                   <FontAwesomeIcon icon={faXmark} />
                 </button>
                 <img
-                  className="card-img-top"
+                  className="post-img"
                   src={post.imageLink}
                   alt="deploy abubakr website-image"
                 />
-                <div className="card-body">
-                  <h5 className="card-title" title={post.title}>
+                <div className="post-body">
+                  <h5 className="one-line title" title={post.title}>
                     {post.title}
                   </h5>
-                  <p className="card-text">{post.details}</p>
-                  <p className="card-text" title="25 sept 2022">
+                  <p className="one-line text">{post.details}</p>
+                  <p className="one-line text" title="25 sept 2022">
                     <small>25 sept 2022</small>
                   </p>
                 </div>
               </div>
-              <button className="card-footer more">
+              <button className="more">
                 <a>Read More</a>
                 <FontAwesomeIcon icon={faExpand} />
               </button>

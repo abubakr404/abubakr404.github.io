@@ -1,44 +1,54 @@
 .hero {
   @extend %fCenter;
-  // color: var(--Ab-body-color);
-  background-repeat: no-repeat;
-  background-image: url(../images/Ellipse.svg), url(../images/languages.svg),
-    url(../images/pattern.png), var(--main-gradient);
-  background-size: 400px, 30rem, contain, auto, auto;
-  background-position: 0px -60px, 90% 90%, left top, center, center;
-  margin-top: -$headerHeight;
+  color: var(--light-primary-container);
+  background : {
+    repeat: no-repeat;
+    size: 400px, 30rem, contain, auto, auto;
+    position: 0px -60px, 90% 90%, left top, center, center;
+    image: url(/images/Ellipse.svg), url(/images/languages.svg), url(/images/pattern.png),
+      linear-gradient(0deg, rgba($primary20, 20%), rgba($primary20, 20%)),
+      radial-gradient(50% 50% at 50% 50%, $primary40 0%, $primary20 100%);
+  }
+  margin-top: calc(var(--header-height) / -1);
   min-height: 100vh;
   position: relative;
   overflow: hidden;
   @include in(toSmall) {
-    background-image: url(../images/Ellipse.svg), url(../images/pattern.png),
-      var(--main-gradient);
+    background-image: url(/images/Ellipse.svg), url(/images/pattern.png),
+      var(--hero-gradient);
     background-size: 250px, contain, auto, auto;
     background-position: -40px -40px, left center, center, center;
   }
-  h1 {
+  .container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+  }
+  .display {
     letter-spacing: 0.125rem;
-    color: inherit;
+    font-weight: bold;
+    @include in(large) {
+      font-size: 3rem;
+    }
     @include in(medium) {
       font-size: calc(1.475rem + 2vw);
     }
   }
-  p {
-    color: inherit;
+  .lead {
     margin: 1.125rem 0;
     font-weight: 500;
     max-width: 31.25rem;
     line-height: 1.5;
+    font-size: 1.25rem;
     @include in(toSmall) {
       font-size: 0.875rem;
       margin: 1.125rem auto;
     }
   }
-  .hero-actions {
+  .actions {
+    @extend %fWrapper;
+    gap: 0.5rem;
     margin: 1.125rem 0;
-    // .btn-outline-light {
-    //   // box-shadow: inset -0.125rem -0.125rem 0 var(--Ab-btn-color);
-    // }
     @include in(small) {
       justify-content: center;
     }
@@ -53,16 +63,25 @@
     padding: 0;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: url(../images/screen.png), url(../images/background-sec.png);
+    background-image: url(/images/screen.png), url(/images/background-sec.png);
+    .cover-img {
+      position: relative;
+      max-width: 100%;
+    }
   }
   .work-link {
+    position: absolute;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
     left: 11.5%;
     bottom: 38.75%;
   }
   .imgs-viewer {
     width: 100%;
     height: 100%;
+    position: absolute;
     .imgs-container {
+      position: absolute;
       width: 36%;
       height: 32.125%;
       bottom: 38%;
@@ -92,6 +111,9 @@
     font-size: 2rem;
     color: inherit;
     bottom: 3rem;
+    @include in(fromMobile) {
+      display: none;
+    }
     &:hover {
       color: var(--light-on-primary-container);
     }

@@ -5,45 +5,43 @@ html {
 }
 
 :root {
-  --primary-gradient: linear-gradient(0deg, rgba(10, 26, 61, 0.4), rgba(10, 26, 61, 0.4)),
-    linear-gradient(
-      115deg,
-      rgba(80, 93, 132, 0.7) -5%,
-      rgba(56, 70, 107, 0.7) 40%,
-      rgba(33, 47, 83, 0.7) 70%,
-      rgba(10, 26, 61, 0.7) 130%
-    ),
-    #212f53;
+  --primary-gradient: #{$primaryGradient};
+
+  --gradient-light-1: #{$primary99};
+  --gradient-light-2: #{$primary98};
+  --gradient-light-3: #{$primary95};
+
+  --gradient-dark-1: #{$primary5};
+  --gradient-dark-2: #{$primary10};
+  --gradient-dark-3: #{$primary15};
+
+  --border-color-light: var(--gradient-light-3);
+  --border-color-dark: var(--gradient-dark-1);
 
   /* --------------- light colors set ----------------- */
+
+  --surface-light: #{$mainSurfaceLight};
+  --second-surface-light: #{$secondSurfaceLight};
 
   --light-primary: #505d84;
   --light-primary-container: #dae2ff;
   --light-on-primary: #ffffff;
   --light-on-primary-container: #0a1a3d;
 
-  --surface-light: var(--light-primary-container);
-  --alt-surface: linear-gradient(
-    135deg,
-    #e6e9ff -50%,
-    #f5f7ff 25%,
-    #f2f5ff 90%,
-    #e0e7ff 170%
-  );
-
   --background-light: var(--light-primary);
-  --element-light: var(--alt-surface);
+  --element-light: var(--second-surface-light);
   --text-light: var(--light-on-primary);
   --text-element-light: var(--dark-on-primary);
 
   /* --------------- dark colors set ----------------- */
 
+  --surface-dark: #{$mainSurfaceDark};
+  --second-surface-dark: #{$secondSurfaceDark};
+
   --dark-primary: #b7c5f2;
   --dark-primary-container: #38466b;
   --dark-on-primary: #212f53;
   --dark-on-primary-container: #dae2ff;
-
-  --surface-dark: #0f1628;
 
   --background-dark: var(--dark-primary);
   --element-dark: var(--dark-primary-container);
@@ -82,14 +80,10 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   position: relative;
+  line-height: 1.2;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-}
-
-ul {
-  @include ulRest;
-  margin: 0;
 }
 
 .container {
@@ -114,14 +108,24 @@ ul {
     --inverse-primary: var(--dark-primary);
 
     --surface: var(--surface-light);
+    --second-surface: var(--second-surface-light);
+    --second-surface-blend-mode: multiply;
+
     --background: var(--background-light);
     --background-inverse: var(--dark-on-primary-container);
+
+    --gradient-1: var(--gradient-light-1);
+    --gradient-2: var(--gradient-light-2);
+    --gradient-3: var(--gradient-light-3);
 
     --element: var(--element-light);
     --text: var(--text-light);
     --text-element: var(--text-element-light);
 
     --dark: var(--on-primary-container);
+
+    --border-color: var(--border-color-light);
+    --border-color-inverse: var(--border-color-dark);
 
     --main-shadow: var(--light-shadow);
     --scheme-color: light;
@@ -132,16 +136,26 @@ ul {
       --on-primary-container: var(--dark-on-primary-container);
 
       --inverse-primary: var(--light-primary);
+      --second-surface-blend-mode: soft-light;
 
       --surface: var(--surface-dark);
+      --second-surface: var(--second-surface-dark);
+
       --background: var(--background-dark);
       --background-inverse: var(--background-light);
+
+      --gradient-1: var(--gradient-dark-1);
+      --gradient-2: var(--gradient-dark-2);
+      --gradient-3: var(--gradient-dark-3);
 
       --element: var(--element-dark);
       --text: var(--text-dark);
       --text-element: var(--text-element-dark);
 
       --dark: var(--on-primary);
+
+      --border-color: var(--border-color-dark);
+      --border-color-inverse: var(--border-color-light);
 
       --main-shadow: var(--dark-shadow);
       --scheme-color: dark;
@@ -159,14 +173,24 @@ ul {
     --inverse-primary: var(--light-primary);
 
     --surface: var(--surface-dark);
+    --second-surface: var(--second-surface-dark);
+    --second-surface-blend-mode: soft-light;
+
     --background: var(--background-dark);
     --background-inverse: var(--background-light);
+
+    --gradient-1: var(--gradient-dark-1);
+    --gradient-2: var(--gradient-dark-2);
+    --gradient-3: var(--gradient-dark-3);
 
     --element: var(--element-dark);
     --text: var(--text-dark);
     --text-element: var(--text-element-dark);
 
     --dark: var(--on-primary);
+
+    --border-color: var(--border-color-dark);
+    --border-color-inverse: var(--border-color-light);
 
     --main-shadow: var(--dark-shadow);
     --scheme-color: dark;
@@ -179,14 +203,24 @@ ul {
       --inverse-primary: var(--dark-primary);
 
       --surface: var(--surface-light);
+      --second-surface: var(--second-surface-light);
+      --second-surface-blend-mode: multiply;
+
       --background: var(--background-light);
       --background-inverse: var(--dark-on-primary-container);
+
+      --gradient-1: var(--gradient-light-1);
+      --gradient-2: var(--gradient-light-2);
+      --gradient-3: var(--gradient-light-3);
 
       --element: var(--element-light);
       --text: var(--text-light);
       --text-element: var(--text-element-light);
 
       --dark: var(--on-primary-container);
+
+      --border-color: var(--border-color-light);
+      --border-color-inverse: var(--border-color-dark);
 
       --main-shadow: var(--light-shadow);
       --scheme-color: light;
@@ -206,10 +240,13 @@ ul {
 }
 
 @import "./components/layouts/layout";
+@import "./components/loader/loader";
 @import "./components/navbar/navbar";
 @import "./components/sidebar/sidebar";
 @import "./components/widget/widget";
 @import "./components/table/table";
+@import "./components/divider/divider";
+@import "./components/widget/social/social";
 @import "./views/hero/hero";
 @import "./views/about/about";
 @import "./views/portfolio/portfolio";

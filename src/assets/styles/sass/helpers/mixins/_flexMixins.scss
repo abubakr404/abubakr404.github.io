@@ -69,9 +69,9 @@
   gap: $gap;
 }
 
-// mixin fWraper is mixin for make element display flex and flex wrap
+// mixin fWrapper is mixin for make element display flex and flex wrap
 
-@mixin fWraper($direction: default) {
+@mixin fWrapper($direction: default) {
   @include f($direction);
   flex-wrap: wrap;
 }

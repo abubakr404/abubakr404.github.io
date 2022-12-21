@@ -1,6 +1,7 @@
 import Divider from "../../components/divider/Divider";
 import Social from "../../components/widget/social/Social";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 const Hero = ({
   title,
   hero: {
@@ -20,35 +21,32 @@ const Hero = ({
         <div className="hero-content">
           <div className="content">
             <h1 className="display">{heroTitle}</h1>
-            <p className="details">{heroDetails}</p>
+            <p className="lead">{heroDetails}</p>
             <div className="actions" role="group">
-              <a href={leftLink} className="left-link">
+              <a href={leftLink} className="link light left-link">
                 {leftLinkTitle}
               </a>
-              <a href={rightLink} className="right-link">
+              <a href={rightLink} className="link right-link">
                 {rightLinkTitle}
               </a>
             </div>
             <Social />
           </div>
         </div>
-        <div className="hero-figure col-lg-6 d-none d-lg-block position-relative">
-          <div className="imgs-viewer position-absolute">
-            <div className="imgs-container position-absolute">
+        <div className="hero-figure">
+          <div className="imgs-viewer">
+            <div className="imgs-container">
               <img className="img-fluid" src="" alt="" />
             </div>
           </div>
-          <img src="" alt="" className="cover-img img-fluid position-relative" />
-          <a
-            href={centerLink}
-            className="btn btn-sm btn-primary position-absolute work-link"
-          >
+          <img src="/images/person & chair.png" alt="" className="cover-img" />
+          <a href={centerLink} className="link primary work-link">
             {centerLinkTitle}
           </a>
         </div>
       </div>
-      <a href="#" className="alt-work-link position-absolute d-block d-lg-none">
-        <i className="fa fa-angles-down"></i>
+      <a href="#" className="link alt-work-link">
+        <FontAwesomeIcon icon={faAnglesDown} />
       </a>
       <div className="divider-hero">
         <Divider />

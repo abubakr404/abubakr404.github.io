@@ -170,16 +170,16 @@
   @include fSpacer(column, false);
 }
 
-%fWraper {
-  @include fWraper;
+%fWrapper {
+  @include fWrapper;
 }
 
-%fWraperH {
-  @include fWraper(row);
+%fWrapperH {
+  @include fWrapper(row);
 }
 
-%fWraperV {
-  @include fWraper(column);
+%fWrapperV {
+  @include fWrapper(column);
 }
 
 %aRest {

@@ -91,11 +91,7 @@ $lighterPrimaryGradient: linear-gradient(
     rgba(56, 70, 107, 0.3),
     rgba(56, 70, 107, 0.3)
   ),
-  radial-gradient(
-    50% 50% at 50% 50%,
-    $twoTeaLightPrimary30 0%,
-    $twoTeaLightPrimary20 80%
-  );
+  radial-gradient(50% 50% at 50% 50%, $twoTeaLightPrimary30 0%, $twoTeaLightPrimary20 80%);
 $primaryGradient: linear-gradient(
     0deg,
     rgba($twoTeaLightPrimary10, 0.4),
