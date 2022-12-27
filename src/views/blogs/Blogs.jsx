@@ -3,9 +3,12 @@ import { collection, getDocs } from "firebase/firestore";
 import { database } from "../../firebaseConfig";
 import { faExpand, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Spinner from "../../components/spinner/Spinner";
 
 const Blogs = ({ title, headTitle }) => {
   const [posts, setPosts] = useState(null);
+  const [zoomPos, setZoomPos] = useState({ postNum: 0, isZoomed: false });
+
   useEffect(() => {
     const getPosts = async () => {
       let list = [];
@@ -30,20 +33,37 @@ const Blogs = ({ title, headTitle }) => {
       </h2>
       <div className="container">
         {posts === null ? (
-          <div className="loader-1">
-            <span className="loading-1">loging...</span>
-          </div>
+          <Spinner />
         ) : (
-          posts.map((post) => (
-            <div className="post" key={post.id}>
+          posts.map((post, i) => (
+            <div
+              key={post.id}
+              className={
+                zoomPos.isZoomed && zoomPos.postNum === i ? "post zoomed" : "post"
+              }
+            >
               <div className="blog-container">
-                <button className="close">
+                <button
+                  className="close"
+                  onClick={() =>
+                    setZoomPos((prevData) => ({
+                      postNum: i,
+                      isZoomed: !prevData.isZoomed,
+                    }))
+                  }
+                >
                   <FontAwesomeIcon icon={faXmark} />
                 </button>
                 <img
                   className="post-img"
                   src={post.imageLink}
                   alt="deploy abubakr website-image"
+                  onClick={() =>
+                    setZoomPos((prevData) => ({
+                      postNum: i,
+                      isZoomed: !prevData.isZoomed,
+                    }))
+                  }
                 />
                 <div className="post-body">
                   <h5 className="one-line title" title={post.title}>
@@ -51,11 +71,19 @@ const Blogs = ({ title, headTitle }) => {
                   </h5>
                   <p className="one-line text">{post.details}</p>
                   <p className="one-line text" title="25 sept 2022">
-                    <small>25 sept 2022</small>
+                    <small>{new Date(+post.id).toLocaleString()}</small>
                   </p>
                 </div>
               </div>
-              <button className="more">
+              <button
+                className="more"
+                onClick={() =>
+                  setZoomPos((prevData) => ({
+                    postNum: i,
+                    isZoomed: !prevData.isZoomed,
+                  }))
+                }
+              >
                 <a>Read More</a>
                 <FontAwesomeIcon icon={faExpand} />
               </button>

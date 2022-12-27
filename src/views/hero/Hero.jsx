@@ -45,7 +45,7 @@ const Hero = ({
           </a>
         </div>
       </div>
-      <a href="#" className="link alt-work-link">
+      <a href={centerLink} className="alt-work-link">
         <FontAwesomeIcon icon={faAnglesDown} />
       </a>
       <div className="divider-hero">

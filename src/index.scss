@@ -6,6 +6,7 @@ html {
 
 :root {
   --primary-gradient: #{$primaryGradient};
+  --hero-gradient: #{$heroGradient};
 
   --gradient-light-1: #{$primary99};
   --gradient-light-2: #{$primary98};
@@ -242,6 +243,7 @@ body {
 @import "./components/layouts/layout";
 @import "./components/loader/loader";
 @import "./components/navbar/navbar";
+@import "./components/spinner/spinner";
 @import "./components/sidebar/sidebar";
 @import "./components/widget/widget";
 @import "./components/table/table";

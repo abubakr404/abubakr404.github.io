@@ -67,6 +67,9 @@ $primaryGradient: linear-gradient(0deg, rgba($primary10, 0.4), rgba($primary10, 
   rgba($primary20, 1);
 $primaryGradientBlendMode: normal, normal, multiply;
 
+$heroGradient: linear-gradient(0deg, rgba($primary20, 20%), rgba($primary20, 20%)),
+  radial-gradient(50% 50% at 50% 50%, $primary40 0%, $primary20 100%);
+
 // global sizing
 
 $headerHeight: 5rem;

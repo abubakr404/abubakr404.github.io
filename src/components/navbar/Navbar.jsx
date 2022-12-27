@@ -1,19 +1,16 @@
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faSearch,
-//   faRightFromBracket,
-//   faCircleUser,
-//   faCircleHalfStroke,
-// } from "@fortawesome/free-solid-svg-icons";
-// import avatar from "../../assets/images/avatar.webp";
-// import { Link } from "react-router-dom";
-// import { ThemeContext } from "../../context/ThemeContext";
-// import { AuthContext } from "../../context/AuthContext";
-// import { doc, getDoc } from "firebase/firestore";
-// import { signOut } from "firebase/auth";
-// import { database, auth } from "../../firebaseConfig";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
+import { NavContext } from "../../context/NavContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Navbar = ({ general }) => {
+  const { dispatch } = useContext(ThemeContext);
+  const { isOpened, navDispatch } = useContext(NavContext);
+
+  const handleNavDrop = () => {
+    navDispatch({ type: "TOGGLEOPEN" });
+  };
+
   return (
     <nav className="site-nav">
       <div className="container">
@@ -21,10 +18,10 @@ const Navbar = ({ general }) => {
           <img src={general.logoImg} alt="" />
           {general.siteTitle}
         </a>
-        <button className="menu-button" type="button">
-          <span className="navbar-toggler-icon"></span>
+        <button className="menu-button" onClick={handleNavDrop}>
+          <FontAwesomeIcon icon="fa fa-bars" />
         </button>
-        <div className="nav-wrapper">
+        <div className={isOpened ? "nav-wrapper open" : "nav-wrapper"}>
           <ul className="nav-list">
             <li>
               <a className="nav-link active" href={`#${general.heroNavigatorTitle}`}>
@@ -52,48 +49,16 @@ const Navbar = ({ general }) => {
               </a>
             </li>
           </ul>
+          <button
+            className="link light theme-button"
+            onClick={() => dispatch({ type: "TOGGLE" })}
+          >
+            <FontAwesomeIcon icon="fa fa-circle-half-stroke" />
+          </button>
         </div>
       </div>
     </nav>
   );
 };
-// <div classNameName="navbar">
-//   <div classNameName="wrapper">
-//     <div classNameName="input search">
-//       <input type="text" placeholder="Search" />
-//       <FontAwesomeIcon icon={faSearch} />
-//     </div>
-//     <div classNameName="items">
-//       <div classNameName="item" onClick={() => dispatch({ type: "TOGGLE" })}>
-//         <FontAwesomeIcon icon={faCircleHalfStroke} />
-//         <span classNameName="title">Toggle Mode</span>
-//       </div>
-//       <div classNameName="item">
-//         <div classNameName="info" onClick={() => setDropdown((prev) => !prev)}>
-//           <img
-//             src={profileInfo.imageLink ? profileInfo.imageLink : avatar}
-//             alt="user-avatar"
-//             classNameName="avatar"
-//           />
-//           <h4>{profileInfo.name}</h4>
-//         </div>
-//         <div classNameName={dropdown ? "dropdown active" : "dropdown"}>
-//           <ul classNameName="options-list">
-//             <li>
-//               <Link to="profile">
-//                 <FontAwesomeIcon icon={faCircleUser} />
-//                 <span>Profile</span>
-//               </Link>
-//             </li>
-//             <li onClick={() => Logout()}>
-//               <FontAwesomeIcon icon={faRightFromBracket} />
-//               <span>logout</span>
-//             </li>
-//           </ul>
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// </div>
 
 export default Navbar;

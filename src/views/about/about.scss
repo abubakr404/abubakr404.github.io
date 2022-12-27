@@ -24,6 +24,9 @@
     .content {
       flex: 0 0 auto;
       width: calc(50% - 1rem);
+      @include in(toSmall) {
+        width: 100%;
+      }
     }
   }
 }

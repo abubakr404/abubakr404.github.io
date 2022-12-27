@@ -116,6 +116,9 @@ footer {
     line-height: 2;
     margin: 0;
     gap: 0.375rem;
+    @include in(smallMobile) {
+      font-size: 0.875rem;
+    }
     .name {
       @extend %fCenter;
       color: var(--dark-primary);

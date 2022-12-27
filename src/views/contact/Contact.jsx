@@ -6,7 +6,11 @@ import {
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import thanksIllustration from "../../../public/images/thank-you-illustration.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import { doc, setDoc } from "firebase/firestore";
+import { database } from "../../firebaseConfig";
 
 const Contact = ({
   title,
@@ -21,6 +25,56 @@ const Contact = ({
     SendAgainButton,
   },
 }) => {
+  const [messageText, setMessageText] = useState({
+    date: new Date().getTime(),
+    text: "",
+  });
+  const [message, setMessage] = useState({
+    id: new Date().getTime().toString(),
+    senderName: "",
+    senderEmail: "",
+    phoneNumber: "",
+    messagesText: [],
+  });
+  const [thanksMsg, setThanksMsg] = useState(false);
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    setMessage((prevData) => ({
+      ...prevData,
+      messagesText: [...prevData.messagesText, messageText],
+    }));
+    try {
+      const messageRef = doc(database, "messages", message.id);
+      await setDoc(messageRef, message);
+      setThanksMsg(true);
+    } catch (e) {
+      console.error("Error adding message: ", e);
+    }
+  };
+
+  const handleInputs = (target) => {
+    setMessage((prevData) => ({
+      ...prevData,
+      [target.name]: target.value,
+    }));
+  };
+
+  const handleMessage = (target) => {
+    setMessageText({
+      date: new Date().getTime(),
+      text: target.value,
+    });
+  };
+
+  const SendAgain = () => {
+    setMessageText({
+      date: new Date().getTime(),
+      text: "",
+    });
+    setThanksMsg(false);
+  };
+
   return (
     <section className="contact" id={title}>
       <h2 className="text-center special-head" title={headTitle}>
@@ -52,18 +106,18 @@ const Contact = ({
             </div>
           </div>
           <form
-            className="contact-form"
-            // onSubmit={(ele) => handleSubmit(ele.target)}
+            onSubmit={(e) => handleSendMessage(e)}
+            className={thanksMsg ? "contact-form hide" : "contact-form"}
           >
             <div className="form-group">
               <div className="input">
                 <FontAwesomeIcon icon={faUser} />
                 <input
                   type="text"
-                  name="name"
+                  name="senderName"
                   placeholder="Your Name"
-                  // value={contactSetup.name}
-                  // onChange={(ele) => handleInputs(ele.target)}
+                  value={message.senderName}
+                  onChange={(ele) => handleInputs(ele.target)}
                   required=""
                 />
               </div>
@@ -73,10 +127,10 @@ const Contact = ({
                 <FontAwesomeIcon icon={faEnvelope} />
                 <input
                   type="email"
-                  name="email"
+                  name="senderEmail"
                   placeholder="Your Email"
-                  // value={contactSetup.email}
-                  // onChange={(ele) => handleInputs(ele.target)}
+                  value={message.senderEmail}
+                  onChange={(ele) => handleInputs(ele.target)}
                   required=""
                 />
               </div>
@@ -88,8 +142,8 @@ const Contact = ({
                   type="text"
                   name="phoneNumber"
                   placeholder="Your Phone Number"
-                  // value={contactSetup.phoneNumber}
-                  // onChange={(ele) => handleInputs(ele.target)}
+                  value={message.phoneNumber}
+                  onChange={(ele) => handleInputs(ele.target)}
                 />
               </div>
             </div>
@@ -97,11 +151,11 @@ const Contact = ({
               <div className="input">
                 <textarea
                   className="form-input message"
-                  name="message"
+                  name="messagesText"
                   placeholder="Tell me about all you needs"
                   required=""
-                  // value={contactSetup.message}
-                  // onChange={(ele) => handleInputs(ele.target)}
+                  value={messageText.text}
+                  onChange={(ele) => handleMessage(ele.target)}
                 />
               </div>
             </div>
@@ -111,11 +165,13 @@ const Contact = ({
               {SendButton}
             </button>
           </form>
-          <div className="thank-message hide">
-            <div className="img"></div>
+          <div className={thanksMsg ? "thanks-message" : "thank-message hide"}>
+            <div className="img">
+              <img src={thanksIllustration} alt="" />
+            </div>
             <h3>Thank you!</h3>
             <div className="thanks">{messageOfThanks}</div>
-            <button className="submit light send-again">
+            <button onClick={SendAgain} className="submit light send-again">
               <FontAwesomeIcon icon={faArrowRotateBack} />
               {SendAgainButton}
             </button>

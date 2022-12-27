@@ -125,29 +125,13 @@ section.contact {
       resize: none;
     }
   }
-  .message-stutus.error {
-    color: #f44336;
-    background-color: rgba(244, 67, 54, 0.2);
-  }
-  .message-stutus.sendding {
-    background-color: rgb(238 240 255 / 0.2);
-  }
-  .message-stutus {
-    color: rgb(238 240 255);
-    margin: 0;
-    padding: 1rem;
-    border-radius: 10px;
-  }
   .contact-form.hide,
   .thank-message.hide {
     display: none;
   }
-  .thank-message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .thanks-message {
+    @extend %fColC;
     justify-content: flex-end;
-    text-align: center;
     gap: 1rem;
   }
   .submit {

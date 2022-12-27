@@ -1,27 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPalette,
-  faEye,
-  faDesktop,
-  faTabletAlt,
-  faMobileAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faGithub,
-  faCss3Alt,
-  faHtml5,
-  faJsSquare,
-  faReact,
-  faSass,
-  faVuejs,
-} from "@fortawesome/free-brands-svg-icons";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../../firebaseConfig";
+import Spinner from "../../components/spinner/Spinner";
 
 const Portfolio = ({ title, headTitle }) => {
-  const [shuffle, setShuffle] = useState("desktop");
+  const [zoomPro, setZoomPro] = useState({ projectNum: 0, isZoomed: false });
+  const [shuffle, setShuffle] = useState(0);
   const [projects, setProjects] = useState(null);
+
   useEffect(() => {
     const getProjects = async () => {
       let list = [];
@@ -46,80 +33,63 @@ const Portfolio = ({ title, headTitle }) => {
       </h2>
       <div className="container">
         {projects === null ? (
-          <div className="loader-1">
-            <span className="loading-1">loading...</span>
-          </div>
+          <Spinner />
         ) : (
-          projects.map((project) => (
-            <div className="work-card" key={project.id}>
+          projects.map((project, i) => (
+            <div
+              className={
+                zoomPro.isZoomed && zoomPro.projectNum === i
+                  ? "work-card zoomed"
+                  : "work-card"
+              }
+              key={project.id}
+            >
               <div className="card-top">
-                <div className="works-viewer">
-                  <div className="work-shuffle">
-                    {project.desktopImage && (
-                      <button
-                        onClick={() => setShuffle("desktop")}
-                        className={shuffle === "desktop" ? "screen active" : "screen"}
-                        title="desktop"
-                      >
-                        <FontAwesomeIcon icon={faDesktop} />
-                      </button>
-                    )}
-                    {project.tabletImage && (
-                      <button
-                        onClick={() => setShuffle("tablet")}
-                        className={shuffle === "tablet" ? "screen active" : "screen"}
-                        title="tablet"
-                      >
-                        <FontAwesomeIcon icon={faTabletAlt} />
-                      </button>
-                    )}
-                    {project.mobileImage && (
-                      <button
-                        onClick={() => setShuffle("mobile")}
-                        className={shuffle === "mobile" ? "screen active" : "screen"}
-                        title="mobile"
-                      >
-                        <FontAwesomeIcon icon={faMobileAlt} />
-                      </button>
-                    )}
+                {project.images !== null && (
+                  <div className="works-viewer">
+                    <div className="work-shuffle">
+                      {Object.entries(project.images).map((image, imgI) => (
+                        <button
+                          key={imgI}
+                          onClick={() => {
+                            setShuffle(imgI);
+                          }}
+                          className={shuffle === imgI ? "screen active" : "screen"}
+                          title={image[0]}
+                        >
+                          <FontAwesomeIcon icon={image[1].icon} />
+                        </button>
+                      ))}
+                    </div>
+                    <div
+                      className="imgs-container"
+                      onClick={() =>
+                        setZoomPro((prevData) => ({
+                          projectNum: i,
+                          isZoomed: !prevData.isZoomed,
+                        }))
+                      }
+                    >
+                      {Object.entries(project.images).map((image, imgI) => (
+                        <img
+                          key={imgI}
+                          src={image[1].url}
+                          className={shuffle === imgI ? "active" : undefined}
+                          alt=""
+                        />
+                      ))}
+                    </div>
                   </div>
-                  <div className="imgs-container">
-                    {shuffle === "desktop" && <img src={project.desktopImage} alt="" />}
-                    {shuffle === "tablet" && <img src={project.tabletImage} alt="" />}
-                    {shuffle === "mobile" && <img src={project.mobileImage} alt="" />}
-                  </div>
-                </div>
+                )}
                 <div className="technologies">
                   <ul className="technologies-container">
-                    {project.technologies.html5.status && (
-                      <li>
-                        <FontAwesomeIcon icon={faHtml5} />
-                      </li>
-                    )}
-                    {project.technologies.css3.status && (
-                      <li>
-                        <FontAwesomeIcon icon={faCss3Alt} />
-                      </li>
-                    )}
-                    {project.technologies.javascript.status && (
-                      <li>
-                        <FontAwesomeIcon icon={faJsSquare} />
-                      </li>
-                    )}
-                    {project.technologies.sass.status && (
-                      <li>
-                        <FontAwesomeIcon icon={faSass} />
-                      </li>
-                    )}
-                    {project.technologies.react.status && (
-                      <li>
-                        <FontAwesomeIcon icon={faReact} />
-                      </li>
-                    )}
-                    {project.technologies.vuejs.status && (
-                      <li>
-                        <FontAwesomeIcon icon={faVuejs} />
-                      </li>
+                    {project.technologies.map(
+                      (techonlogy, i) =>
+                        techonlogy.isChecked && (
+                          <li key={i}>
+                            <FontAwesomeIcon icon={techonlogy.icon} />
+                          </li>
+                        )
                     )}
                   </ul>
                 </div>
@@ -135,22 +105,22 @@ const Portfolio = ({ title, headTitle }) => {
                     target="_blank"
                     title={project.projectDesinger}
                   >
-                    <FontAwesomeIcon icon={faPalette} />
+                    <FontAwesomeIcon icon="fa fa-palette" />
                     {project.projectDesinger}
                   </a>
                 </div>
                 <div className="card-actions">
-                  <a className="link action" href={project.projectRepo} target="_blank">
-                    <FontAwesomeIcon icon={faGithub} />
-                    View Code
-                  </a>
                   <a
                     className="link light action"
                     href={project.liveLink}
                     target="_blank"
                   >
-                    <FontAwesomeIcon icon={faEye} />
+                    <FontAwesomeIcon icon="fa fa-eye" />
                     Live Version
+                  </a>
+                  <a className="link action" href={project.projectRepo} target="_blank">
+                    <FontAwesomeIcon icon="fab fa-github" />
+                    View Code
                   </a>
                 </div>
               </div>

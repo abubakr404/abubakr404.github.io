@@ -1,7 +1,7 @@
 import Main from "./views/main/Main";
 import Layout from "./components/layouts/Layout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "./context/ThemeContext";
 import { SiteDataContext } from "./context/SiteDataContext";
 import { collection, getDocs } from "firebase/firestore";
@@ -10,6 +10,7 @@ import { database } from "./firebaseConfig";
 const App = () => {
   const { currentMode } = useContext(ThemeContext);
   const [siteData, setSiteData] = useState(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     const getSiteData = async () => {
@@ -29,11 +30,16 @@ const App = () => {
   }, []);
 
   return (
-    <div className={currentMode ? "app toggleMode" : "app"}>
+    <div
+      className={currentMode ? "app toggleMode" : "app"}
+      onScroll={() => {
+        headerRef.current.fillToggle();
+      }}
+    >
       <SiteDataContext.Provider value={siteData}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Layout ref={headerRef} />}>
               <Route index element={<Main />} />
             </Route>
           </Routes>

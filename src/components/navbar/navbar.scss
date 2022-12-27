@@ -42,57 +42,91 @@ header {
       transform: translate(-50%, -50%);
       animation: filledColorEnd var(--main-transition) ease-out forwards;
     }
-    .container {
-      @extend %fSpacer;
-      .logo {
+  }
+  .container {
+    @extend %fSpacer;
+    flex-wrap: wrap;
+    @include in(toSmall) {
+      flex: 1;
+    }
+    .logo {
+      @extend %fCenter;
+      min-height: calc(var(--header-height) - 1rem);
+      font-weight: 600;
+      gap: 0.125rem;
+      padding: 0.125rem 0;
+      font-size: 1.5rem;
+      white-space: nowrap;
+    }
+    .nav-wrapper {
+      @extend %fRowEX;
+      @extend %transition;
+      @include in(toSmall) {
+        transform: translateY(0);
+        max-height: 100vh;
+        opacity: 1;
+        visibility: visible;
+        overflow: hidden;
+        &:not(.open) {
+          padding-bottom: 0;
+          max-height: 0vh;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(4rem);
+        }
+        padding-bottom: 1.5rem;
+        flex: 1 100%;
+      }
+    }
+    .nav-list {
+      @extend %fCol;
+      flex: 1;
+      gap: 0.5rem;
+      @include in(toSmall) {
+        border: 0.125rem solid;
+        padding: 0.625rem 1.5rem;
+        border-radius: var(--main-border-radius);
+        li {
+          height: calc(var(--header-height) - 1rem);
+        }
+      }
+      @include in(fromMedium) {
+        flex-direction: row;
+      }
+      a.nav-link {
         @extend %fCenter;
-        min-height: calc(var(--header-height) - 1rem);
-        font-weight: 600;
-        gap: 0.125rem;
-        padding: 0.125rem 0;
-        font-size: 1.5rem;
-        white-space: nowrap;
-      }
-      .menu-button {
-        @include in(fromMobile) {
-          display: none;
+        text-transform: capitalize;
+        position: relative;
+        padding: 0.5rem;
+        height: 100%;
+        &:after {
+          @extend %transition;
+          @include line(var(--light-primary-container), 0.125rem, bottom, 100%, 100%, 0);
+          transform: translateX(50%);
         }
-      }
-      .nav-wrapper {
-        @extend %fRowEX;
-      }
-      .nav-list {
-        @extend %fCol;
-        gap: 0.5rem;
-        @include in(fromMobile) {
-          flex-direction: row;
-        }
-        a.nav-link {
-          @extend %fRowC;
-          text-transform: capitalize;
-          position: relative;
-          padding: 0.5rem;
-          height: 100%;
+        &:hover,
+        &:focus,
+        &.active {
           &:after {
-            @extend %transition;
-            @include line(
-              var(--light-primary-container),
-              0.125rem,
-              bottom,
-              100%,
-              100%,
-              0
-            );
-            transform: translateX(50%);
-          }
-          &:hover,
-          &:focus,
-          &.active {
-            &:after {
-              width: calc(100% - 0.5rem);
-            }
+            width: calc(100% - 0.5rem);
           }
         }
+      }
+    }
+    .menu-button {
+      font-size: 1.5rem;
+      align-self: center;
+      padding: 0.125rem 0.5rem;
+      @include in(fromMedium) {
+        display: none;
+      }
+    }
+    .theme-button {
+      align-self: center;
+      margin-left: 1rem;
+      padding: 0.25rem 0.5rem;
+      @include in(toSmall) {
+        margin: 0.5rem 0 auto 1rem;
       }
     }
   }

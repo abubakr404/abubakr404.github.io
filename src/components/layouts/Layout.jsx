@@ -1,17 +1,34 @@
 import Navbar from "../navbar/Navbar";
 import { Outlet } from "react-router-dom";
-import { useContext } from "react";
+import { forwardRef, useContext, useImperativeHandle, useRef } from "react";
 import { SiteDataContext } from "../../context/SiteDataContext";
+import { NavContext } from "../../context/NavContext";
 import Loader from "../loader/Loader";
 import Divider from "../divider/Divider";
 
-const Layout = () => {
+const Layout = forwardRef((props, ref) => {
   const data = useContext(SiteDataContext);
+  const headerRef = useRef(null);
+  const { isOpened, isFilled, navDispatch } = useContext(NavContext);
+
+  useImperativeHandle(ref, () => ({
+    fillToggle() {
+      if (headerRef.current.offsetTop > 0) {
+        navDispatch({ type: "FILLED" });
+      } else if (
+        headerRef.current.offsetTop <= headerRef.current.offsetHeight &&
+        !isOpened
+      ) {
+        navDispatch({ type: "NOTFILLED" });
+      }
+    },
+  }));
+
   return data === null ? (
     <Loader />
   ) : (
     <>
-      <header>
+      <header ref={headerRef} className={isFilled ? "filled" : undefined}>
         <Navbar general={data.general} />
       </header>
       <main>
@@ -28,6 +45,6 @@ const Layout = () => {
       </footer>
     </>
   );
-};
+});
 
 export default Layout;
