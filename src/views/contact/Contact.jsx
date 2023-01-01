@@ -118,7 +118,7 @@ const Contact = ({
                   placeholder="Your Name"
                   value={message.senderName}
                   onChange={(ele) => handleInputs(ele.target)}
-                  required=""
+                  required
                 />
               </div>
             </div>
@@ -131,7 +131,7 @@ const Contact = ({
                   placeholder="Your Email"
                   value={message.senderEmail}
                   onChange={(ele) => handleInputs(ele.target)}
-                  required=""
+                  required
                 />
               </div>
             </div>
@@ -153,9 +153,8 @@ const Contact = ({
                   className="form-input message"
                   name="messagesText"
                   placeholder="Tell me about all you needs"
-                  required=""
-                  value={messageText.text}
                   onChange={(ele) => handleMessage(ele.target)}
+                  required
                 />
               </div>
             </div>
