@@ -61,17 +61,19 @@ const Contact = ({
   };
 
   const handleMessage = (target) => {
-    setMessageText({
-      date: new Date().getTime(),
-      text: target.value,
-    });
+    setMessage((prevData) => ({
+      ...prevData,
+      messagesText: [
+        ...prevData.messagesText,
+        {
+          date: new Date().getTime(),
+          text: target.value,
+        },
+      ],
+    }));
   };
 
   const SendAgain = () => {
-    setMessageText({
-      date: new Date().getTime(),
-      text: "",
-    });
     setThanksMsg(false);
   };
 
@@ -153,7 +155,7 @@ const Contact = ({
                   className="form-input message"
                   name="messagesText"
                   placeholder="Tell me about all you needs"
-                  onChange={(ele) => handleMessage(ele.target)}
+                  onBlur={(ele) => handleMessage(ele.target)}
                   required
                 />
               </div>
