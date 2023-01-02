@@ -39,8 +39,8 @@ const Layout = forwardRef((props, ref) => {
           <Divider />
         </div>
         <p>
-          Designed and Powered by -<span className="name">{data.general.siteTitle}</span>
-          ©2022
+          Designed and Powered by -<span className="name">{data.general.siteTitle}</span>©
+          {new Date().getFullYear()}
         </p>
       </footer>
     </>
