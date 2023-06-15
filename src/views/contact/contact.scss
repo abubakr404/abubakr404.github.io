@@ -2,13 +2,11 @@ section.contact {
   background: {
     repeat: no-repeat;
     size: cover;
-    image: url(/images/contact-pattern.svg), var(--second-surface);
     blend: {
       mode: var(--second-surface-blend-mode);
     }
   }
   padding-bottom: 5rem;
-  margin-bottom: 2rem;
   .contact-box {
     @extend %twoColG;
     background: var(--primary-gradient);
@@ -59,7 +57,6 @@ section.contact {
       @extend %fSpacerY;
       min-height: 19rem;
       background: {
-        image: url(/images/contact-illustration.svg);
         repeat: no-repeat;
         size: 20.5rem;
         position: right calc(100% + 0.75rem);
@@ -140,6 +137,9 @@ section.contact {
     gap: 0.5em;
     margin-top: auto;
     padding: 1.125rem 2rem 1.125rem 1.5rem;
+    &:disabled {
+      opacity: 0.5;
+    }
     @include in(toSmall) {
       align-self: stretch;
     }

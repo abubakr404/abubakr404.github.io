@@ -1,50 +1,46 @@
+import { useRef } from "react";
 import Main from "./views/main/Main";
-import Layout from "./components/layouts/Layout";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
-import { ThemeContext } from "./context/ThemeContext";
-import { SiteDataContext } from "./context/SiteDataContext";
-import { collection, getDocs } from "firebase/firestore";
-import { database } from "./firebaseConfig";
+import { navbarActions } from "./store/navbar-slice";
+import Navbar from "./components/navbar/Navbar";
+import Divider from "./components/divider/Divider";
+import { useSelector, useDispatch } from "react-redux";
 
 const App = () => {
-  const { currentMode } = useContext(ThemeContext);
-  const [siteData, setSiteData] = useState(null);
+  const currentMode = useSelector((state) => state.theme.mode);
   const headerRef = useRef(null);
 
-  useEffect(() => {
-    const getSiteData = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(database, "settings"));
-        let list = {};
-        querySnapshot.forEach(
-          (setup) => (list = { ...list, [setup.id]: { ...setup.data() } })
-        );
-        setSiteData(list);
-      } catch (err) {
-        setSiteData(null);
-        console.log(err);
-      }
-    };
-    getSiteData();
-  }, []);
+  const { isOpened, isFilled } = useSelector((state) => state.navbar);
+
+  const dispatch = useDispatch();
+
+  const fillToggle = () => {
+    if (headerRef.current.offsetTop > 0) {
+      dispatch(navbarActions.filled(true));
+    } else if (
+      headerRef.current.offsetTop <= headerRef.current.offsetHeight &&
+      !isOpened
+    ) {
+      dispatch(navbarActions.filled(false));
+    }
+  };
 
   return (
-    <div
-      className={currentMode ? "app toggleMode" : "app"}
-      onScroll={() => {
-        headerRef.current.fillToggle();
-      }}
-    >
-      <SiteDataContext.Provider value={siteData}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Layout ref={headerRef} />}>
-              <Route index element={<Main />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </SiteDataContext.Provider>
+    <div className={currentMode ? "app toggleMode" : "app"} onScroll={() => fillToggle()}>
+      <header ref={headerRef} className={isFilled ? "filled" : undefined}>
+        <Navbar />
+      </header>
+      <main>
+        <Main />
+      </main>
+      <footer>
+        <div className="divider-footer">
+          <Divider />
+        </div>
+        <p>
+          Designed and Powered by -<span className="name">Abubakr</span>©
+          {new Date().getFullYear()}
+        </p>
+      </footer>
     </div>
   );
 };

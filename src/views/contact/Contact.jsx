@@ -1,4 +1,4 @@
-import Social from "../../components/widget/social/Social";
+import Social from "../../components/social/Social";
 import {
   faArrowRotateBack,
   faEnvelope,
@@ -6,50 +6,41 @@ import {
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import thanksIllustration from "../../../public/images/thank-you-illustration.svg";
+import {
+  thanksIllustration,
+  contactPattern,
+  contactIllustration,
+} from "../../assets/images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
-import { database } from "../../firebaseConfig";
 
-const Contact = ({
-  title,
-  headTitle,
-  contact: {
-    contactTitle,
-    contactInfo,
-    emailLink,
-    phoneNumber,
-    messageOfThanks,
-    SendButton,
-    SendAgainButton,
-  },
-}) => {
-  const [messageText, setMessageText] = useState({
-    date: new Date().getTime(),
-    text: "",
-  });
-  const [message, setMessage] = useState({
-    id: new Date().getTime().toString(),
-    senderName: "",
-    senderEmail: "",
-    phoneNumber: "",
-    messagesText: [],
-  });
+const Contact = () => {
+  const [message, setMessage] = useState({});
   const [thanksMsg, setThanksMsg] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
-    setMessage((prevData) => ({
-      ...prevData,
-      messagesText: [...prevData.messagesText, messageText],
-    }));
-    try {
-      const messageRef = doc(database, "messages", message.id);
-      await setDoc(messageRef, message);
-      setThanksMsg(true);
-    } catch (e) {
-      console.error("Error adding message: ", e);
+    const config = {
+      SecureToken: import.meta.env.VITE_SECURE_TOKEN,
+      To: import.meta.env.VITE_CONTACT_EMAIL,
+      From: message.senderEmail,
+      Subject: `This is a contact message from ${message.senderName}${
+        message.phoneNumber ? `and his number is: ${message.phoneNumber}` : ""
+      }`,
+      Body: message.messageText,
+    };
+    if (window.Email) {
+      try {
+        setIsLoading(true);
+        window.Email.send(config).then(() => {
+          setIsLoading(false);
+          setThanksMsg(true);
+        });
+      } catch (error) {
+        setIsLoading(false);
+        console.log(error);
+      }
     }
   };
 
@@ -60,47 +51,42 @@ const Contact = ({
     }));
   };
 
-  const handleMessage = (target) => {
-    setMessage((prevData) => ({
-      ...prevData,
-      messagesText: [
-        ...prevData.messagesText,
-        {
-          date: new Date().getTime(),
-          text: target.value,
-        },
-      ],
-    }));
-  };
-
-  const SendAgain = () => {
-    setThanksMsg(false);
-  };
-
   return (
-    <section className="contact" id={title}>
-      <h2 className="text-center special-head" title={headTitle}>
-        {headTitle}
+    <section
+      className="contact"
+      id="contact"
+      style={{ backgroundImage: `url(${contactPattern}), var(--second-surface)` }}
+    >
+      <h2 className="text-center special-head" title="Contact">
+        Contact
       </h2>
       <div className="container">
         <div className="contact-box">
           <div className="info">
             <div className="info-head">
-              <h3>{contactTitle}</h3>
-              <p>{contactInfo}</p>
+              <h3>Get in touch,</h3>
+              <p>
+                Blandit viverra felis vulputate lacus turpis ipsum ut dictumst amet, urna
+                donec in cursus eget ullamcorper.
+              </p>
             </div>
-            <div className="info-bottom">
+            <div
+              className="info-bottom"
+              style={{
+                backgroundImage: `url(${contactIllustration})`,
+              }}
+            >
               <ul className="links">
                 <li>
-                  <a className="contact-link" href={`mailto:${emailLink}`}>
+                  <a className="contact-link" href="mailto:abubakr.hisham@hotmail.com">
                     <FontAwesomeIcon icon={faEnvelope} />
-                    <span>{emailLink}</span>
+                    <span>abubakr.hisham@hotmail.com</span>
                   </a>
                 </li>
                 <li>
-                  <a className="contact-link" href={`tel:${phoneNumber}`}>
+                  <a className="contact-link" href="tel:+249 904219999">
                     <FontAwesomeIcon icon={faPhone} />
-                    <span>{phoneNumber}</span>
+                    <span>+249 904219999</span>
                   </a>
                 </li>
               </ul>
@@ -118,7 +104,7 @@ const Contact = ({
                   type="text"
                   name="senderName"
                   placeholder="Your Name"
-                  value={message.senderName}
+                  value={message.senderName || ""}
                   onChange={(ele) => handleInputs(ele.target)}
                   required
                 />
@@ -131,7 +117,7 @@ const Contact = ({
                   type="email"
                   name="senderEmail"
                   placeholder="Your Email"
-                  value={message.senderEmail}
+                  value={message.senderEmail || ""}
                   onChange={(ele) => handleInputs(ele.target)}
                   required
                 />
@@ -144,7 +130,7 @@ const Contact = ({
                   type="text"
                   name="phoneNumber"
                   placeholder="Your Phone Number"
-                  value={message.phoneNumber}
+                  value={message.phoneNumber || ""}
                   onChange={(ele) => handleInputs(ele.target)}
                 />
               </div>
@@ -153,17 +139,18 @@ const Contact = ({
               <div className="input">
                 <textarea
                   className="form-input message"
-                  name="messagesText"
+                  name="messageText"
                   placeholder="Tell me about all you needs"
-                  onBlur={(ele) => handleMessage(ele.target)}
+                  value={message.messageText || ""}
+                  onChange={(ele) => handleInputs(ele.target)}
                   required
                 />
               </div>
             </div>
             <p className="message-stutus"></p>
-            <button className="submit">
+            <button className="submit" disabled={isLoading}>
               <FontAwesomeIcon icon={faPaperPlane} />
-              {SendButton}
+              Send Message
             </button>
           </form>
           <div className={thanksMsg ? "thanks-message" : "thank-message hide"}>
@@ -171,10 +158,13 @@ const Contact = ({
               <img src={thanksIllustration} alt="" />
             </div>
             <h3>Thank you!</h3>
-            <div className="thanks">{messageOfThanks}</div>
-            <button onClick={SendAgain} className="submit light send-again">
+            <div className="thanks">Thanks you for contact.</div>
+            <button
+              onClick={() => setThanksMsg(false)}
+              className="submit light send-again"
+            >
               <FontAwesomeIcon icon={faArrowRotateBack} />
-              {SendAgainButton}
+              Send Other Message
             </button>
           </div>
         </div>

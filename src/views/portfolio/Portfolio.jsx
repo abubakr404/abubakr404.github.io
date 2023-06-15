@@ -1,132 +1,113 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { database } from "../../firebaseConfig";
-import Spinner from "../../components/spinner/Spinner";
+import {
+  faHtml5,
+  faCss3Alt,
+  faJsSquare,
+  faSass,
+  faReact,
+  faVuejs,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  portfolioPattern,
+  abubakrDesktop,
+  abubakrTablet,
+  abubakrPhone,
+  blogrDesktop,
+  blogrTablet,
+  blogrPhone,
+  kasperDesktop,
+  kasperTablet,
+  kasperPhone,
+  elzeroTeamDesktop,
+  elzeroTeamTablet,
+  elzeroTeamPhone,
+  sunysideDesktop,
+  sunysideTablet,
+  sunysidePhone,
+  leonDesktop,
+  leonTablet,
+  leonPhone,
+} from "../../assets/images";
+import Project from "../project/Project";
 
-const Portfolio = ({ title, headTitle }) => {
-  const [zoomPro, setZoomPro] = useState({ projectNum: 0, isZoomed: false });
-  const [shuffle, setShuffle] = useState(0);
-  const [projects, setProjects] = useState(null);
-
-  useEffect(() => {
-    const getProjects = async () => {
-      let list = [];
-      try {
-        const querySnapshot = await getDocs(collection(database, "projects"));
-        querySnapshot.forEach((snapshot) => {
-          list.push(snapshot.data());
-        });
-        setProjects(list);
-      } catch (err) {
-        setProjects(null);
-        console.log(err);
-      }
-    };
-    getProjects();
-  }, []);
-
+const Portfolio = () => {
   return (
-    <section className="portfolio" id={title}>
-      <h2 className="special-head" title={headTitle}>
-        {headTitle}
+    <section
+      className="portfolio"
+      id="portfolio"
+      style={{
+        backgroundImage: `url(${portfolioPattern}), var(--second-surface)`,
+      }}
+    >
+      <h2 className="special-head" title="Latest Works">
+        Latest Works
       </h2>
       <div className="container">
-        {projects === null ? (
-          <Spinner />
-        ) : (
-          projects.map((project, i) => (
-            <div
-              className={
-                zoomPro.isZoomed && zoomPro.projectNum === i
-                  ? "work-card zoomed"
-                  : "work-card"
-              }
-              key={project.id}
-            >
-              <div className="card-top">
-                {project.images !== null && (
-                  <div className="works-viewer">
-                    <div className="work-shuffle">
-                      {Object.entries(project.images).map((image, imgI) => (
-                        <button
-                          key={imgI}
-                          onClick={() => {
-                            setShuffle(imgI);
-                          }}
-                          className={shuffle === imgI ? "screen active" : "screen"}
-                          title={image[0]}
-                        >
-                          <FontAwesomeIcon icon={image[1].icon} />
-                        </button>
-                      ))}
-                    </div>
-                    <div
-                      className="imgs-container"
-                      onClick={() =>
-                        setZoomPro((prevData) => ({
-                          projectNum: i,
-                          isZoomed: !prevData.isZoomed,
-                        }))
-                      }
-                    >
-                      {Object.entries(project.images).map((image, imgI) => (
-                        <img
-                          key={imgI}
-                          src={image[1].url}
-                          className={shuffle === imgI ? "active" : undefined}
-                          alt=""
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                <div className="technologies">
-                  <ul className="technologies-container">
-                    {project.technologies.map(
-                      (techonlogy, i) =>
-                        techonlogy.isChecked && (
-                          <li key={i}>
-                            <FontAwesomeIcon icon={techonlogy.icon} />
-                          </li>
-                        )
-                    )}
-                  </ul>
-                </div>
-              </div>
-              <div className="card-bottom">
-                <div className="card-info">
-                  <h5 className="one-line title" title={project.projectName}>
-                    {project.projectName}
-                  </h5>
-                  <a
-                    className="one-line text"
-                    href={project.desingerLink}
-                    target="_blank"
-                    title={project.projectDesinger}
-                  >
-                    <FontAwesomeIcon icon="fa fa-palette" />
-                    {project.projectDesinger}
-                  </a>
-                </div>
-                <div className="card-actions">
-                  <a
-                    className="link light action"
-                    href={project.liveLink}
-                    target="_blank"
-                  >
-                    <FontAwesomeIcon icon="fa fa-eye" />
-                    Live Version
-                  </a>
-                  <a className="link action" href={project.projectRepo} target="_blank">
-                    <FontAwesomeIcon icon="fab fa-github" />
-                    View Code
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))
-        )}
+        <Project
+          desktopImg={abubakrDesktop}
+          tabletImg={abubakrTablet}
+          phoneImg={abubakrPhone}
+          technologies={[faHtml5, faCss3Alt, faJsSquare, faSass, faReact]}
+          projectName="Abubakr Website"
+          projectDesinger="Abubakr"
+          desingerLink="https://www.figma.com/file/sd7cX1lLaL6pMWDclQdoOA/Abubakr-site"
+          liveLink="https://abubakr404.github.io/abubakr-portfolio"
+          projectRepo="https://github.com/abubakr404/abubakr-portfolio"
+        />
+        <Project
+          desktopImg={blogrDesktop}
+          tabletImg={blogrTablet}
+          phoneImg={blogrPhone}
+          technologies={[faHtml5, faCss3Alt, faJsSquare, faSass, faVuejs]}
+          projectName="Blogr"
+          projectDesinger="Forntend Mentor"
+          desingerLink="https://www.frontendmentor.io/challenges/blogr-landing-page-EX2RLAApP"
+          liveLink="https://abubakr404.github.io/frontend-mentor-challenge-22/"
+          projectRepo="https://github.com/abubakr404/frontend-mentor-challenge-22"
+        />
+        <Project
+          desktopImg={kasperDesktop}
+          tabletImg={kasperTablet}
+          phoneImg={kasperPhone}
+          technologies={[faHtml5, faCss3Alt, faJsSquare, faSass, faVuejs]}
+          projectName="Kasper"
+          projectDesinger="Graphberry"
+          desingerLink="https://www.graphberry.com/item/kasper-one-page-creative-html-theme"
+          liveLink="https://abubakr404.github.io/elzero-tut-temp-2/"
+          projectRepo="https://github.com/abubakr404/elzero-tut-temp-2"
+        />
+        <Project
+          desktopImg={elzeroTeamDesktop}
+          tabletImg={elzeroTeamTablet}
+          phoneImg={elzeroTeamPhone}
+          technologies={[faHtml5, faCss3Alt, faJsSquare, faSass]}
+          projectName="Elzero Team"
+          projectDesinger="Elzero.org"
+          desingerLink="https://elzero.org/html-css-practice-template-three/"
+          liveLink="https://abubakr404.github.io/elzero-tut-temp-3/"
+          projectRepo="https://github.com/abubakr404/elzero-tut-temp-3"
+        />
+        <Project
+          desktopImg={sunysideDesktop}
+          tabletImg={sunysideTablet}
+          phoneImg={sunysidePhone}
+          technologies={[faHtml5, faCss3Alt, faJsSquare, faSass, faVuejs]}
+          projectName="Sunyside"
+          projectDesinger="Forntend Mentor"
+          desingerLink="https://www.frontendmentor.io/challenges/sunnyside-agency-landing-page-7yVs3B6ef"
+          liveLink="https://abubakr404.github.io/frontend-mentor-challenge-21/"
+          projectRepo="https://github.com/abubakr404/frontend-mentor-challenge-21"
+        />
+        <Project
+          desktopImg={leonDesktop}
+          tabletImg={leonTablet}
+          phoneImg={leonPhone}
+          technologies={[faHtml5, faCss3Alt, faJsSquare, faSass, faVuejs]}
+          projectName="Leon"
+          projectDesinger="Graphberry"
+          desingerLink="https://www.graphberry.com/item/leon-psd-agency-template"
+          liveLink="https://abubakr404.github.io/elzero-tut-temp-1/"
+          projectRepo="https://github.com/abubakr404/elzero-tut-temp-1"
+        />
       </div>
     </section>
   );

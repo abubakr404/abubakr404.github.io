@@ -240,17 +240,15 @@ body {
   color: var(--text-element);
 }
 
-@import "./components/layouts/layout";
+@import "./views/main/main";
 @import "./components/loader/loader";
 @import "./components/navbar/navbar";
-@import "./components/spinner/spinner";
-@import "./components/sidebar/sidebar";
-@import "./components/widget/widget";
-@import "./components/table/table";
 @import "./components/divider/divider";
-@import "./components/widget/social/social";
+@import "./components/social/social";
 @import "./views/hero/hero";
 @import "./views/about/about";
 @import "./views/portfolio/portfolio";
+@import "./views/project/project";
 @import "./views/blogs/blogs";
+@import "./views/post/post";
 @import "./views/contact/contact";
