@@ -15,9 +15,9 @@ import abubakrDesktop from "./projects/abubakr-desktop.webp";
 import abubakrTablet from "./projects/abubakr-tablet.webp";
 import abubakrPhone from "./projects/abubakr-phone.webp";
 
-import blogrDesktop from "./projects/blogr-desktop.webp";
-import blogrTablet from "./projects/blogr-tablet.webp";
-import blogrPhone from "./projects/blogr-phone.webp";
+import languagesHelperDesktop from "./projects/languages-helper-desktop.png";
+import languagesHelperTablet from "./projects/languages-helper-tablet.png";
+import languagesHelperPhone from "./projects/languages-helper-phone.png";
 
 import elzeroTeamDesktop from "./projects/elzero-team-desktop.webp";
 import elzeroTeamTablet from "./projects/elzero-team-tablet.webp";
@@ -51,9 +51,9 @@ export {
   abubakrDesktop,
   abubakrTablet,
   abubakrPhone,
-  blogrDesktop,
-  blogrTablet,
-  blogrPhone,
+  languagesHelperDesktop,
+  languagesHelperTablet,
+  languagesHelperPhone,
   elzeroTeamDesktop,
   elzeroTeamTablet,
   elzeroTeamPhone,

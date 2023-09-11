@@ -10,11 +10,20 @@ const About = () => {
           <img className="about-img" src={aboutSection} alt="" />
         </div>
         <div className="content">
-          <h3 className="title">Hey I'm Abubakr, Frontend developer</h3>
+          <h3 className="title">
+            I'm Abubakr, a dedicated web developer with a passion for creating exceptional
+            digital experiences.
+          </h3>
           <p className="lead">
-            Here Iam gonna share everything about my life. Books Iam reading, Games Iam
-            Playing, Stories and Events Here Iam gonna share everything about my life.
-            Books Iam reading, Games Iam Playing, Stories and Events.
+            My journey in web development has led me to master a versatile set of
+            technologies, including React.js, Next.js, HTML, CSS, Sass, JavaScript,
+            Express.js, Node.js, MongoDB, Firebase, and more.
+          </p>
+          <p className="lead">
+            Whether you're a business looking to enhance your online presence or a
+            recruiter seeking a talented web developer, I'm here to bring your projects to
+            life. Let's collaborate and make your vision a reality. Feel free to reach out
+            and let's discuss how I can contribute to your success.
           </p>
         </div>
       </div>

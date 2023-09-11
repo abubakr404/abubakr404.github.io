@@ -29,15 +29,17 @@ const Hero = () => {
       <div className="container">
         <div className="hero-content">
           <div className="content">
-            <h1 className="display">Hey I'm Abubakr, Frontend developer</h1>
+            <h1 className="display">Hey, I'm Abubakr, Passionate Web Developer</h1>
             <p className="lead">
-              Here Iam gonna share everything about my life. Books Iam reading, Games Iam
-              Playing, Stories and Events
+              My mission is to turn ideas into interactive and user-friendly websites and
+              web applications. I thrive on solving complex problems and crafting
+              solutions that not only meet but exceed expectations.
             </p>
             <div className="actions" role="group">
               <a
                 href="https://drive.google.com/file/d/1fDdCcaUDnjsP0SDb1-zTr1deGp7hpCbc/"
                 className="link light left-link"
+                target="_blank"
               >
                 Get Resume
               </a>

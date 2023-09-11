@@ -11,9 +11,9 @@ import {
   abubakrDesktop,
   abubakrTablet,
   abubakrPhone,
-  blogrDesktop,
-  blogrTablet,
-  blogrPhone,
+  languagesHelperDesktop,
+  languagesHelperTablet,
+  languagesHelperPhone,
   kasperDesktop,
   kasperTablet,
   kasperPhone,
@@ -43,6 +43,17 @@ const Portfolio = () => {
       </h2>
       <div className="container">
         <Project
+          desktopImg={languagesHelperDesktop}
+          tabletImg={languagesHelperTablet}
+          phoneImg={languagesHelperPhone}
+          technologies={[faHtml5, faCss3Alt, faJsSquare, faSass, faReact]}
+          projectName="Languages Helper"
+          projectDesinger="Abubakr"
+          desingerLink="https://www.abubakr.co"
+          liveLink="https://abubakr404.github.io/language-helper/"
+          projectRepo="https://languages-helper.abubakr.co/"
+        />
+        <Project
           desktopImg={abubakrDesktop}
           tabletImg={abubakrTablet}
           phoneImg={abubakrPhone}
@@ -52,17 +63,6 @@ const Portfolio = () => {
           desingerLink="https://www.figma.com/file/sd7cX1lLaL6pMWDclQdoOA/Abubakr-site"
           liveLink="https://abubakr404.github.io/abubakr-portfolio"
           projectRepo="https://github.com/abubakr404/abubakr-portfolio"
-        />
-        <Project
-          desktopImg={blogrDesktop}
-          tabletImg={blogrTablet}
-          phoneImg={blogrPhone}
-          technologies={[faHtml5, faCss3Alt, faJsSquare, faSass, faVuejs]}
-          projectName="Blogr"
-          projectDesinger="Forntend Mentor"
-          desingerLink="https://www.frontendmentor.io/challenges/blogr-landing-page-EX2RLAApP"
-          liveLink="https://abubakr404.github.io/frontend-mentor-challenge-22/"
-          projectRepo="https://github.com/abubakr404/frontend-mentor-challenge-22"
         />
         <Project
           desktopImg={kasperDesktop}

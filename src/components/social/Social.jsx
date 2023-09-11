@@ -1,15 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCodepen,
   faFacebookF,
   faGithub,
   faLinkedin,
   faTwitter,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 
 const Link = ({ link, icon }) => (
   <li className="list-group-item">
-    <a className="social-link btn btn-light" href={link}>
+    <a className="social-link btn btn-light" href={link} target="_blank">
       <FontAwesomeIcon icon={icon} />
     </a>
   </li>
@@ -23,7 +23,7 @@ const Social = () => {
         <Link link="https://twitter.com/abubakr_404" icon={faTwitter} />
         <Link link="https://linkedin.com/in/abubakr-hisham" icon={faLinkedin} />
         <Link link="https://github.com/abubakr404" icon={faGithub} />
-        <Link link="https://codepen.io/abubakr_404" icon={faCodepen} />
+        <Link link="https://wa.me/249904219999" icon={faWhatsapp} />
       </ul>
     </div>
   );

@@ -66,8 +66,8 @@ const Contact = () => {
             <div className="info-head">
               <h3>Get in touch,</h3>
               <p>
-                Blandit viverra felis vulputate lacus turpis ipsum ut dictumst amet, urna
-                donec in cursus eget ullamcorper.
+                Let's collaborate and make your vision a reality. Feel free to reach out
+                and let's discuss how I can contribute to your success.
               </p>
             </div>
             <div
@@ -81,6 +81,12 @@ const Contact = () => {
                   <a className="contact-link" href="mailto:abubakr.hisham@hotmail.com">
                     <FontAwesomeIcon icon={faEnvelope} />
                     <span>abubakr.hisham@hotmail.com</span>
+                  </a>
+                </li>
+                <li>
+                  <a className="contact-link" href="tel:+966 503237742">
+                    <FontAwesomeIcon icon={faPhone} />
+                    <span>+966 503237742</span>
                   </a>
                 </li>
                 <li>

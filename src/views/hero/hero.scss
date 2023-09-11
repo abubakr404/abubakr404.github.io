@@ -23,24 +23,26 @@
     }
   }
   .display {
-    letter-spacing: 0.125rem;
+    letter-spacing: 0.0625rem;
+    line-height: 1.2;
     font-weight: bold;
+    margin: 1rem 0;
     @include in(large) {
-      font-size: 3rem;
+      font-size: 2.875rem;
     }
     @include in(toSmall) {
       font-size: calc(1.475rem + 2vw);
     }
   }
   .lead {
-    margin: 1.125rem 0;
-    font-weight: 500;
+    margin: 1rem 0;
+    font-weight: 400;
     max-width: 31.25rem;
-    line-height: 1.5;
+    line-height: 1.2;
     font-size: 1.25rem;
     @include in(toSmall) {
       font-size: 0.875rem;
-      margin: 1.125rem auto;
+      margin: 1rem auto;
     }
   }
   .actions {
