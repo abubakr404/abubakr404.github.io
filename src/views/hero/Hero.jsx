@@ -1,17 +1,15 @@
 import { useRef, useEffect } from "react";
 import { styled } from "@mui/system";
 import { Box, Container, Typography, Button } from "@mui/material";
-import Divider from "@/components/divider/Divider";
-import Social from "@/components/social/Social";
+import Divider from "@/components/Divider";
+import Social from "@/components/Social";
 import { FaAnglesDown } from "react-icons/fa6";
-import {
-  personChair,
-  ellipse,
-  languages,
-  pattern,
-  screen,
-  backgroundSec,
-} from "../../assets/images";
+import personChair from "@/assets/images/person & chair.png";
+import ellipse from "@/assets/images/Ellipse.svg";
+import languages from "@/assets/images/languages.svg";
+import pattern from "@/assets/images/pattern.png";
+import screen from "@/assets/images/screen.png";
+import backgroundSec from "@/assets/images/background-sec.png";
 
 // Styled components using MUI
 const HeroSection = styled("section")(({ theme }) => ({
@@ -114,8 +112,8 @@ const Hero = () => {
     if (heroRef.current) {
       heroRef.current.style.backgroundImage =
         document.body.offsetWidth <= 991
-          ? `url(${ellipse}), url(${pattern}), var(--hero-gradient)`
-          : `url(${ellipse}), url(${languages}), url(${pattern}), var(--hero-gradient)`;
+          ? `url(${ellipse.src}), url(${pattern.src}), var(--hero-gradient)`
+          : `url(${ellipse.src}), url(${languages.src}), url(${pattern.src}), var(--hero-gradient)`;
     }
   };
 
@@ -149,9 +147,9 @@ const Hero = () => {
           </HeroActions>
           <Social />
         </HeroContent>
-        <HeroFigure style={{ backgroundImage: `url(${screen}), url(${backgroundSec})` }}>
+        <HeroFigure style={{ backgroundImage: `url(${screen.src}), url(${backgroundSec.src})` }}>
           <Box>
-            <img src={personChair} alt="" className="cover-img" />
+            <img src={personChair.src} alt="" className="cover-img" />
             <Button href="#portfolio" className="link primary work-link">
               projects
             </Button>

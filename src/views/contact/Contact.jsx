@@ -1,6 +1,8 @@
-import Social from "@/components/social/Social";
-import { FaArrowRotateBack, FaEnvelope, FaPaperPlane, FaPhone, FaUser } from "react-icons/fa6";
-import { thanksIllustration, contactPattern, contactIllustration } from "../../assets/images";
+import Social from "@/components/Social";
+import { FaArrowRotateLeft, FaEnvelope, FaPaperPlane, FaPhone, FaUser } from "react-icons/fa6";
+import thanksIllustration from "@/assets/images/thank-you-illustration.svg";
+import contactIllustration from "@/assets/images/contact-illustration.svg";
+import contactPattern from "@/assets/images/contact-pattern.svg";
 import { useState } from "react";
 
 const Contact = () => {
@@ -45,7 +47,12 @@ const Contact = () => {
     <section
       className="contact"
       id="contact"
-      style={{ backgroundImage: `url(${contactPattern}), var(--second-surface)` }}
+      style={{
+        backgroundImage: `url(${contactPattern.src}), var(--second-surface)`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
     >
       <h2 className="text-center special-head" title="Contact">
         Contact
@@ -63,7 +70,11 @@ const Contact = () => {
             <div
               className="info-bottom"
               style={{
-                backgroundImage: `url(${contactIllustration})`,
+                backgroundImage: `url(${contactIllustration.src})`,
+                minHeight: "19rem",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "20.5rem",
+                backgroundPosition: "right calc(100% + .75rem)",
               }}
             >
               <ul className="links">
@@ -74,15 +85,15 @@ const Contact = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="contact-link" href="tel:+966 503237742">
+                  <a className="contact-link" href="tel:+966 53 958 1070">
                     <FaPhone />
-                    <span>+966 503237742</span>
+                    <span>+966 53 958 1070</span>
                   </a>
                 </li>
                 <li>
-                  <a className="contact-link" href="tel:+249 904219999">
+                  <a className="contact-link" href="tel:+249 90 421 9999">
                     <FaPhone />
-                    <span>+249 904219999</span>
+                    <span>+249 90 421 9999</span>
                   </a>
                 </li>
               </ul>
@@ -151,12 +162,12 @@ const Contact = () => {
           </form>
           <div className={thanksMsg ? "thanks-message" : "thank-message hide"}>
             <div className="img">
-              <img src={thanksIllustration} alt="" />
+              <img src={thanksIllustration.src} alt="" />
             </div>
             <h3>Thank you!</h3>
             <div className="thanks">Thanks you for contact.</div>
             <button onClick={() => setThanksMsg(false)} className="submit light send-again">
-              <FaArrowRotateBack />
+              <FaArrowRotateLeft />
               Send Other Message
             </button>
           </div>

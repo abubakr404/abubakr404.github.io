@@ -61,13 +61,9 @@ const Navbar: React.FC = () => {
       direction="row"
       alignItems="center"
       component="nav"
-      className={`${isFilled ? " filled" : ""}`}
       sx={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
         transition: "all var(--main-transition) ease-out",
-        px: "0.5rem",
+        px: isFilled ? "0.5rem" : 0,
         overflow: "hidden",
         position: "relative",
         "&:before": {
@@ -76,15 +72,11 @@ const Navbar: React.FC = () => {
           position: "absolute",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          animation: `filledColorEnd var(--main-transition) ease-out forwards`,
+          animation: `${
+            isFilled ? "filledColorStart" : "filledColorEnd"
+          } var(--main-transition) ease-out forwards`,
         },
-        "&.filled": {
-          boxShadow: "0 0.125rem 0.25rem rgba(#0f1628, 0.5)",
-          p: 0,
-          "&:before": {
-            animation: `filledColorStart var(--main-transition) ease-out forwards`,
-          },
-        },
+        ...(isFilled && { boxShadow: "0 0.125rem 0.25rem #0f162880" }),
       }}
     >
       <Container

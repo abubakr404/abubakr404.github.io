@@ -1,7 +1,7 @@
 import { FaHtml5, FaCss3Alt, FaSass, FaReact, FaVuejs } from "react-icons/fa6";
 import { FaJsSquare } from "react-icons/fa";
+import portfolioPattern from "@/assets/images/portfolio-pattern.svg";
 import {
-  portfolioPattern,
   abubakrDesktop,
   abubakrTablet,
   abubakrPhone,
@@ -20,7 +20,7 @@ import {
   leonDesktop,
   leonTablet,
   leonPhone,
-} from "../../assets/images";
+} from "@/assets/images";
 import Project from "../project/Project";
 
 const Portfolio = () => {
@@ -99,7 +99,12 @@ const Portfolio = () => {
       className="portfolio"
       id="portfolio"
       style={{
-        backgroundImage: `url(${portfolioPattern}), var(--second-surface)`,
+        backgroundImage: `url(${portfolioPattern.src}), var(--second-surface)`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        // backgroundAttachment: "fixed",
+        // backgroundClip: "border-box",
       }}
     >
       <h2 className="special-head" title="Latest Works">

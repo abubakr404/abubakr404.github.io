@@ -4,7 +4,7 @@ import { RootState, AppDispatch } from "@/store";
 import { useRef, RefObject } from "react";
 import { Box } from "@mui/material";
 import Navbar from "@/components/navbar/Navbar";
-import Divider from "@/components/divider/Divider";
+import Divider from "@/components/Divider";
 
 interface NavbarState {
   isOpened: boolean;

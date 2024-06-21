@@ -1,6 +1,6 @@
 import { styled } from "@mui/system";
 import { Box, Container, Typography } from "@mui/material";
-import { aboutSection } from "../../assets/images";
+import aboutSection from "@/assets/images/about-section.png";
 
 // Styled components using MUI
 const AboutSection = styled("section")({
@@ -56,7 +56,7 @@ const About = () => {
       </Typography>
       <AboutContainer>
         <AboutFigure>
-          <AboutImage src={aboutSection} alt="About Section Image" />
+          <AboutImage src={aboutSection.src} alt="About Section Image" />
         </AboutFigure>
         <Content>
           <Title variant="h3">
