@@ -1,9 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDesktopAlt,
-  faTabletAlt,
-  faMobileAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { FaPalette, FaEye, FaGithub } from "react-icons/fa6";
+import { FaDesktop, FaTabletAlt, FaMobileAlt } from "react-icons/fa";
 import { useState } from "react";
 
 const Project = ({
@@ -33,7 +29,7 @@ const Project = ({
                 className={shuffle === "desktop" ? "screen active" : "screen"}
                 title="desktop"
               >
-                <FontAwesomeIcon icon={faDesktopAlt} />
+                <FaDesktop />
               </button>
             )}
             {tabletImg && (
@@ -44,7 +40,7 @@ const Project = ({
                 className={shuffle === "tablet" ? "screen active" : "screen"}
                 title="tablet"
               >
-                <FontAwesomeIcon icon={faTabletAlt} />
+                <FaTabletAlt />
               </button>
             )}
             {phoneImg && (
@@ -55,14 +51,11 @@ const Project = ({
                 className={shuffle === "phone" ? "screen active" : "screen"}
                 title="phone"
               >
-                <FontAwesomeIcon icon={faMobileAlt} />
+                <FaMobileAlt />
               </button>
             )}
           </div>
-          <div
-            className="imgs-container"
-            onClick={() => setIsZoom((prevData) => !prevData)}
-          >
+          <div className="imgs-container" onClick={() => setIsZoom((prevData) => !prevData)}>
             {desktopImg && (
               <img
                 src={desktopImg}
@@ -91,10 +84,8 @@ const Project = ({
         </div>
         <div className="technologies">
           <ul className="technologies-container">
-            {technologies.map((techonlogy, i) => (
-              <li key={i}>
-                <FontAwesomeIcon icon={techonlogy} />
-              </li>
+            {technologies.map((Techonlogy, i) => (
+              <li key={i}>{<Techonlogy />}</li>
             ))}
           </ul>
         </div>
@@ -104,23 +95,18 @@ const Project = ({
           <h5 className="one-line title" title={projectName}>
             {projectName}
           </h5>
-          <a
-            className="one-line text"
-            href={desingerLink}
-            target="_blank"
-            title={projectDesinger}
-          >
-            <FontAwesomeIcon icon="fa fa-palette" />
+          <a className="one-line text" href={desingerLink} target="_blank" title={projectDesinger}>
+            <FaPalette />
             {projectDesinger}
           </a>
         </div>
         <div className="card-actions">
           <a className="link light action" href={liveLink} target="_blank">
-            <FontAwesomeIcon icon="fa fa-eye" />
+            <FaEye />
             Live Version
           </a>
           <a className="link action" href={projectRepo} target="_blank">
-            <FontAwesomeIcon icon="fab fa-github" />
+            <FaGithub />
             View Code
           </a>
         </div>

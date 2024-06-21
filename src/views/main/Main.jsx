@@ -11,7 +11,7 @@ const Main = () => {
       <About />
       <Portfolio />
       <Blogs />
-      <Contact />
+      {/* <Contact /> */}
     </>
   );
 };
