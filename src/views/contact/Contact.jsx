@@ -6,11 +6,7 @@ import {
   faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  thanksIllustration,
-  contactPattern,
-  contactIllustration,
-} from "../../assets/images";
+import { thanksIllustration, contactPattern, contactIllustration } from "../../assets/images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
@@ -66,8 +62,8 @@ const Contact = () => {
             <div className="info-head">
               <h3>Get in touch,</h3>
               <p>
-                Let's collaborate and make your vision a reality. Feel free to reach out
-                and let's discuss how I can contribute to your success.
+                Let's collaborate and make your vision a reality. Feel free to reach out and let's
+                discuss how I can contribute to your success.
               </p>
             </div>
             <div
@@ -84,9 +80,9 @@ const Contact = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="contact-link" href="tel:+966 503237742">
+                  <a className="contact-link" href="tel:+966 539581070">
                     <FontAwesomeIcon icon={faPhone} />
-                    <span>+966 503237742</span>
+                    <span>+966 539581070</span>
                   </a>
                 </li>
                 <li>
@@ -165,10 +161,7 @@ const Contact = () => {
             </div>
             <h3>Thank you!</h3>
             <div className="thanks">Thanks you for contact.</div>
-            <button
-              onClick={() => setThanksMsg(false)}
-              className="submit light send-again"
-            >
+            <button onClick={() => setThanksMsg(false)} className="submit light send-again">
               <FontAwesomeIcon icon={faArrowRotateBack} />
               Send Other Message
             </button>

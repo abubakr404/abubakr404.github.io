@@ -23,7 +23,7 @@ const Social = () => {
         <Link link="https://twitter.com/abubakr_404" icon={faTwitter} />
         <Link link="https://linkedin.com/in/abubakr-hisham" icon={faLinkedin} />
         <Link link="https://github.com/abubakr404" icon={faGithub} />
-        <Link link="https://wa.me/249904219999" icon={faWhatsapp} />
+        <Link link="https://wa.me/966539581070" icon={faWhatsapp} />
       </ul>
     </div>
   );
