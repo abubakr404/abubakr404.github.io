@@ -1,0 +1,41 @@
+{
+  "common": {
+    "languageSwitch": "تبديل اللغة",
+    "themeSwitch": "تبديل السمة",
+    "dark": "داكن",
+    "light": "فاتح"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "about": "نبذة",
+    "portfolio": "الأعمال",
+    "projects": "المشاريع",
+    "blog": "المدونة",
+    "contact": "تواصل"
+  },
+  "hero": {
+    "greeting": "مرحباً، أنا",
+    "title": "مطور ويب متكامل",
+    "subtitle": "بناء تجارب ويب جميلة وعملية",
+    "cta": "تواصل معي"
+  },
+  "about": {
+    "title": "نبذة عني",
+    "description": "مطور شغوف بخبرة في تقنيات الويب الحديثة"
+  },
+  "portfolio": {
+    "title": "أعمالي",
+    "viewProject": "عرض المشروع",
+    "viewAll": "عرض جميع المشاريع"
+  },
+  "contact": {
+    "title": "تواصل معي",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "message": "الرسالة",
+    "send": "إرسال الرسالة"
+  },
+  "blogs": {
+    "title": "المدونات"
+  }
+}

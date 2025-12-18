@@ -1,0 +1,45 @@
+{
+  "common": {
+    "languageSwitch": "Switch Language",
+    "themeSwitch": "Toggle Theme",
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "portfolio": "Portfolio",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hey, I'm Abubakr, Passionate Web Developer",
+    "title": "Full Stack Developer",
+    "description": "My mission is to turn ideas into interactive and user-friendly websites and web applications. I thrive on solving complex problems and crafting solutions that not only meet but exceed expectations.",
+    "cta": "Contact Me",
+    "getResume": "Get Resume",
+    "viewPortfolio": "Projects"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm Abubakr, a dedicated web developer with a passion for creating exceptional digital experiences.",
+    "lead1": "My journey in web development has led me to master a versatile set of technologies, including React.js, Next.js, HTML, CSS, Sass, JavaScript, Express.js, Node.js, MongoDB, Firebase, and more.",
+    "lead2": "Whether you're a business looking to enhance your online presence or a recruiter seeking a talented web developer, I'm here to bring your projects to life. Let's collaborate and make your vision a reality. Feel free to reach out and let's discuss how I can contribute to your success."
+  },
+  "portfolio": {
+    "title": "My Work",
+    "viewProject": "View Project",
+    "viewAll": "View All Projects"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message"
+  },
+  "blogs": {
+    "title": "Blogs"
+  }
+}
