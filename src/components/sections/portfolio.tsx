@@ -36,13 +36,7 @@ export function Portfolio() {
   return (
     <section 
       id="portfolio" 
-      className="py-20 relative"
-      style={{
-        backgroundImage: 'url(/assets/images/portfolio-pattern.svg), var(--second-surface)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundBlendMode: 'var(--second-surface-blend-mode)',
-      }}
+      className="py-20 relative bg-portfolio-pattern bg-no-repeat bg-cover bg-blend-[var(--second-surface-blend-mode)]"
     >
       <div className="container mx-auto px-4">
         <SpecialHeading>

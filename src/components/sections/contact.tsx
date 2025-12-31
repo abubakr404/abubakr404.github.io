@@ -36,16 +36,11 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-20 overflow-hidden"
-      style={{
-        backgroundImage: 'url(/assets/images/contact-pattern.svg), var(--second-surface)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-      }}
+      className="relative py-20 overflow-hidden bg-contact-pattern bg-no-repeat bg-cover"
     >
       <div className="container mx-auto px-4">
         <SpecialHeading>
-          {t("title")}
+          {t("getInTouch")}
         </SpecialHeading>
 
         <div className="mt-16 grid gap-0 lg:grid-cols-2 bg-card border rounded-2xl overflow-hidden shadow-2xl">

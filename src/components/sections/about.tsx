@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { SpecialHeading } from "@/components/ui/special-heading";
+import AboutImage from "@/assets/images/about-section.png";
 import Image from "next/image";
 
 export function About() {
@@ -14,14 +15,14 @@ export function About() {
           {t("title")}
         </SpecialHeading>
         
-        <div className="mt-16 grid gap-12 lg:grid-cols-2 items-center">
-          <div className="relative aspect-square overflow-hidden rounded-2xl border bg-card shadow-xl">
+        <div className="mt-16 grid gap-12 lg:grid-cols-2">
+          <div className="relative aspect-square overflow-hidden rounded-2xl bg-card shadow-xl h-[600px]">
             <Image
-              src="/assets/images/about-section.webp"
+              src={AboutImage}
               alt="About Abubakr"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover grayscale transition-all hover:grayscale-0 duration-500"
+              className="object-contain hover:scale-125 transition-all duration-500"
             />
           </div>
           

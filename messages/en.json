@@ -28,12 +28,14 @@
     "lead2": "Whether you're a business looking to enhance your online presence or a recruiter seeking a talented web developer, I'm here to bring your projects to life. Let's collaborate and make your vision a reality. Feel free to reach out and let's discuss how I can contribute to your success."
   },
   "portfolio": {
-    "title": "My Work",
+    "title": "Latest Works",
     "viewProject": "View Project",
     "viewAll": "View All Projects"
   },
   "contact": {
-    "title": "Get In Touch",
+    "getInTouch": "Get In Touch",
+    "description": "I'm Abubakr, a dedicated web developer with a passion for creating exceptional digital experiences.",
+    "phone": "Phone",
     "name": "Name",
     "email": "Email",
     "message": "Message",

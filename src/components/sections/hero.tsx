@@ -13,7 +13,7 @@ export function Hero() {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="-mt-16 relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{
         backgroundImage: 'url(/assets/images/Ellipse.svg), url(/assets/images/languages.png), url(/assets/images/pattern.png), radial-gradient(50% 50% at 50% 50%, #505d84 0%, #212f53 100%)',
         backgroundPosition: '0px -60px, 90% 90%, center, center',
@@ -60,7 +60,7 @@ export function Hero() {
             <div className="relative w-full h-full max-w-lg">
               {/* Screen / background sec */}
               <div 
-                className="absolute inset-x-0 bottom-20 h-3/4 bg-contain bg-no-repeat bg-center opacity-40 z-0"
+                className="absolute inset-x-0 bottom-20 h-3/4 bg-contain bg-no-repeat bg-center  z-0"
                 style={{ backgroundImage: 'url(/assets/images/screen.png), url(/assets/images/background-sec.png)' }}
               />
               {/* Person */}
@@ -77,9 +77,9 @@ export function Hero() {
               {/* Project Link on Screen */}
               <Button 
                 variant="legacy-primary" 
-                size="sm" 
+                size="xs" 
                 asChild 
-                className="absolute left-[15%] bottom-[40%] z-30 hidden lg:flex"
+                className="absolute left-[13%] bottom-[45%] z-30 hidden lg:flex"
               >
                 <a href="#portfolio">{t("viewPortfolio")}</a>
               </Button>

@@ -52,7 +52,7 @@ export function PostCard({ postImg, postTitle, postDetails, postDate }: PostCard
       {/* Zoomed View (Modal) */}
       {isZoomed && (
         <div 
-          className="fixed inset-0 z-100 flex items-center justify-center p-4 post-card-zoom-overlay animate-in fade-in duration-300"
+          className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-[rgba(21,31,56,0.6)] backdrop-blur-xs animate-in fade-in duration-300"
           onClick={() => setIsZoomed(false)}
         >
           <div 
@@ -62,7 +62,7 @@ export function PostCard({ postImg, postTitle, postDetails, postDate }: PostCard
             {/* Close Button */}
             <button 
               onClick={() => setIsZoomed(false)}
-              className="post-close-btn group"
+              className="absolute right-6 bottom-full px-3 py-2 bg-[#15213f] border-l border-[rgb(var(--primary-30))] rounded-t-xl shadow-[1px_-1px_0_rgb(var(--primary-30))] color-white transition-all z-10 group before:content-[''] before:absolute before:bottom-0 before:right-full before:h-3 before:w-6 before:pointer-events-none before:rounded-br-xl before:shadow-[-0.5rem_0.0625rem_0_0_#15213f,inset_0_-0.0625rem_0_0_rgb(var(--primary-30))] hover:before:shadow-[-0.5rem_0.0625rem_0_0_rgb(var(--primary-10)),inset_0_-0.0625rem_0_0_rgb(var(--primary-30))] after:content-[''] after:absolute after:bottom-0 after:left-full after:h-3 after:w-6 after:pointer-events-none after:rounded-bl-xl after:shadow-[0.5rem_0.0625rem_0_0_#15213f,inset_0_-0.0625rem_0_0_rgb(var(--primary-30))] hover:after:shadow-[0.5rem_0.0625rem_0_0_rgb(var(--primary-10)),inset_0_-0.0625rem_0_0_rgb(var(--primary-30))] hover:bg-[rgb(var(--primary-10))]"
               aria-label="Close"
             >
               <X className="h-6 w-6 transition-transform group-hover:rotate-90" />

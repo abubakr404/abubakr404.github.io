@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { ThemeToggle } from "../theme-toggle/theme-toggle";
 import { LanguageToggle } from "../language-toggle/language-toggle";
 import { cn } from "@/lib/utils";
+import Logo from "@/assets/images/logo.png";
+import Image from "next/image";
 
 interface NavbarProps {
   className?: string;
@@ -15,12 +16,10 @@ interface NavbarProps {
 
 export function Navbar({ className }: NavbarProps) {
   const t = useTranslations("navigation");
-  const locale = useLocale();
-  const pathname = usePathname();
+  console.log(t)
   const [isOpen, setIsOpen] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
-  const isHome = pathname === `/${locale}` || pathname === `/${locale}/` || pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,41 +29,42 @@ export function Navbar({ className }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const getHref = (id: string) => {
-    if (isHome) return `#${id}`;
-    if (id === "home") return `/${locale}`;
-    return `/${locale}/${id}`;
-  };
-
   const navItems = [
-    { href: getHref("home"), label: t("home") },
-    { href: getHref("about"), label: t("about") },
-    { href: getHref("portfolio"), label: t("portfolio") },
-    { href: getHref("blogs"), label: t("blog") },
-    { href: getHref("contact"), label: t("contact") },
+    { href: "/", label: t("home") },
+    { href: "/about", label: t("about") },
+    { href: "/portfolio", label: t("portfolio") },
+    { href: "/blog", label: t("blog") },
+    { href: "/contact", label: t("contact") },
   ];
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all",
-        isFilled ? "navbar-filled" : "bg-transparent",
+        "sticky top-0 z-50 w-full transition-all overflow-hidden",
+        isFilled ? "text-[rgb(var(--primary-90))]" : "bg-transparent",
         className
       )}
     >
-      <nav className="site-nav container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
+      <nav
+        className={cn(
+          "container mx-auto relative transition-all duration-400 ease-out",
+          "before:content-[''] before:z-[-1] before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2",
+          isFilled
+            ? "shadow-[0_0.125rem_0.25rem_rgba(var(--primary-10),0.5)] p-0 before:animate-[filledColorStart_0.4s_ease-out_forwards]"
+            : "before:animate-[filledColorEnd_0.4s_ease-out_forwards]"
+        )}
+      >
+        <div className="flex items-center justify-between h-16 px-4">
           <Link
-            href={`/${locale}`}
-            className="flex items-center gap-2 text-xl font-semibold md:text-2xl"
+            href={"/"}
+            className="flex items-center text-xl font-semibold md:text-2xl"
           >
-            <span className="bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            <Image src={Logo} alt="Logo" width={18} height={18} />
+            <span className="bg-linear-to-r from-primary to-primary/70 bg-clip-text">
               Abubakr
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden items-center gap-4 md:flex">
             <ul className="flex items-center gap-6">
               {navItems.map((item) => (
@@ -84,7 +84,6 @@ export function Navbar({ className }: NavbarProps) {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2"
@@ -94,11 +93,10 @@ export function Navbar({ className }: NavbarProps) {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         <div 
           className={cn(
-            "border-t md:hidden transition-all duration-300 ease-in-out overflow-hidden",
-            isOpen ? "max-h-screen opacity-100 py-4 translate-y-0" : "max-h-0 opacity-0 py-0 translate-y-16 pointer-events-none"
+            "border-t md:hidden py-4 transition-all duration-300 ease-in-out overflow-hidden",
+            isOpen ? "max-h-screen opacity-100 translate-y-0" : "max-h-0 opacity-0 py-0 translate-y-16 pointer-events-none"
           )}
         >
           <ul className="flex flex-col gap-4">

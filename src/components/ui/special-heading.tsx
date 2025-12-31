@@ -16,7 +16,12 @@ export function SpecialHeading({
   backgroundClassName,
 }: SpecialHeadingProps) {
   return (
-    <h2 className={cn("special-heading relative mb-16 text-center font-bold", className)}>
+    <h2 className={cn(
+      "relative mb-16 text-center text-[2rem] font-bold transition-all pb-5",
+      "before:absolute before:right-1/2 before:-bottom-1.25 before:translate-x-1/2 before:translate-y-1/2 before:rounded-[10rem] before:transition-all before:h-0.75 before:w-20 before:bg-[rgb(var(--primary-80))]",
+      "after:absolute after:right-1/2 after:-bottom-1.25 after:translate-x-1/2 after:translate-y-1/2 after:rounded-[10rem] after:transition-all after:h-2 after:w-6 after:bg-[rgb(var(--primary-10))] dark:after:bg-[rgb(var(--primary-90))]",
+      className
+    )}>
       {children}
       {backgroundText && (
         <span 

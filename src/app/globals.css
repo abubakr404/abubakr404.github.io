@@ -48,6 +48,10 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --background-image-portfolio-pattern: url('/assets/images/portfolio-pattern.svg'), var(--background-image-second-surface);
+  --background-image-contact-pattern: url('/assets/images/contact-pattern.svg'), var(--background-image-second-surface);
+  --bg-blend-second: var(--background-blend-mode-second);
+  --color-surface: var(--background);
 }
 
 :root {
@@ -83,11 +87,10 @@
                    radial-gradient(50% 50% at 50% 50%, #505d84 0%, #212f53 100%);
   
   /* Light Theme */
-  --surface: linear-gradient(135deg, #e6e9ff -50%, #f5f7ff 25%, #f2f5ff 90%, #e0e7ff 170%);
-  --second-surface: linear-gradient(135deg, #f5f7ff -50%, #ebedff 25%, #ebefff 100%, #f2f5ff 170%);
-  --second-surface-blend-mode: multiply;
+  --background: #f4f6ff;
+  --background-image-second-surface: linear-gradient(135deg, #f5f7ff -50%, #ebedff 25%, #ebefff 100%, #f2f5ff 170%);
+  --background-blend-mode-second: multiply;
 
-  --background: var(--surface);
   --foreground: 27 27 29; /* #1b1b1d from legacy $LightOnBackground */
   
   --card: var(--primary-99);
@@ -142,11 +145,10 @@
 
 .dark {
   /* Dark Theme Mapping */
-  --surface: linear-gradient(135deg, #0d3783 -50%, #000e32 25%, #001848 90%, #0d3783 170%);
-  --second-surface: linear-gradient(135deg, #00225d -50%, #001848 25%, #001848 100%, #00225d 170%);
-  --second-surface-blend-mode: soft-light;
+  --background: #0b1224;
+  --background-image-second-surface: linear-gradient(135deg, #00225d -50%, #001848 25%, #001848 100%, #00225d 170%);
+  --background-blend-mode-second: soft-light;
 
-  --background: var(--surface);
   --foreground: 228 226 228; /* #e4e2e4 from legacy $DarkOnBackground */
   
   --card: var(--primary-10);
@@ -367,197 +369,10 @@
 }
 
 /* Special Heading Styles */
-.special-heading {
-  font-size: 2rem;
-  padding-bottom: 1.25rem;
-  font-family: var(--font-main);
-  transition: var(--main-transition);
-}
+/* Special Heading Styles - Refactored to Tailwind */
 
-.special-heading::before,
-.special-heading::after {
-  content: "";
-  position: absolute;
-  right: 50%;
-  bottom: -0.3125rem;
-  transform: translate(50%, 50%);
-  border-radius: 10rem;
-  transition: var(--main-transition);
-}
-
-.special-heading::before {
-  background-color: rgb(var(--primary-80));
-  height: 0.1875rem;
-  width: 5rem;
-}
-
-.special-heading::after {
-  background-color: rgb(var(--primary-10));
-  height: 0.5rem;
-  width: 1.5rem;
-}
-
-.dark .special-heading::before {
-  background-color: rgb(var(--primary-80));
-}
-
-.dark .special-heading::after {
-  background-color: rgb(var(--primary-90));
-}
 /* Navbar Styles */
-header.navbar-filled {
-  color: rgb(var(--primary-90));
-}
+/* Navbar Styles - Refactored to Tailwind in component */
 
-header.navbar-filled nav {
-  box-shadow: 0 0.125rem 0.25rem rgba(var(--primary-10), 0.5);
-  padding: 0;
-}
+/* Component Styles - Refactored to direct Tailwind classes in components */
 
-header.navbar-filled nav::before {
-  animation: filledColorStart var(--main-transition) ease-out forwards;
-}
-
-nav.site-nav {
-  position: relative;
-  overflow: hidden;
-  transition: var(--main-transition);
-}
-
-nav.site-nav::before {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  animation: filledColorEnd var(--main-transition) ease-out forwards;
-}
-/* Post Card Styles */
-.post-card-zoom-overlay {
-  background-color: rgba(21, 31, 56, 0.6);
-  backdrop-filter: blur(4px);
-}
-
-.post-close-btn {
-  position: absolute;
-  right: 1.5rem;
-  bottom: 100%;
-  padding: 0.5rem 0.75rem;
-  background-color: #15213f;
-  border-left: 0.0625rem solid rgb(var(--primary-30));
-  border-radius: 0.75rem 0.75rem 0 0;
-  box-shadow: 0.0625rem -0.0625rem 0px rgb(var(--primary-30));
-  color: white;
-  transition: var(--main-transition);
-  z-index: 10;
-}
-
-.post-close-btn:hover {
-  background-color: rgb(var(--primary-10));
-}
-
-.post-close-btn::before,
-.post-close-btn::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  height: 0.75rem;
-  width: 1.5rem;
-  pointer-events: none;
-  transition: var(--main-transition);
-}
-
-.post-close-btn::before {
-  right: 100%;
-  border-radius: 0 0 0.75rem 0;
-  box-shadow: inset -0.5rem 0 0 0 #15213f, 
-              inset -0.5rem -0.0625rem 0 0 rgb(var(--primary-30));
-}
-
-.post-close-btn:hover::before {
-  box-shadow: inset -0.5rem 0 0 0 rgb(var(--primary-10)), 
-              inset -0.5rem -0.0625rem 0 0 rgb(var(--primary-30));
-}
-
-.post-close-btn::after {
-  left: 100%;
-  border-radius: 0 0 0 0.75rem;
-  box-shadow: inset 0.5rem 0 0 0 #15213f, 
-              inset 0.5rem -0.0625rem 0 0 rgb(var(--primary-30));
-}
-
-.post-close-btn:hover::after {
-  box-shadow: inset 0.5rem 0 0 0 rgb(var(--primary-10)), 
-              inset 0.5rem -0.0625rem 0 0 rgb(var(--primary-30));
-}
-/* Project Card Styles */
-.project-card-bg::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  background: var(--primary-gradient);
-  border-radius: 0.625rem;
-  height: 85%;
-  width: 85%;
-  right: 0;
-  bottom: 0;
-}
-
-@media (max-width: 768px) {
-  .project-card-bg::before {
-    height: 100%;
-    width: 100%;
-  }
-}
-
-.device-tab {
-  position: relative;
-  border-radius: 0.75rem 0.75rem 0 0;
-  padding: 0.25rem 0.75rem;
-  transition: var(--main-transition);
-  cursor: pointer;
-  z-index: 1;
-}
-
-.device-tab.active {
-  background: #15213f;
-  color: white;
-}
-
-.device-tab.active::before,
-.device-tab.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 1.5rem;
-  height: 0.75rem;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.device-tab.active::before {
-  right: 100%;
-  border-radius: 0 0 0.75rem 0;
-  box-shadow: inset -0.5rem -0.0625rem 0 0 #15213f;
-}
-
-.device-tab.active::after {
-  left: 100%;
-  border-radius: 0 0 0 0.75rem;
-  box-shadow: inset 0.5rem -0.0625rem 0 0 #15213f;
-}
-
-.project-img-scroll {
-  transition: transform 10s linear 1s;
-}
-
-.project-img-container:hover .project-img-scroll {
-  transform: translateY(calc(100% - 20rem));
-}
-
-.tech-sidebar {
-  border: solid #15213f;
-  border-width: 0.125rem 0.125rem 0.3125rem 0;
-  border-radius: 0 0.375rem 0.375rem 0;
-}

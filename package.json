@@ -1,5 +1,5 @@
 {
-  "name": "temp_app",
+  "name": "@abubakr404/portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -33,6 +33,8 @@
     "@storybook/addon-onboarding": "^10.1.10",
     "@storybook/addon-vitest": "^10.1.10",
     "@storybook/nextjs-vite": "^10.1.10",
+    "@storybook/react": "^10.1.10",
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

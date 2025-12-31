@@ -12,7 +12,7 @@ export function LanguageToggle() {
 
   const toggleLanguage = () => {
     const nextLocale = locale === "en" ? "ar" : "en";
-    const newPathname = pathname.replace(`/${locale}`, `/${nextLocale}`) || `/${nextLocale}`;
+    const newPathname = pathname.startsWith(`/${locale}`) ? pathname.replace(`/${locale}`, `/${nextLocale}`) : `/${nextLocale}${pathname}`;
     router.push(newPathname);
   };
 
